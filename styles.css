@@ -1619,3 +1619,11 @@ p {
         transition: none !important;
     }
 }
+/* Chariot Financial Services logo */
+.site-logo {
+    display: block;
+    width: 190px;
+    height: auto;
+    max-height: 58px;
+    object-fit: contain;
+}
