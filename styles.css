@@ -99,19 +99,26 @@ section {
 .section-eyebrow {
     display: inline-block;
     margin-bottom: 12px;
+
     color: var(--gold);
+
     font-size: 0.78rem;
     font-weight: 700;
+
     letter-spacing: 0.16em;
     text-transform: uppercase;
 }
 
 .section-heading h2 {
     margin-bottom: 18px;
+
     color: var(--navy);
+
     font-family: Georgia, "Times New Roman", serif;
+
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 500;
+
     line-height: 1.15;
     letter-spacing: -0.02em;
 }
@@ -258,8 +265,7 @@ section {
 
     background: transparent;
 
-    border:
-        1px solid rgba(16, 29, 47, 0.15);
+    border: 1px solid rgba(16, 29, 47, 0.15);
 
     color: var(--navy);
 
@@ -284,7 +290,6 @@ section {
     content: "";
 
     position: absolute;
-
     left: 0;
 }
 
@@ -317,7 +322,7 @@ section {
 }
 
 
-/* Subtle decorative background */
+/* Decorative background */
 
 .hero::before {
     content: "";
@@ -386,12 +391,7 @@ section {
 
     font-family: Georgia, "Times New Roman", serif;
 
-    font-size:
-        clamp(
-            2.7rem,
-            6vw,
-            4.5rem
-        );
+    font-size: clamp(2.7rem, 6vw, 4.5rem);
 
     font-weight: 500;
 
@@ -419,9 +419,7 @@ section {
 
 .hero-buttons {
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 14px;
 }
 
@@ -435,9 +433,7 @@ section {
 
     padding: 13px 24px;
 
-    border:
-        1px solid transparent;
-
+    border: 1px solid transparent;
     border-radius: var(--radius);
 
     font-size: 0.9rem;
@@ -489,7 +485,6 @@ section {
 
 .hero-side {
     display: flex;
-
     justify-content: flex-end;
 }
 
@@ -540,7 +535,6 @@ section {
     font-weight: 700;
 
     letter-spacing: 0.14em;
-
     text-transform: uppercase;
 }
 
@@ -560,8 +554,7 @@ section {
 .hero-card p {
     margin: 0;
 
-    color:
-        rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75);
 
     font-size: 0.94rem;
 
@@ -576,13 +569,11 @@ section {
 .hero-credentials {
     display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 18px;
 
     margin-top: 38px;
-
     padding-top: 25px;
 
     border-top:
@@ -605,7 +596,6 @@ section {
     color: var(--navy);
 
     font-size: 0.82rem;
-
     font-weight: 700;
 }
 
@@ -637,12 +627,7 @@ section {
 
     font-family: Georgia, "Times New Roman", serif;
 
-    font-size:
-        clamp(
-            2rem,
-            4vw,
-            3rem
-        );
+    font-size: clamp(2rem, 4vw, 3rem);
 
     font-weight: 500;
 
@@ -693,11 +678,41 @@ section {
     background: var(--white);
 }
 
-.services-grid {
+.service-group {
+    margin-bottom: 48px;
+}
+
+.service-group:last-child {
+    margin-bottom: 0;
+}
+
+.service-group-heading {
+    margin-bottom: 22px;
+}
+
+.service-group-heading h3 {
+    margin-bottom: 7px;
+
+    color: var(--navy);
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 1.65rem;
+    font-weight: 500;
+
+    line-height: 1.25;
+}
+
+.service-group-heading p {
+    max-width: 720px;
+
+    color: var(--text-light);
+}
+
+.service-group-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 22px;
 }
@@ -749,7 +764,6 @@ section {
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 1.3rem;
-
     font-weight: 500;
 
     line-height: 1.3;
@@ -773,8 +787,7 @@ section {
 .clients-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 20px;
 }
@@ -806,7 +819,6 @@ section {
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 1.25rem;
-
     font-weight: 500;
 
     line-height: 1.3;
@@ -814,70 +826,6 @@ section {
 
 .client-item p {
     color: var(--text-light);
-
-    font-size: 0.94rem;
-}
-
-
-/* =========================================================
-   WHY CHARIOT
-   ========================================================= */
-
-.why-chariot {
-    background: var(--navy);
-
-    color: var(--white);
-}
-
-.why-chariot .section-eyebrow {
-    color: var(--gold-light);
-}
-
-.why-chariot .section-heading h2 {
-    color: var(--white);
-}
-
-.why-chariot .section-heading p {
-    color:
-        rgba(255, 255, 255, 0.70);
-}
-
-.features-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 0;
-}
-
-.feature {
-    padding:
-        20px 40px 20px 0;
-}
-
-.feature + .feature {
-    padding-left: 40px;
-
-    border-left:
-        1px solid rgba(255, 255, 255, 0.13);
-}
-
-.feature h3 {
-    margin-bottom: 10px;
-
-    color: var(--white);
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 1.3rem;
-
-    font-weight: 500;
-}
-
-.feature p {
-    color:
-        rgba(255, 255, 255, 0.70);
 
     font-size: 0.94rem;
 }
@@ -937,12 +885,7 @@ section {
 
     font-family: Georgia, "Times New Roman", serif;
 
-    font-size:
-        clamp(
-            2rem,
-            4vw,
-            2.8rem
-        );
+    font-size: clamp(2rem, 4vw, 2.8rem);
 
     font-weight: 500;
 
@@ -967,24 +910,49 @@ section {
     font-size: 0.97rem;
 }
 
+.founder-credentials {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px 25px;
+
+    margin-top: 25px;
+    padding-top: 22px;
+
+    border-top:
+        1px solid rgba(16, 29, 47, 0.10);
+}
+
+.founder-credential {
+    color: var(--text-light);
+
+    font-size: 0.86rem;
+}
+
+.founder-credential strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: var(--navy);
+
+    font-size: 0.82rem;
+}
+
 
 /* =========================================================
    HOW IT WORKS
    ========================================================= */
 
 #how-it-works {
-    background: var(--white);
+    background: var(--stone);
 }
 
 .process-intro {
     max-width: 720px;
 
-    margin:
-        0 auto 40px;
-
     color: var(--text-light);
-
-    text-align: center;
 }
 
 .process-number {
@@ -1005,7 +973,6 @@ section {
     border-radius: 50%;
 
     font-size: 0.78rem;
-
     font-weight: 700;
 
     letter-spacing: 0.03em;
@@ -1013,85 +980,88 @@ section {
 
 
 /* =========================================================
-   INSIGHTS
+   FINAL CTA
    ========================================================= */
 
-.insights {
-    background: var(--white);
+.final-cta {
+    padding: 85px 0;
+
+    background: var(--navy);
+
+    color: var(--white);
+
+    text-align: center;
 }
 
-.insights-grid {
-    display: grid;
+.final-cta-inner {
+    max-width: 760px;
 
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 22px;
+    margin: 0 auto;
 }
 
-.insight-card {
-    padding: 30px;
-
-    background: var(--warm-white);
-
-    border:
-        1px solid var(--border);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+.final-cta .section-eyebrow {
+    color: var(--gold-light);
 }
 
-.insight-card:hover {
-    transform: translateY(-3px);
+.final-cta h2 {
+    margin-bottom: 18px;
 
-    box-shadow: var(--shadow);
-}
-
-.insight-card .date {
-    display: block;
-
-    margin-bottom: 10px;
-
-    color: var(--gold);
-
-    font-size: 0.76rem;
-
-    font-weight: 700;
-
-    letter-spacing: 0.12em;
-
-    text-transform: uppercase;
-}
-
-.insight-card h3 {
-    margin-bottom: 13px;
-
-    color: var(--navy);
+    color: var(--white);
 
     font-family: Georgia, "Times New Roman", serif;
 
-    font-size: 1.3rem;
+    font-size: clamp(2.1rem, 4vw, 3.2rem);
 
     font-weight: 500;
 
-    line-height: 1.3;
+    line-height: 1.15;
 }
 
-.insight-card p {
-    color: var(--text-light);
+.final-cta p {
+    max-width: 650px;
 
-    font-size: 0.94rem;
+    margin: 0 auto 30px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 1.02rem;
 }
 
-.article-note {
-    margin-top: 15px;
+.final-cta-buttons {
+    display: flex;
 
-    color: var(--text-muted) !important;
+    justify-content: center;
 
-    font-size: 0.76rem !important;
+    flex-wrap: wrap;
 
-    font-style: italic;
+    gap: 14px;
+}
+
+.final-cta .btn-primary {
+    background: var(--gold);
+
+    border-color: var(--gold);
+}
+
+.final-cta .btn-primary:hover {
+    background: var(--gold-light);
+
+    border-color: var(--gold-light);
+}
+
+.final-cta .btn-secondary {
+    color: var(--white);
+
+    border-color:
+        rgba(255, 255, 255, 0.35);
+}
+
+.final-cta .btn-secondary:hover {
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border-color:
+        rgba(255, 255, 255, 0.6);
 }
 
 
@@ -1100,7 +1070,7 @@ section {
    ========================================================= */
 
 .contact {
-    background: var(--stone);
+    background: var(--warm-white);
 }
 
 .contact-grid {
@@ -1122,12 +1092,7 @@ section {
 
     font-family: Georgia, "Times New Roman", serif;
 
-    font-size:
-        clamp(
-            2rem,
-            4vw,
-            2.8rem
-        );
+    font-size: clamp(2rem, 4vw, 2.8rem);
 
     font-weight: 500;
 
@@ -1152,7 +1117,6 @@ section {
     color: var(--navy);
 
     font-size: 0.78rem;
-
     font-weight: 700;
 
     letter-spacing: 0.08em;
@@ -1213,7 +1177,6 @@ section {
     color: var(--navy);
 
     font-size: 0.86rem;
-
     font-weight: 700;
 }
 
@@ -1288,8 +1251,7 @@ section {
 }
 
 .consent-row input {
-    flex:
-        0 0 auto;
+    flex: 0 0 auto;
 
     width: 16px;
     height: 16px;
@@ -1309,8 +1271,7 @@ section {
    ========================================================= */
 
 .site-footer {
-    padding:
-        55px 0 25px;
+    padding: 55px 0 25px;
 
     background: var(--navy);
 
@@ -1388,7 +1349,9 @@ section {
 }
 
 
-/* Footer columns */
+/* =========================================================
+   FOOTER COLUMNS
+   ========================================================= */
 
 .footer-column h4 {
     margin-bottom: 15px;
@@ -1396,7 +1359,6 @@ section {
     color: var(--gold-light);
 
     font-size: 0.78rem;
-
     font-weight: 700;
 
     letter-spacing: 0.12em;
@@ -1412,7 +1374,7 @@ section {
     color:
         rgba(255, 255, 255, 0.68);
 
-    font-size: 0.9rem;
+    font-size: 0.90rem;
 
     transition: color 0.2s ease;
 }
@@ -1429,7 +1391,7 @@ section {
     color:
         rgba(255, 255, 255, 0.68);
 
-    font-size: 0.9rem;
+    font-size: 0.90rem;
 }
 
 
@@ -1441,7 +1403,6 @@ section {
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
     gap: 20px;
@@ -1464,9 +1425,7 @@ section {
 @media (max-width: 1050px) {
 
     .hero-container {
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns: 1fr;
         gap: 45px;
     }
 
@@ -1479,26 +1438,16 @@ section {
     }
 
     .about-grid {
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns: 1fr;
         gap: 45px;
     }
 
-    .services-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .clients-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+    .service-group-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .founder-grid {
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns: 1fr;
         gap: 45px;
     }
 
@@ -1506,15 +1455,8 @@ section {
         min-height: 350px;
     }
 
-    .features-grid {
-        grid-template-columns:
-            repeat(3, 1fr);
-    }
-
     .contact-grid {
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns: 1fr;
         gap: 45px;
     }
 
@@ -1522,14 +1464,8 @@ section {
         max-width: 700px;
     }
 
-    .insights-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
     .footer-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -1601,8 +1537,7 @@ section {
     }
 
     .hero-credentials {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -1613,14 +1548,16 @@ section {
 
 @media (max-width: 650px) {
 
+    body {
+        padding-bottom: 66px;
+    }
+
     .container {
-        width:
-            calc(100% - 28px);
+        width: calc(100% - 28px);
     }
 
     section {
-        padding:
-            65px 0;
+        padding: 65px 0;
     }
 
     .nav-container {
@@ -1637,25 +1574,20 @@ section {
     }
 
     .hero {
-        padding:
-            72px 0 65px;
+        padding: 72px 0 65px;
     }
 
     .hero h1 {
-        font-size:
-            2.55rem;
-
+        font-size: 2.55rem;
         line-height: 1.08;
     }
 
     .hero p {
-        font-size:
-            1rem;
+        font-size: 1rem;
     }
 
     .hero-buttons {
         flex-direction: column;
-
         align-items: stretch;
     }
 
@@ -1668,54 +1600,45 @@ section {
     }
 
     .hero-card h2 {
-        font-size:
-            1.9rem;
+        font-size: 1.9rem;
     }
 
     .hero-credentials {
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns: 1fr;
         gap: 15px;
     }
 
-    .services-grid,
-    .clients-grid,
-    .features-grid,
-    .insights-grid {
-        grid-template-columns:
-            1fr;
+    .service-group-grid {
+        grid-template-columns: 1fr;
     }
 
-    .feature {
-        padding:
-            25px 0;
-    }
-
-    .feature + .feature {
-        padding-left: 0;
-
-        border-left: none;
-
-        border-top:
-            1px solid
-            rgba(255, 255, 255, 0.13);
+    .clients-grid {
+        grid-template-columns: 1fr;
     }
 
     .founder-image {
-        min-height:
-            300px;
+        min-height: 300px;
+    }
+
+    .founder-credentials {
+        grid-template-columns: 1fr;
     }
 
     .contact-form {
-        padding:
-            25px 20px;
+        padding: 25px 20px;
+    }
+
+    .final-cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .final-cta-buttons .btn {
+        width: 100%;
     }
 
     .footer-grid {
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns: 1fr;
         gap: 32px;
     }
 
@@ -1726,9 +1649,7 @@ section {
 
     .footer-bottom {
         flex-direction: column;
-
         align-items: flex-start;
-
         gap: 8px;
     }
 }
@@ -1750,30 +1671,24 @@ section {
     }
 
     .hero h1 {
-        font-size:
-            2.25rem;
+        font-size: 2.25rem;
     }
 
     .hero-card {
-        padding:
-            27px;
+        padding: 27px;
     }
 
     .hero-card h2 {
-        font-size:
-            1.7rem;
+        font-size: 1.7rem;
     }
 
     .service-card,
-    .client-item,
-    .insight-card {
-        padding:
-            25px 22px;
+    .client-item {
+        padding: 25px 22px;
     }
 
     .contact-form {
-        padding:
-            22px 17px;
+        padding: 22px 17px;
     }
 
     .footer-logo {
