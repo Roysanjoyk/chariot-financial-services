@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
+
 <head>
 
     <meta charset="UTF-8">
@@ -9,9 +10,13 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <title>
+        Chariot Financial Services | Accounting, Tax & Commercial Finance
+    </title>
+
     <meta
         name="description"
-        content="Chariot Financial Services provides accounting, tax, VAT and commercial finance support for owner-managed businesses, professionals and growing companies in Peterborough and across the UK."
+        content="Chariot Financial Services provides accounting, tax and commercial finance support for owner-managed businesses, professionals and growing companies in Peterborough and across the UK."
     >
 
     <meta
@@ -26,7 +31,7 @@
 
     <meta
         name="theme-color"
-        content="#0d1b2a"
+        content="#101d2f"
     >
 
     <link
@@ -43,7 +48,7 @@
 
     <meta
         property="og:description"
-        content="Accounting, tax, VAT and commercial finance support for owner-managed businesses, professionals and growing companies."
+        content="Accounting, tax and commercial finance support for owner-managed businesses, professionals and growing companies."
     >
 
     <meta
@@ -61,38 +66,33 @@
         content="Chariot Financial Services"
     >
 
-    <title>
-        Chariot Financial Services | Accounting, Tax & Commercial Finance
-    </title>
+    <!-- Favicon -->
 
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="CFSL_Logo.svg"
+    >
 
-    <!-- Stylesheet -->
+    <!-- Styles -->
 
     <link
         rel="stylesheet"
         href="styles.css"
     >
 
-
-    <!--
-        Structured data
-        Company registration details and registered office
-        can be added once confirmed.
-    -->
+    <!-- Structured Data -->
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": [
-            "AccountingService",
-            "ProfessionalService"
-        ],
+        "@type": "AccountingService",
         "name": "Chariot Financial Services Ltd",
         "url": "https://chariotfinancialservices.com/",
         "logo": "https://chariotfinancialservices.com/CFSL_Logo.svg",
         "telephone": "+44 7497 528077",
         "email": "info@chariotfinancialservices.com",
-        "description": "Accounting, tax, VAT and commercial finance support for owner-managed businesses, professionals and growing companies in Peterborough and across the UK.",
+        "description": "Accounting, tax and commercial finance support for owner-managed businesses, professionals and growing companies.",
         "areaServed": [
             {
                 "@type": "City",
@@ -107,184 +107,223 @@
     </script>
 
 
-    <!--
-        Page-level refinements.
-
-        These preserve the existing CSS architecture while
-        giving the homepage a cleaner premium presentation.
-    -->
-
+    <!-- Small page-specific styles -->
     <style>
 
-        /* -----------------------------------------------------
-           HERO
-           ----------------------------------------------------- */
+        /* =====================================================
+           MOBILE STICKY CTA
+           ===================================================== */
 
-        .hero {
-            background: #ffffff !important;
-            color: #0d1b2a !important;
-            border-bottom: 1px solid rgba(13, 27, 42, 0.08);
-        }
-
-        .hero-eyebrow {
-            color: #a8844f !important;
-        }
-
-        .hero h1 {
-            color: #0d1b2a !important;
-        }
-
-        .hero p {
-            color: #4d5864 !important;
-        }
-
-        .hero .btn-secondary {
-            color: #0d1b2a !important;
-            border-color: #0d1b2a !important;
-        }
-
-        .hero-card {
-            background: #0d1b2a !important;
-            color: #ffffff !important;
-            border: 1px solid rgba(168, 132, 79, 0.35);
-        }
-
-        .hero-card-label {
-            color: #c7a66b !important;
-        }
-
-        .hero-card h2 {
-            color: #ffffff !important;
-        }
-
-        .hero-card p {
-            color: rgba(255, 255, 255, 0.78) !important;
+        .mobile-sticky-cta {
+            display: none;
         }
 
 
-        /* -----------------------------------------------------
-           HERO CREDIBILITY
-           ----------------------------------------------------- */
+        /* =====================================================
+           FINAL CTA
+           ===================================================== */
 
-        .hero-credentials {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            margin-top: 34px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(13, 27, 42, 0.10);
-        }
-
-        .hero-credential {
-            font-size: 0.82rem;
-            line-height: 1.45;
-            color: #4d5864;
-        }
-
-        .hero-credential strong {
-            display: block;
-            color: #0d1b2a;
-            font-weight: 600;
-            margin-bottom: 3px;
-        }
-
-
-        /* -----------------------------------------------------
-           PROCESS
-           ----------------------------------------------------- */
-
-        .process-intro {
-            max-width: 720px;
-            margin: 0 auto 40px;
+        .final-cta {
+            padding: 85px 0;
+            background: var(--navy);
+            color: var(--white);
             text-align: center;
-            color: #5c6670;
         }
 
-        .process-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            margin-bottom: 16px;
-            border-radius: 50%;
-            background: #0d1b2a;
-            color: #ffffff;
-            font-size: 0.85rem;
-            font-weight: 600;
+        .final-cta-inner {
+            max-width: 760px;
+            margin: 0 auto;
         }
 
-
-        /* -----------------------------------------------------
-           CONTACT
-           ----------------------------------------------------- */
-
-        .contact-note {
-            margin-top: 18px;
-            font-size: 0.82rem;
-            line-height: 1.55;
-            color: #69737d;
+        .final-cta .section-eyebrow {
+            color: var(--gold-light);
         }
 
-        .consent-row {
+        .final-cta h2 {
+            margin-bottom: 18px;
+            color: var(--white);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2.1rem, 4vw, 3.2rem);
+            font-weight: 500;
+            line-height: 1.15;
+        }
+
+        .final-cta p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 1.02rem;
+        }
+
+        .final-cta-buttons {
             display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin: 16px 0 20px;
-            font-size: 0.78rem;
-            line-height: 1.5;
-            color: #69737d;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
         }
 
-        .consent-row input {
-            margin-top: 3px;
-            flex: 0 0 auto;
+        .final-cta .btn-primary {
+            background: var(--gold);
+            border-color: var(--gold);
         }
 
-
-        /* -----------------------------------------------------
-           INSIGHTS
-           ----------------------------------------------------- */
-
-        .article-note {
-            margin-top: 14px;
-            font-size: 0.78rem;
-            color: #7a838c;
+        .final-cta .btn-primary:hover {
+            background: var(--gold-light);
+            border-color: var(--gold-light);
         }
 
+        .final-cta .btn-secondary {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
 
-        /* -----------------------------------------------------
-           FOOTER
-           ----------------------------------------------------- */
-
-        .footer-legal {
-            margin-top: 18px;
-            max-width: 420px;
-            font-size: 0.76rem;
-            line-height: 1.55;
-            color: rgba(255, 255, 255, 0.62);
+        .final-cta .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.6);
         }
 
 
-        /* -----------------------------------------------------
-           MOBILE
-           ----------------------------------------------------- */
+        /* =====================================================
+           SERVICE GROUPS
+           ===================================================== */
 
-        @media (max-width: 768px) {
+        .service-group {
+            margin-bottom: 48px;
+        }
 
-            .hero-credentials {
-                grid-template-columns: repeat(2, 1fr);
+        .service-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-group-heading {
+            margin-bottom: 22px;
+        }
+
+        .service-group-heading h3 {
+            margin-bottom: 7px;
+            color: var(--navy);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.65rem;
+            font-weight: 500;
+        }
+
+        .service-group-heading p {
+            max-width: 720px;
+            color: var(--text-light);
+        }
+
+
+        /* =====================================================
+           SERVICE GROUP GRID
+           ===================================================== */
+
+        .service-group-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+
+        /* =====================================================
+           FOUNDER CREDENTIALS
+           ===================================================== */
+
+        .founder-credentials {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 25px;
+            margin-top: 25px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(16, 29, 47, 0.10);
+        }
+
+        .founder-credential {
+            color: var(--text-light);
+            font-size: 0.86rem;
+        }
+
+        .founder-credential strong {
+            display: block;
+            margin-bottom: 2px;
+            color: var(--navy);
+            font-size: 0.82rem;
+        }
+
+
+        /* =====================================================
+           MOBILE STICKY CTA
+           ===================================================== */
+
+        @media (max-width: 650px) {
+
+            body {
+                padding-bottom: 66px;
             }
 
-        }
+            .mobile-sticky-cta {
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 2000;
 
+                display: grid;
+                grid-template-columns: 1fr 1.25fr;
 
-        @media (max-width: 480px) {
+                min-height: 62px;
 
-            .hero-credentials {
+                background: var(--navy);
+
+                border-top:
+                    1px solid rgba(181, 154, 98, 0.35);
+
+                box-shadow:
+                    0 -8px 25px
+                    rgba(16, 29, 47, 0.15);
+            }
+
+            .mobile-sticky-cta a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                color: var(--white);
+
+                font-size: 0.86rem;
+                font-weight: 700;
+
+                text-align: center;
+            }
+
+            .mobile-sticky-cta a:first-child {
+                border-right:
+                    1px solid rgba(255, 255, 255, 0.15);
+            }
+
+            .mobile-sticky-cta a:last-child {
+                background: var(--gold);
+            }
+
+            .mobile-sticky-cta a:last-child:hover {
+                background: var(--gold-light);
+            }
+
+            .service-group-grid {
                 grid-template-columns: 1fr;
             }
 
+            .founder-credentials {
+                grid-template-columns: 1fr;
+            }
+
+            .final-cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .final-cta-buttons .btn {
+                width: 100%;
+            }
         }
 
     </style>
@@ -292,7 +331,7 @@
 </head>
 
 
-<body id="top">
+<body>
 
 
     <!-- =====================================================
@@ -323,6 +362,7 @@
                 type="button"
                 aria-label="Open navigation menu"
                 aria-expanded="false"
+                aria-controls="main-navigation"
             >
 
                 <span></span>
@@ -332,6 +372,7 @@
 
             <nav
                 class="main-nav"
+                id="main-navigation"
                 aria-label="Main navigation"
             >
 
@@ -347,8 +388,8 @@
                     Who We Support
                 </a>
 
-                <a href="#insights">
-                    Insights
+                <a href="#founder">
+                    Founder
                 </a>
 
                 <a href="#how-it-works">
@@ -370,11 +411,7 @@
 
 
 
-    <!-- =====================================================
-         MAIN CONTENT
-         ===================================================== -->
-
-    <main>
+    <main id="top">
 
 
         <!-- =================================================
@@ -394,16 +431,14 @@
 
 
                     <h1>
-                        Clear financial insight for better
-                        business decisions.
+                        Clear financial insight for better business decisions.
                     </h1>
 
 
                     <p>
-                        Accounting, tax and commercial finance support
-                        for owner-managed businesses, professionals
-                        and growing companies in Peterborough and
-                        across the UK.
+                        Accounting, tax and commercial finance support for
+                        owner-managed businesses, professionals and growing
+                        companies in Peterborough and across the UK.
                     </p>
 
 
@@ -416,7 +451,6 @@
                             Book a Consultation
                         </a>
 
-
                         <a
                             href="#services"
                             class="btn btn-secondary"
@@ -426,8 +460,6 @@
 
                     </div>
 
-
-                    <!-- Credibility -->
 
                     <div class="hero-credentials">
 
@@ -497,10 +529,9 @@
 
 
                         <p>
-                            Practical accounting, tax and finance
-                            support designed around your business,
-                            with a focus on clear information,
-                            effective control and informed decisions.
+                            Practical accounting, tax and finance support
+                            designed to help business owners understand
+                            their numbers and make informed decisions.
                         </p>
 
                     </div>
@@ -533,33 +564,30 @@
 
 
                     <h2>
-                        More than accounting.
-                        Finance support with a commercial perspective.
+                        Finance support that connects the numbers to the business.
                     </h2>
 
 
                     <p>
                         Chariot Financial Services provides accounting,
                         tax and commercial finance support to businesses
-                        and professionals across the UK.
+                        and professionals that need more than routine
+                        bookkeeping.
                     </p>
 
 
                     <p>
-                        The objective is not simply to produce accounts
-                        or complete compliance work. It is to provide
-                        financial information that helps business owners
-                        understand performance, maintain control and
-                        make informed commercial decisions.
+                        The focus is on producing clear financial information,
+                        maintaining control and helping business owners
+                        understand what their numbers mean for the decisions
+                        ahead.
                     </p>
 
 
                     <p>
-                        From bookkeeping, VAT and tax through to
-                        management reporting, forecasting and
-                        fractional finance support, services can be
-                        structured around the requirements of each
-                        business.
+                        Support can range from core accounting and compliance
+                        through to management reporting, finance management
+                        and wider commercial support.
                     </p>
 
                 </div>
@@ -569,24 +597,15 @@
                 <div class="about-highlight">
 
                     <h3>
-                        A practical finance partner
+                        A practical approach to finance
                     </h3>
 
 
                     <p>
-                        Whether you need reliable accounting support,
-                        stronger financial controls, management
-                        information or additional finance capability,
-                        Chariot provides practical support designed
-                        around the way your business operates.
-                    </p>
-
-
-                    <p>
-                        The approach is straightforward: understand
-                        the business, establish what is required and
-                        provide finance support that adds practical
-                        value.
+                        Good financial information should help you run your
+                        business, not simply satisfy a reporting requirement.
+                        Chariot combines professional accounting standards
+                        with a practical, commercially aware approach.
                     </p>
 
                 </div>
@@ -617,198 +636,232 @@
 
 
                     <h2>
-                        Financial support that grows with your business.
+                        Financial support built around your business.
                     </h2>
 
 
                     <p>
-                        Flexible accounting, tax and commercial finance
-                        services for businesses and professionals.
+                        Choose the level of support you need today, with the
+                        flexibility to expand the relationship as your
+                        business develops.
                     </p>
 
                 </div>
 
 
 
-                <div class="services-grid">
+                <!-- Core Accounting & Tax -->
 
+                <div class="service-group">
 
-                    <!-- Accounting -->
-
-                    <article class="service-card">
-
-                        <h3>
-                            Accounting & Bookkeeping
-                        </h3>
-
-
-                        <p>
-                            Reliable bookkeeping, accounting records,
-                            reconciliations, year-end accounts and
-                            ongoing financial support to keep your
-                            financial information accurate and up to date.
-                        </p>
-
-                    </article>
-
-
-
-                    <!-- Tax -->
-
-                    <article class="service-card">
+                    <div class="service-group-heading">
 
                         <h3>
-                            Tax
+                            Core Accounting & Tax
                         </h3>
 
-
                         <p>
-                            Practical support with business and
-                            director tax matters, including corporation
-                            tax, personal tax considerations and
-                            tax-efficient business planning.
+                            Reliable day-to-day accounting and compliance
+                            support for businesses and professionals.
                         </p>
 
-                    </article>
+                    </div>
+
+
+                    <div class="service-group-grid">
+
+
+                        <article class="service-card">
+
+                            <h3>
+                                Accounting & Bookkeeping
+                            </h3>
+
+                            <p>
+                                Accurate bookkeeping, reconciliations,
+                                accounts preparation and ongoing financial
+                                record support.
+                            </p>
+
+                        </article>
+
+
+                        <article class="service-card">
+
+                            <h3>
+                                Tax
+                            </h3>
+
+                            <p>
+                                Practical tax support for businesses and
+                                individuals, with a focus on clear
+                                obligations and informed planning.
+                            </p>
+
+                        </article>
+
+
+                        <article class="service-card">
+
+                            <h3>
+                                VAT
+                            </h3>
+
+                            <p>
+                                VAT return preparation, VAT record support
+                                and practical assistance with common VAT
+                                issues and obligations.
+                            </p>
+
+                        </article>
+
+
+                        <article class="service-card">
+
+                            <h3>
+                                Payroll
+                            </h3>
+
+                            <p>
+                                Payroll support for businesses that want
+                                accurate, timely processing without managing
+                                the administration themselves.
+                            </p>
+
+                        </article>
+
+
+                    </div>
+
+                </div>
 
 
 
-                    <!-- VAT -->
+                <!-- Management & Commercial Finance -->
 
-                    <article class="service-card">
+                <div class="service-group">
+
+                    <div class="service-group-heading">
 
                         <h3>
-                            VAT
+                            Management & Commercial Finance
                         </h3>
 
-
                         <p>
-                            VAT registration, returns, reconciliations,
-                            compliance and practical support with
-                            VAT-related questions and obligations.
+                            Finance support that helps management understand
+                            performance, plan ahead and maintain financial
+                            control.
                         </p>
 
-                    </article>
+                    </div>
+
+
+                    <div class="service-group-grid">
+
+
+                        <article class="service-card">
+
+                            <h3>
+                                Management Accounts & Reporting
+                            </h3>
+
+                            <p>
+                                Clear management reporting covering
+                                performance, key movements, cash and other
+                                information relevant to decision-making.
+                            </p>
+
+                        </article>
+
+
+                        <article class="service-card">
+
+                            <h3>
+                                Fractional Finance Manager
+                            </h3>
+
+                            <p>
+                                Experienced finance management support on a
+                                flexible basis, without the commitment of a
+                                full-time appointment.
+                            </p>
+
+                        </article>
+
+
+                        <article class="service-card">
+
+                            <h3>
+                                Commercial Finance & CFO Support
+                            </h3>
+
+                            <p>
+                                Commercial finance support covering planning,
+                                analysis, reporting, cash flow and broader
+                                finance leadership requirements.
+                            </p>
+
+                        </article>
+
+
+                    </div>
+
+                </div>
 
 
 
-                    <!-- Management Accounts -->
+                <!-- Specialist Support -->
 
-                    <article class="service-card">
+                <div class="service-group">
+
+                    <div class="service-group-heading">
 
                         <h3>
-                            Management Accounts & Reporting
+                            Specialist Support
                         </h3>
 
-
                         <p>
-                            Clear management information covering
-                            financial performance, key movements,
-                            budgets, forecasts and other information
-                            needed to support business decisions.
+                            Focused financial support for professionals and
+                            specialist business structures.
                         </p>
 
-                    </article>
+                    </div>
 
 
-
-                    <!-- Fractional Finance Manager -->
-
-                    <article class="service-card">
-
-                        <h3>
-                            Fractional Finance Manager
-                        </h3>
+                    <div class="service-group-grid">
 
 
-                        <p>
-                            Flexible finance management support for
-                            businesses that need experienced finance
-                            capability without the cost or commitment
-                            of a full-time Finance Manager.
-                        </p>
+                        <article class="service-card">
 
-                    </article>
+                            <h3>
+                                GP Locum Support
+                            </h3>
 
+                            <p>
+                                Accounting, tax and financial administration
+                                support for GP locums and medical
+                                professionals.
+                            </p>
 
-
-                    <!-- Commercial Finance -->
-
-                    <article class="service-card">
-
-                        <h3>
-                            Commercial Finance & CFO Support
-                        </h3>
+                        </article>
 
 
-                        <p>
-                            Higher-level financial support covering
-                            forecasting, cash flow, financial analysis,
-                            performance reporting and commercial
-                            decision support.
-                        </p>
+                        <article class="service-card">
 
-                    </article>
+                            <h3>
+                                Legal Professionals
+                            </h3>
 
+                            <p>
+                                Accounting and finance support for legal
+                                professionals and legal practices, tailored
+                                to the requirements of the engagement.
+                            </p>
 
-
-                    <!-- Payroll -->
-
-                    <article class="service-card">
-
-                        <h3>
-                            Payroll
-                        </h3>
+                        </article>
 
 
-                        <p>
-                            Practical payroll administration support
-                            designed to help businesses maintain
-                            accurate and timely payroll processes.
-                        </p>
-
-                    </article>
-
-
-
-                    <!-- GP -->
-
-                    <article class="service-card">
-
-                        <h3>
-                            GP Locum Support
-                        </h3>
-
-
-                        <p>
-                            Accounting and financial support for GP
-                            locums and medical professionals, including
-                            business structure, tax and financial
-                            planning considerations.
-                        </p>
-
-                    </article>
-
-
-
-                    <!-- Legal -->
-
-                    <article class="service-card">
-
-                        <h3>
-                            Legal Professionals
-                        </h3>
-
-
-                        <p>
-                            Accounting and financial support for legal
-                            professionals and practices, including
-                            financial records, reporting and relevant
-                            client-account considerations.
-                        </p>
-
-                    </article>
-
+                    </div>
 
                 </div>
 
@@ -838,15 +891,14 @@
 
 
                     <h2>
-                        Built around the needs of businesses
-                        and professionals.
+                        Built for businesses and professionals that value clarity.
                     </h2>
 
 
                     <p>
-                        Flexible support for businesses at different
-                        stages of growth and professionals with
-                        specialist financial requirements.
+                        Chariot works with a range of owner-managed businesses
+                        and professionals, with support tailored to the
+                        complexity and stage of the organisation.
                     </p>
 
                 </div>
@@ -862,32 +914,28 @@
                             Owner-Managed Businesses
                         </h3>
 
-
                         <p>
-                            Accounting, tax and finance support for
-                            directors and owner-managed companies
-                            looking for dependable financial support.
+                            Accounting, tax and finance support for directors
+                            who want better visibility and control over their
+                            business finances.
                         </p>
 
                     </article>
-
 
 
                     <article class="client-item">
 
                         <h3>
-                            Professional Services
+                            Professional & Legal Services
                         </h3>
 
-
                         <p>
-                            Finance support for consultants, advisers,
-                            professional practices and service-based
+                            Financial reporting, accounting and commercial
+                            support for professional practices and service
                             businesses.
                         </p>
 
                     </article>
-
 
 
                     <article class="client-item">
@@ -896,49 +944,12 @@
                             Medical Professionals
                         </h3>
 
-
                         <p>
-                            Accounting and tax support for GP locums
-                            and other medical professionals with
-                            professional income and business
-                            considerations.
+                            Practical accounting and tax support for GP
+                            locums and other medical professionals.
                         </p>
 
                     </article>
-
-
-
-                    <article class="client-item">
-
-                        <h3>
-                            Legal Professionals
-                        </h3>
-
-
-                        <p>
-                            Financial management and accounting support
-                            for legal professionals and practices.
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="client-item">
-
-                        <h3>
-                            Contractors & Consultants
-                        </h3>
-
-
-                        <p>
-                            Practical accounting, VAT, tax and
-                            financial support for contractors and
-                            independent consultants.
-                        </p>
-
-                    </article>
-
 
 
                     <article class="client-item">
@@ -947,102 +958,13 @@
                             Growing Businesses
                         </h3>
 
-
                         <p>
-                            Additional finance capability for businesses
-                            developing their systems, reporting,
-                            forecasting and financial controls.
+                            Management accounts, reporting and finance
+                            support as businesses develop and their
+                            financial requirements become more complex.
                         </p>
 
                     </article>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             WHY CHARIOT
-             ================================================= -->
-
-        <section class="why-chariot">
-
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <span class="section-eyebrow">
-                        Why Chariot
-                    </span>
-
-
-                    <h2>
-                        Finance support with a focus on
-                        clarity and control.
-                    </h2>
-
-                </div>
-
-
-
-                <div class="features-grid">
-
-
-                    <div class="feature">
-
-                        <h3>
-                            Commercial Perspective
-                        </h3>
-
-
-                        <p>
-                            Financial information should help business
-                            owners understand what is happening in
-                            the business and support better decisions,
-                            not simply satisfy compliance requirements.
-                        </p>
-
-                    </div>
-
-
-
-                    <div class="feature">
-
-                        <h3>
-                            Practical Support
-                        </h3>
-
-
-                        <p>
-                            Support is structured around the actual
-                            requirements of the business, from routine
-                            accounting through to wider finance needs.
-                        </p>
-
-                    </div>
-
-
-
-                    <div class="feature">
-
-                        <h3>
-                            Professional Standards
-                        </h3>
-
-
-                        <p>
-                            ACCA-qualified expertise with experience
-                            across accounting, financial reporting,
-                            management information and commercial
-                            finance.
-                        </p>
-
-                    </div>
 
 
                 </div>
@@ -1057,7 +979,10 @@
              FOUNDER
              ================================================= -->
 
-        <section class="founder">
+        <section
+            class="founder"
+            id="founder"
+        >
 
             <div class="container founder-grid">
 
@@ -1075,7 +1000,7 @@
                 <div class="founder-content">
 
                     <span class="section-eyebrow">
-                        Practice Principal
+                        The Practice Principal
                     </span>
 
 
@@ -1084,43 +1009,84 @@
                     </h2>
 
 
-                    <p class="founder-role">
+                    <div class="founder-role">
                         Practice Principal
+                    </div>
+
+
+                    <p>
+                        Chariot Financial Services is led by Sanjoy Kumar
+                        Roy, an ACCA-qualified finance professional with
+                        experience across financial reporting, statutory
+                        accounts, management accounting and commercial
+                        finance.
                     </p>
 
 
                     <p>
-                        Chariot Financial Services is led by Sanjoy
-                        Kumar Roy, an ACCA-qualified finance professional
-                        with experience across financial reporting,
-                        accounting, management information and
-                        commercial finance.
+                        His experience includes working with businesses
+                        across different sectors and financial environments,
+                        with responsibility for reporting, financial control,
+                        analysis and supporting management decision-making.
                     </p>
 
 
                     <p>
-                        His professional experience includes work
-                        across multi-entity environments, financial
-                        reporting, month-end and year-end processes,
-                        financial controls, forecasting and wider
-                        finance requirements.
+                        Chariot was established to provide businesses and
+                        professionals with direct access to practical,
+                        professional finance support without unnecessary
+                        complexity.
                     </p>
 
 
-                    <p>
-                        Chariot was established to provide businesses
-                        and professionals with practical access to
-                        experienced finance support without requiring
-                        every business to maintain a large in-house
-                        finance function.
-                    </p>
+                    <div class="founder-credentials">
 
 
-                    <p>
-                        The focus is on clear financial information,
-                        sound processes and practical support that
-                        can develop alongside the needs of the business.
-                    </p>
+                        <div class="founder-credential">
+
+                            <strong>
+                                Professional qualification
+                            </strong>
+
+                            ACCA-qualified
+
+                        </div>
+
+
+                        <div class="founder-credential">
+
+                            <strong>
+                                Role
+                            </strong>
+
+                            Practice Principal
+
+                        </div>
+
+
+                        <div class="founder-credential">
+
+                            <strong>
+                                Base
+                            </strong>
+
+                            Peterborough, UK
+
+                        </div>
+
+
+                        <div class="founder-credential">
+
+                            <strong>
+                                Coverage
+                            </strong>
+
+                            Peterborough and UK-wide
+
+                        </div>
+
+
+                    </div>
 
                 </div>
 
@@ -1150,16 +1116,14 @@
 
 
                     <h2>
-                        A straightforward approach to getting
-                        the right finance support.
+                        A straightforward process from first conversation to ongoing support.
                     </h2>
 
 
                     <p class="process-intro">
-                        Whether you need ongoing accounting support,
-                        specialist tax assistance or additional
-                        finance capability, the process starts with
-                        understanding what your business actually needs.
+                        The first conversation is about understanding where
+                        you are, what you need and where finance support can
+                        add the most value.
                     </p>
 
                 </div>
@@ -1183,12 +1147,10 @@
 
                         <p>
                             We discuss your business, current finance
-                            arrangements, challenges and the areas
-                            where additional support may be useful.
+                            arrangements and the areas where you need support.
                         </p>
 
                     </article>
-
 
 
                     <article class="client-item">
@@ -1204,14 +1166,11 @@
 
 
                         <p>
-                            The scope of support is considered around
-                            your requirements, whether that means
-                            accounting, tax, reporting or wider
-                            finance support.
+                            We identify the appropriate scope of support and
+                            explain how the engagement could work.
                         </p>
 
                     </article>
-
 
 
                     <article class="client-item">
@@ -1227,14 +1186,11 @@
 
 
                         <p>
-                            Once the engagement is agreed, the
-                            required information, systems and
-                            processes are established in a structured
-                            manner.
+                            Once terms are agreed, we complete the necessary
+                            onboarding and establish the working process.
                         </p>
 
                     </article>
-
 
 
                     <article class="client-item">
@@ -1250,10 +1206,8 @@
 
 
                         <p>
-                            Support continues around the agreed scope,
-                            with the level of involvement able to
-                            develop as the requirements of the
-                            business change.
+                            We provide the agreed accounting, tax or finance
+                            support and maintain regular communication.
                         </p>
 
                     </article>
@@ -1268,130 +1222,51 @@
 
 
         <!-- =================================================
-             INSIGHTS
+             FINAL CTA
              ================================================= -->
 
-        <section
-            class="insights"
-            id="insights"
-        >
+        <section class="final-cta">
 
             <div class="container">
 
-
-                <div class="section-heading">
+                <div class="final-cta-inner">
 
                     <span class="section-eyebrow">
-                        Insights & Resources
+                        Start a Conversation
                     </span>
 
 
                     <h2>
-                        Practical financial guidance for businesses.
+                        Let's make your finances clearer.
                     </h2>
 
 
                     <p>
-                        Useful information covering accounting,
-                        VAT, tax and financial management.
+                        Whether you need reliable accounting support,
+                        help with tax and VAT, management reporting or
+                        additional finance capacity, let's discuss what
+                        your business needs.
                     </p>
 
-                </div>
+
+                    <div class="final-cta-buttons">
+
+                        <a
+                            href="#contact"
+                            class="btn btn-primary"
+                        >
+                            Book a Consultation
+                        </a>
 
 
+                        <a
+                            href="tel:+447497528077"
+                            class="btn btn-secondary"
+                        >
+                            Call 07497 528077
+                        </a>
 
-                <div class="insights-grid">
-
-
-                    <!-- Insight 1 -->
-
-                    <article class="insight-card">
-
-                        <span class="date">
-                            VAT
-                        </span>
-
-
-                        <h3>
-                            Understanding VAT:
-                            A Comprehensive Guide for Companies
-                        </h3>
-
-
-                        <p>
-                            An overview of UK VAT registration,
-                            rates, input and output VAT, returns,
-                            Making Tax Digital and common VAT
-                            considerations for companies.
-                        </p>
-
-
-                        <p class="article-note">
-                            Detailed article coming soon.
-                        </p>
-
-                    </article>
-
-
-
-                    <!-- Insight 2 -->
-
-                    <article class="insight-card">
-
-                        <span class="date">
-                            Finance
-                        </span>
-
-
-                        <h3>
-                            Understanding Management Accounts
-                        </h3>
-
-
-                        <p>
-                            How regular management information can
-                            help business owners understand financial
-                            performance, identify trends and make
-                            informed decisions.
-                        </p>
-
-
-                        <p class="article-note">
-                            Detailed article coming soon.
-                        </p>
-
-                    </article>
-
-
-
-                    <!-- Insight 3 -->
-
-                    <article class="insight-card">
-
-                        <span class="date">
-                            Business
-                        </span>
-
-
-                        <h3>
-                            Cash Flow Management for
-                            Growing Businesses
-                        </h3>
-
-
-                        <p>
-                            Practical considerations for monitoring
-                            cash flow, managing working capital and
-                            maintaining financial visibility.
-                        </p>
-
-
-                        <p class="article-note">
-                            Detailed article coming soon.
-                        </p>
-
-                    </article>
-
+                    </div>
 
                 </div>
 
@@ -1413,8 +1288,6 @@
             <div class="container contact-grid">
 
 
-                <!-- Contact information -->
-
                 <div class="contact-details">
 
                     <span class="section-eyebrow">
@@ -1423,15 +1296,14 @@
 
 
                     <h2>
-                        Let's discuss your finance requirements.
+                        Tell us what you need.
                     </h2>
 
 
                     <p>
-                        Whether you need accounting support, tax
-                        assistance, management information or
-                        additional finance capability, get in touch
-                        to discuss your requirements.
+                        If you are looking for accounting, tax or commercial
+                        finance support, get in touch for an initial
+                        conversation.
                     </p>
 
 
@@ -1441,13 +1313,11 @@
                             Telephone
                         </strong>
 
-
                         <a href="tel:+447497528077">
                             07497 528077
                         </a>
 
                     </div>
-
 
 
                     <div class="contact-item">
@@ -1456,13 +1326,11 @@
                             Email
                         </strong>
 
-
                         <a href="mailto:info@chariotfinancialservices.com">
                             info@chariotfinancialservices.com
                         </a>
 
                     </div>
-
 
 
                     <div class="contact-item">
@@ -1471,227 +1339,197 @@
                             Location
                         </strong>
 
-
                         <span>
-                            Peterborough, United Kingdom
+                            Peterborough, UK
                         </span>
 
                     </div>
 
 
                     <p class="contact-note">
-                        Initial enquiries are welcome from businesses
-                        and professionals looking for accounting,
-                        tax or commercial finance support.
+                        Chariot provides services subject to agreed
+                        engagement terms and scope.
                     </p>
 
                 </div>
 
 
 
-                <!-- Contact form -->
-
-                <div class="contact-form">
-
-                    <form
-                        id="contactForm"
-                        action="#"
-                        method="POST"
-                    >
-
-
-                        <div class="form-group">
-
-                            <label for="name">
-                                Name
-                            </label>
-
-
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                placeholder="Your name"
-                                autocomplete="name"
-                                required
-                            >
-
-                        </div>
-
-
-
-                        <div class="form-group">
-
-                            <label for="email">
-                                Email
-                            </label>
-
-
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="Your email address"
-                                autocomplete="email"
-                                required
-                            >
-
-                        </div>
-
-
-
-                        <div class="form-group">
-
-                            <label for="phone">
-                                Telephone
-                            </label>
-
-
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                placeholder="Your telephone number"
-                                autocomplete="tel"
-                            >
-
-                        </div>
-
-
-
-                        <div class="form-group">
-
-                            <label for="service">
-                                What do you need help with?
-                            </label>
-
-
-                            <select
-                                id="service"
-                                name="service"
-                            >
-
-                                <option value="">
-                                    Please select
-                                </option>
-
-
-                                <option value="accounting">
-                                    Accounting & Bookkeeping
-                                </option>
-
-
-                                <option value="tax">
-                                    Tax
-                                </option>
-
-
-                                <option value="vat">
-                                    VAT
-                                </option>
-
-
-                                <option value="management-accounts">
-                                    Management Accounts & Reporting
-                                </option>
-
-
-                                <option value="finance">
-                                    Finance Support & Advisory
-                                </option>
-
-
-                                <option value="fractional-finance">
-                                    Fractional Finance Manager
-                                </option>
-
-
-                                <option value="commercial-finance">
-                                    Commercial Finance & CFO Support
-                                </option>
-
-
-                                <option value="payroll">
-                                    Payroll
-                                </option>
-
-
-                                <option value="gp-locum">
-                                    GP Locum / Medical Professional Support
-                                </option>
-
-
-                                <option value="legal">
-                                    Legal Professional Support
-                                </option>
-
-
-                                <option value="other">
-                                    Other
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-
-                        <div class="form-group">
-
-                            <label for="message">
-                                How can we help?
-                            </label>
-
-
-                            <textarea
-                                id="message"
-                                name="message"
-                                placeholder="Tell us briefly about your requirements"
-                                required
-                            ></textarea>
-
-                        </div>
-
-
-
-                        <div class="consent-row">
-
-                            <input
-                                type="checkbox"
-                                id="consent"
-                                name="consent"
-                                required
-                            >
-
-
-                            <label for="consent">
-                                I consent to Chariot Financial Services
-                                using the information provided to respond
-                                to this enquiry.
-                            </label>
-
-                        </div>
-
-
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary form-submit"
+                <form
+                    id="contactForm"
+                    class="contact-form"
+                    action="#"
+                    method="POST"
+                >
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            autocomplete="name"
+                            required
                         >
-                            Send Enquiry
-                        </button>
+
+                    </div>
 
 
-                        <p class="contact-note">
-                            The current form prepares an email enquiry
-                            using your email application. A dedicated
-                            online enquiry system can be connected
-                            separately.
-                        </p>
 
-                    </form>
+                    <div class="form-group">
 
-                </div>
+                        <label for="email">
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Telephone
+                            <span style="font-weight:400;color:#87909a;">
+                                (optional)
+                            </span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            autocomplete="tel"
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="service">
+                            What can we help with?
+                        </label>
+
+                        <select
+                            id="service"
+                            name="service"
+                        >
+
+                            <option value="">
+                                Please select
+                            </option>
+
+                            <option value="Accounting & Bookkeeping">
+                                Accounting & Bookkeeping
+                            </option>
+
+                            <option value="Tax">
+                                Tax
+                            </option>
+
+                            <option value="VAT">
+                                VAT
+                            </option>
+
+                            <option value="Management Accounts & Reporting">
+                                Management Accounts & Reporting
+                            </option>
+
+                            <option value="Fractional Finance Manager">
+                                Fractional Finance Manager
+                            </option>
+
+                            <option value="Commercial Finance & CFO Support">
+                                Commercial Finance & CFO Support
+                            </option>
+
+                            <option value="Payroll">
+                                Payroll
+                            </option>
+
+                            <option value="GP Locum / Medical Professional Support">
+                                GP Locum / Medical Professional Support
+                            </option>
+
+                            <option value="Legal Professional Support">
+                                Legal Professional Support
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="message">
+                            Your enquiry
+                        </label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Briefly tell us what you need help with."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <div class="consent-row">
+
+                        <input
+                            type="checkbox"
+                            id="consent"
+                            name="consent"
+                            required
+                        >
+
+                        <label for="consent">
+                            I agree that Chariot Financial Services may use
+                            the information provided to respond to my enquiry.
+                        </label>
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary form-submit"
+                    >
+                        Send Enquiry
+                    </button>
+
+
+                    <p class="contact-note">
+                        Submitting this form prepares an email using your
+                        device's email application. No enquiry is stored
+                        on this website.
+                    </p>
+
+                </form>
 
             </div>
 
@@ -1707,184 +1545,188 @@
 
     <footer class="site-footer">
 
-        <div class="container">
+        <div class="container footer-grid">
 
 
-            <div class="footer-grid">
+            <!-- Brand -->
 
+            <div class="footer-brand">
 
-                <!-- Brand -->
+                <img
+                    src="CFSL_Logo.svg"
+                    alt="Chariot Financial Services"
+                    class="footer-logo"
+                >
 
-                <div class="footer-brand">
 
-                    <a
-                        href="#top"
-                        aria-label="Chariot Financial Services home"
-                    >
+                <p>
+                    Accounting, tax and commercial finance support for
+                    UK businesses and professionals.
+                </p>
 
-                        <img
-                            src="CFSL_Logo.svg"
-                            alt="Chariot Financial Services"
-                            class="footer-logo"
-                        >
 
-                    </a>
+                <p class="footer-tagline">
+                    Clarity. Control. Confidence.
+                </p>
 
 
-                    <p>
-                        Accounting, tax and commercial finance support
-                        for UK businesses and professionals.
-                    </p>
-
-
-                    <p class="footer-tagline">
-                        Clarity. Control. Confidence.
-                    </p>
-
-
-                    <p class="footer-legal">
-                        Chariot Financial Services Ltd provides
-                        accounting, tax and finance support to
-                        businesses and professionals. Professional
-                        services are subject to agreed engagement
-                        terms and scope.
-                    </p>
-
-                </div>
-
-
-
-                <!-- Explore -->
-
-                <div class="footer-column">
-
-                    <h4>
-                        Explore
-                    </h4>
-
-
-                    <a href="#about">
-                        About
-                    </a>
-
-
-                    <a href="#services">
-                        Services
-                    </a>
-
-
-                    <a href="#clients">
-                        Who We Support
-                    </a>
-
-
-                    <a href="#insights">
-                        Insights
-                    </a>
-
-
-                    <a href="#how-it-works">
-                        How It Works
-                    </a>
-
-
-                    <a href="#contact">
-                        Contact
-                    </a>
-
-                </div>
-
-
-
-                <!-- Services -->
-
-                <div class="footer-column">
-
-                    <h4>
-                        Services
-                    </h4>
-
-
-                    <a href="#services">
-                        Accounting
-                    </a>
-
-
-                    <a href="#services">
-                        Tax
-                    </a>
-
-
-                    <a href="#services">
-                        VAT
-                    </a>
-
-
-                    <a href="#services">
-                        Management Accounts
-                    </a>
-
-
-                    <a href="#services">
-                        Fractional Finance
-                    </a>
-
-
-                    <a href="#services">
-                        Commercial Finance
-                    </a>
-
-                </div>
-
-
-
-                <!-- Contact -->
-
-                <div class="footer-column">
-
-                    <h4>
-                        Contact
-                    </h4>
-
-
-                    <a href="tel:+447497528077">
-                        07497 528077
-                    </a>
-
-
-                    <a href="mailto:info@chariotfinancialservices.com">
-                        info@chariotfinancialservices.com
-                    </a>
-
-
-                    <span class="footer-location">
-                        Peterborough, United Kingdom
-                    </span>
-
-                </div>
-
+                <p class="footer-legal">
+                    Services are provided subject to agreed engagement
+                    terms and scope.
+                </p>
 
             </div>
 
 
 
-            <div class="footer-bottom">
+            <!-- Explore -->
 
-                <span>
-                    © 2026 Chariot Financial Services Ltd.
-                    All rights reserved.
-                </span>
+            <div class="footer-column">
+
+                <h4>
+                    Explore
+                </h4>
 
 
-                <span>
-                    Accounting · Tax · VAT · Finance Support
+                <a href="#about">
+                    About
+                </a>
+
+
+                <a href="#services">
+                    Services
+                </a>
+
+
+                <a href="#clients">
+                    Who We Support
+                </a>
+
+
+                <a href="#founder">
+                    Founder
+                </a>
+
+
+                <a href="#how-it-works">
+                    How It Works
+                </a>
+
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+
+            <!-- Services -->
+
+            <div class="footer-column">
+
+                <h4>
+                    Services
+                </h4>
+
+
+                <a href="#services">
+                    Accounting & Bookkeeping
+                </a>
+
+
+                <a href="#services">
+                    Tax & VAT
+                </a>
+
+
+                <a href="#services">
+                    Management Accounts
+                </a>
+
+
+                <a href="#services">
+                    Fractional Finance
+                </a>
+
+
+                <a href="#services">
+                    Commercial Finance
+                </a>
+
+
+                <a href="#services">
+                    Specialist Support
+                </a>
+
+            </div>
+
+
+
+            <!-- Contact -->
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact
+                </h4>
+
+
+                <a href="tel:+447497528077">
+                    07497 528077
+                </a>
+
+
+                <a href="mailto:info@chariotfinancialservices.com">
+                    info@chariotfinancialservices.com
+                </a>
+
+
+                <span class="footer-location">
+                    Peterborough, UK
                 </span>
 
             </div>
 
         </div>
 
+
+
+        <div class="container footer-bottom">
+
+            <span>
+                © <span data-current-year></span>
+                Chariot Financial Services Ltd.
+                All rights reserved.
+            </span>
+
+
+            <span>
+                Accounting · Tax · Commercial Finance
+            </span>
+
+        </div>
+
     </footer>
+
+
+
+    <!-- =====================================================
+         MOBILE STICKY CTA
+         ===================================================== -->
+
+    <div class="mobile-sticky-cta">
+
+        <a href="tel:+447497528077">
+            Call Chariot
+        </a>
+
+
+        <a href="#contact">
+            Book a Consultation
+        </a>
+
+    </div>
 
 
 
@@ -1894,114 +1736,6 @@
 
     <script src="script.js"></script>
 
-
-    <!--
-        Fallback form handler.
-
-        This does not store enquiries on a server.
-        It prepares an email through the visitor's
-        email application.
-    -->
-
-    <script>
-
-        const contactForm =
-            document.getElementById("contactForm");
-
-
-        if (contactForm) {
-
-            contactForm.addEventListener(
-                "submit",
-                function (event) {
-
-                    event.preventDefault();
-
-
-                    const name =
-                        document.getElementById("name")
-                        .value
-                        .trim();
-
-
-                    const email =
-                        document.getElementById("email")
-                        .value
-                        .trim();
-
-
-                    const phone =
-                        document.getElementById("phone")
-                        .value
-                        .trim();
-
-
-                    const service =
-                        document.getElementById("service")
-                        .value
-                        .trim();
-
-
-                    const message =
-                        document.getElementById("message")
-                        .value
-                        .trim();
-
-
-                    const subject =
-                        encodeURIComponent(
-                            "Chariot Financial Services enquiry" +
-                            (
-                                service
-                                    ? " - " + service
-                                    : ""
-                            )
-                        );
-
-
-                    const body =
-                        encodeURIComponent(
-                            "Name: " +
-                            name +
-                            "\n" +
-
-                            "Email: " +
-                            email +
-                            "\n" +
-
-                            "Telephone: " +
-                            (
-                                phone ||
-                                "Not provided"
-                            ) +
-                            "\n" +
-
-                            "Service: " +
-                            (
-                                service ||
-                                "Not selected"
-                            ) +
-                            "\n\n" +
-
-                            "Enquiry:\n" +
-                            message
-                        );
-
-
-                    window.location.href =
-                        "mailto:info@chariotfinancialservices.com" +
-                        "?subject=" +
-                        subject +
-                        "&body=" +
-                        body;
-
-                }
-            );
-
-        }
-
-    </script>
-
-
 </body>
+
 </html>
