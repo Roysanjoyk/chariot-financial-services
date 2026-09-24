@@ -1,3 +1,4 @@
+```css
 :root {
     --navy: #101d2f;
     --navy-light: #1a2c44;
@@ -120,6 +121,7 @@ section {
 
 /* =========================================================
    HEADER LOGO
+   1.5× enlarged
    ========================================================= */
 
 .logo {
@@ -129,9 +131,9 @@ section {
 
 .site-logo {
     display: block;
-    width: 190px;
+    width: 285px;
     height: auto;
-    max-height: 68px;
+    max-height: 102px;
     object-fit: contain;
 }
 
@@ -694,13 +696,14 @@ section {
 
 /* =========================================================
    FOOTER LOGO
+   1.5× enlarged
    ========================================================= */
 
 .footer-logo {
     display: block;
-    width: 190px;
+    width: 285px;
     height: auto;
-    max-height: 68px;
+    max-height: 102px;
     object-fit: contain;
     margin-bottom: 22px;
 }
@@ -809,8 +812,8 @@ section {
     }
 
     .site-logo {
-        width: 170px;
-        max-height: 60px;
+        width: 255px;
+        max-height: 90px;
     }
 
     .menu-toggle {
@@ -866,8 +869,8 @@ section {
     }
 
     .site-logo {
-        width: 155px;
-        max-height: 54px;
+        width: 232px;
+        max-height: 81px;
     }
 
     .hero {
@@ -904,8 +907,8 @@ section {
     }
 
     .footer-logo {
-        width: 155px;
-        max-height: 54px;
+        width: 232px;
+        max-height: 81px;
     }
 
     .footer-bottom {
@@ -913,3 +916,4 @@ section {
         gap: 8px;
     }
 }
+```
