@@ -1622,8 +1622,8 @@ p {
 /* Chariot Financial Services logo */
 .site-logo {
     display: block;
-    width: 190px;
+    width: 135px;
     height: auto;
-    max-height: 58px;
+    max-height: 48px;
     object-fit: contain;
 }
