@@ -11,22 +11,22 @@
     >
 
     <title>
-        Chariot Financial Services | Accounting, Tax & Commercial Finance
+        Chariot Financial Services | Accountant in Peterborough | Tax & Finance
     </title>
 
     <meta
         name="description"
-        content="Chariot Financial Services provides accounting, tax and commercial finance support for owner-managed businesses, professionals and growing companies in Peterborough and across the UK."
+        content="ACCA-qualified accountant in Peterborough providing accounting, tax, VAT, payroll, management accounts and commercial finance support for businesses and professionals across the UK."
     >
 
     <meta
         name="author"
-        content="Chariot Financial Services Ltd"
+        content="Chariot Financial Services Limited"
     >
 
     <meta
         name="robots"
-        content="index, follow"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     >
 
     <meta
@@ -39,16 +39,18 @@
         href="https://chariotfinancialservices.com/"
     >
 
-    <!-- Open Graph -->
+    <!-- =====================================================
+         OPEN GRAPH
+         ===================================================== -->
 
     <meta
         property="og:title"
-        content="Chariot Financial Services | Accounting, Tax & Commercial Finance"
+        content="Chariot Financial Services | Accountant in Peterborough"
     >
 
     <meta
         property="og:description"
-        content="Accounting, tax and commercial finance support for owner-managed businesses, professionals and growing companies."
+        content="ACCA-qualified accounting, tax, VAT, payroll, management accounts and commercial finance support for businesses and professionals."
     >
 
     <meta
@@ -66,7 +68,14 @@
         content="Chariot Financial Services"
     >
 
-    <!-- Favicon -->
+    <meta
+        property="og:locale"
+        content="en_GB"
+    >
+
+    <!-- =====================================================
+         FAVICON
+         ===================================================== -->
 
     <link
         rel="icon"
@@ -74,25 +83,44 @@
         href="CFSL_Logo.svg"
     >
 
-    <!-- Styles -->
+    <link
+        rel="apple-touch-icon"
+        href="CFSL_Logo.svg"
+    >
+
+    <!-- =====================================================
+         STYLES
+         ===================================================== -->
 
     <link
         rel="stylesheet"
         href="styles.css"
     >
 
-    <!-- Structured Data -->
+    <!-- =====================================================
+         STRUCTURED DATA
+         ===================================================== -->
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "AccountingService",
-        "name": "Chariot Financial Services Ltd",
+        "@type": [
+            "AccountingService",
+            "Organization"
+        ],
+        "@id": "https://chariotfinancialservices.com/#organization",
+        "name": "Chariot Financial Services Limited",
+        "alternateName": "Chariot Financial Services",
         "url": "https://chariotfinancialservices.com/",
         "logo": "https://chariotfinancialservices.com/CFSL_Logo.svg",
         "telephone": "+44 7497 528077",
         "email": "info@chariotfinancialservices.com",
-        "description": "Accounting, tax and commercial finance support for owner-managed businesses, professionals and growing companies.",
+        "description": "ACCA-qualified accounting, tax, VAT, payroll, management accounts and commercial finance support for businesses and professionals in Peterborough and across the UK.",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "Company Registration Number",
+            "value": "14357842"
+        },
         "areaServed": [
             {
                 "@type": "City",
@@ -102,17 +130,37 @@
                 "@type": "Country",
                 "name": "United Kingdom"
             }
+        ],
+        "founder": {
+            "@type": "Person",
+            "name": "Sanjoy Kumar Roy",
+            "jobTitle": "Practice Principal"
+        },
+        "sameAs": [
+            "https://find-and-update.company-information.service.gov.uk/company/14357842"
+        ],
+        "knowsAbout": [
+            "Accounting",
+            "Bookkeeping",
+            "Tax",
+            "VAT",
+            "Payroll",
+            "Management Accounts",
+            "Financial Reporting",
+            "Commercial Finance",
+            "Fractional Finance Management",
+            "GP Locum Accounting",
+            "Professional Services Accounting"
         ]
     }
     </script>
 
 
-    <!-- Small page-specific styles -->
-    <style>
+    <!-- =====================================================
+         PAGE-SPECIFIC STYLES
+         ===================================================== -->
 
-        /* =====================================================
-           MOBILE STICKY CTA
-           ===================================================== */
+    <style>
 
         .mobile-sticky-cta {
             display: none;
@@ -251,6 +299,33 @@
 
 
         /* =====================================================
+           COMPANY INFORMATION
+           ===================================================== */
+
+        .company-information {
+            margin-top: 18px;
+            color: rgba(255, 255, 255, 0.60);
+            font-size: 0.78rem;
+            line-height: 1.7;
+        }
+
+        .company-information strong {
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .company-information a {
+            color: rgba(255, 255, 255, 0.72);
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 255, 255, 0.25);
+            text-underline-offset: 3px;
+        }
+
+        .company-information a:hover {
+            color: var(--white);
+        }
+
+
+        /* =====================================================
            MOBILE STICKY CTA
            ===================================================== */
 
@@ -324,6 +399,7 @@
             .final-cta-buttons .btn {
                 width: 100%;
             }
+
         }
 
     </style>
@@ -350,8 +426,10 @@
 
                 <img
                     src="CFSL_Logo.svg"
-                    alt="Chariot Financial Services"
+                    alt="Chariot Financial Services Limited logo"
                     class="site-logo"
+                    width="285"
+                    height="102"
                 >
 
             </a>
@@ -414,14 +492,13 @@
     <main id="top">
 
 
-        <!-- =================================================
+        <!-- =====================================================
              HERO
-             ================================================= -->
+             ===================================================== -->
 
         <section class="hero">
 
             <div class="container hero-container">
-
 
                 <div class="hero-content">
 
@@ -429,18 +506,15 @@
                         Accounting · Tax · Commercial Finance
                     </span>
 
-
                     <h1>
                         Clear financial insight for better business decisions.
                     </h1>
 
-
                     <p>
-                        Accounting, tax and commercial finance support for
-                        owner-managed businesses, professionals and growing
-                        companies in Peterborough and across the UK.
+                        ACCA-qualified accounting, tax and commercial finance
+                        support for owner-managed businesses, professionals
+                        and growing companies in Peterborough and across the UK.
                     </p>
-
 
                     <div class="hero-buttons">
 
@@ -480,7 +554,7 @@
                                 Peterborough-based
                             </strong>
 
-                            Local and UK-wide support
+                            Hampton Water · Peterborough
 
                         </div>
 
@@ -511,7 +585,6 @@
                 </div>
 
 
-
                 <div class="hero-side">
 
                     <div class="hero-card">
@@ -520,13 +593,11 @@
                             Chariot Financial Services
                         </span>
 
-
                         <h2>
                             Clarity.<br>
                             Control.<br>
                             Confidence.
                         </h2>
-
 
                         <p>
                             Practical accounting, tax and finance support
@@ -544,9 +615,9 @@
 
 
 
-        <!-- =================================================
+        <!-- =====================================================
              ABOUT
-             ================================================= -->
+             ===================================================== -->
 
         <section
             class="about"
@@ -555,18 +626,15 @@
 
             <div class="container about-grid">
 
-
                 <div class="about-content">
 
                     <span class="section-eyebrow">
                         About Chariot
                     </span>
 
-
                     <h2>
                         Finance support that connects the numbers to the business.
                     </h2>
-
 
                     <p>
                         Chariot Financial Services provides accounting,
@@ -575,14 +643,12 @@
                         bookkeeping.
                     </p>
 
-
                     <p>
                         The focus is on producing clear financial information,
                         maintaining control and helping business owners
                         understand what their numbers mean for the decisions
                         ahead.
                     </p>
-
 
                     <p>
                         Support can range from core accounting and compliance
@@ -593,13 +659,11 @@
                 </div>
 
 
-
                 <div class="about-highlight">
 
                     <h3>
                         A practical approach to finance
                     </h3>
-
 
                     <p>
                         Good financial information should help you run your
@@ -616,9 +680,9 @@
 
 
 
-        <!-- =================================================
+        <!-- =====================================================
              SERVICES
-             ================================================= -->
+             ===================================================== -->
 
         <section
             class="services"
@@ -627,30 +691,27 @@
 
             <div class="container">
 
-
                 <div class="section-heading">
 
                     <span class="section-eyebrow">
-                        Services
+                        Accounting & Finance Services
                     </span>
-
 
                     <h2>
                         Financial support built around your business.
                     </h2>
 
-
                     <p>
-                        Choose the level of support you need today, with the
-                        flexibility to expand the relationship as your
-                        business develops.
+                        From accounting and tax compliance to management
+                        reporting and commercial finance support, choose the
+                        level of support you need today and expand the
+                        relationship as your business develops.
                     </p>
 
                 </div>
 
 
-
-                <!-- Core Accounting & Tax -->
+                <!-- CORE ACCOUNTING & TAX -->
 
                 <div class="service-group">
 
@@ -661,7 +722,7 @@
                         </h3>
 
                         <p>
-                            Reliable day-to-day accounting and compliance
+                            Reliable day-to-day accounting, tax and compliance
                             support for businesses and professionals.
                         </p>
 
@@ -669,7 +730,6 @@
 
 
                     <div class="service-group-grid">
-
 
                         <article class="service-card">
 
@@ -730,14 +790,13 @@
 
                         </article>
 
-
                     </div>
 
                 </div>
 
 
 
-                <!-- Management & Commercial Finance -->
+                <!-- MANAGEMENT & COMMERCIAL FINANCE -->
 
                 <div class="service-group">
 
@@ -757,7 +816,6 @@
 
 
                     <div class="service-group-grid">
-
 
                         <article class="service-card">
 
@@ -803,14 +861,13 @@
 
                         </article>
 
-
                     </div>
 
                 </div>
 
 
 
-                <!-- Specialist Support -->
+                <!-- SPECIALIST SUPPORT -->
 
                 <div class="service-group">
 
@@ -829,7 +886,6 @@
 
 
                     <div class="service-group-grid">
-
 
                         <article class="service-card">
 
@@ -860,7 +916,6 @@
 
                         </article>
 
-
                     </div>
 
                 </div>
@@ -871,9 +926,9 @@
 
 
 
-        <!-- =================================================
+        <!-- =====================================================
              WHO WE SUPPORT
-             ================================================= -->
+             ===================================================== -->
 
         <section
             class="clients"
@@ -882,18 +937,15 @@
 
             <div class="container">
 
-
                 <div class="section-heading">
 
                     <span class="section-eyebrow">
                         Who We Support
                     </span>
 
-
                     <h2>
                         Built for businesses and professionals that value clarity.
                     </h2>
-
 
                     <p>
                         Chariot works with a range of owner-managed businesses
@@ -904,9 +956,7 @@
                 </div>
 
 
-
                 <div class="clients-grid">
-
 
                     <article class="client-item">
 
@@ -966,7 +1016,6 @@
 
                     </article>
 
-
                 </div>
 
             </div>
@@ -975,9 +1024,9 @@
 
 
 
-        <!-- =================================================
+        <!-- =====================================================
              FOUNDER
-             ================================================= -->
+             ===================================================== -->
 
         <section
             class="founder"
@@ -985,7 +1034,6 @@
         >
 
             <div class="container founder-grid">
-
 
                 <div class="founder-image">
 
@@ -996,23 +1044,19 @@
                 </div>
 
 
-
                 <div class="founder-content">
 
                     <span class="section-eyebrow">
                         The Practice Principal
                     </span>
 
-
                     <h2>
                         Sanjoy Kumar Roy, ACCA
                     </h2>
 
-
                     <div class="founder-role">
                         Practice Principal
                     </div>
-
 
                     <p>
                         Chariot Financial Services is led by Sanjoy Kumar
@@ -1022,14 +1066,12 @@
                         finance.
                     </p>
 
-
                     <p>
                         His experience includes working with businesses
                         across different sectors and financial environments,
                         with responsibility for reporting, financial control,
                         analysis and supporting management decision-making.
                     </p>
-
 
                     <p>
                         Chariot was established to provide businesses and
@@ -1040,7 +1082,6 @@
 
 
                     <div class="founder-credentials">
-
 
                         <div class="founder-credential">
 
@@ -1070,7 +1111,7 @@
                                 Base
                             </strong>
 
-                            Peterborough, UK
+                            Hampton Water, Peterborough
 
                         </div>
 
@@ -1085,7 +1126,6 @@
 
                         </div>
 
-
                     </div>
 
                 </div>
@@ -1096,9 +1136,9 @@
 
 
 
-        <!-- =================================================
+        <!-- =====================================================
              HOW IT WORKS
-             ================================================= -->
+             ===================================================== -->
 
         <section
             class="clients"
@@ -1107,20 +1147,17 @@
 
             <div class="container">
 
-
                 <div class="section-heading">
 
                     <span class="section-eyebrow">
                         How It Works
                     </span>
 
-
                     <h2>
                         A straightforward process from first conversation to ongoing support.
                     </h2>
 
-
-                    <p class="process-intro">
+                    <p>
                         The first conversation is about understanding where
                         you are, what you need and where finance support can
                         add the most value.
@@ -1129,9 +1166,7 @@
                 </div>
 
 
-
                 <div class="clients-grid">
-
 
                     <article class="client-item">
 
@@ -1139,11 +1174,9 @@
                             01
                         </span>
 
-
                         <h3>
                             Initial Discussion
                         </h3>
-
 
                         <p>
                             We discuss your business, current finance
@@ -1159,11 +1192,9 @@
                             02
                         </span>
 
-
                         <h3>
                             Recommended Approach
                         </h3>
-
 
                         <p>
                             We identify the appropriate scope of support and
@@ -1179,11 +1210,9 @@
                             03
                         </span>
 
-
                         <h3>
                             Onboarding
                         </h3>
-
 
                         <p>
                             Once terms are agreed, we complete the necessary
@@ -1199,11 +1228,9 @@
                             04
                         </span>
 
-
                         <h3>
                             Ongoing Support
                         </h3>
-
 
                         <p>
                             We provide the agreed accounting, tax or finance
@@ -1211,7 +1238,6 @@
                         </p>
 
                     </article>
-
 
                 </div>
 
@@ -1221,9 +1247,9 @@
 
 
 
-        <!-- =================================================
+        <!-- =====================================================
              FINAL CTA
-             ================================================= -->
+             ===================================================== -->
 
         <section class="final-cta">
 
@@ -1235,11 +1261,9 @@
                         Start a Conversation
                     </span>
 
-
                     <h2>
                         Let's make your finances clearer.
                     </h2>
-
 
                     <p>
                         Whether you need reliable accounting support,
@@ -1247,7 +1271,6 @@
                         additional finance capacity, let's discuss what
                         your business needs.
                     </p>
-
 
                     <div class="final-cta-buttons">
 
@@ -1257,7 +1280,6 @@
                         >
                             Book a Consultation
                         </a>
-
 
                         <a
                             href="tel:+447497528077"
@@ -1276,9 +1298,9 @@
 
 
 
-        <!-- =================================================
+        <!-- =====================================================
              CONTACT
-             ================================================= -->
+             ===================================================== -->
 
         <section
             class="contact"
@@ -1287,18 +1309,15 @@
 
             <div class="container contact-grid">
 
-
                 <div class="contact-details">
 
                     <span class="section-eyebrow">
                         Contact
                     </span>
 
-
                     <h2>
                         Tell us what you need.
                     </h2>
-
 
                     <p>
                         If you are looking for accounting, tax or commercial
@@ -1340,7 +1359,7 @@
                         </strong>
 
                         <span>
-                            Peterborough, UK
+                            Hampton Water, Peterborough, Cambridgeshire, UK
                         </span>
 
                     </div>
@@ -1354,14 +1373,12 @@
                 </div>
 
 
-
                 <form
                     id="contactForm"
                     class="contact-form"
                     action="#"
                     method="POST"
                 >
-
 
                     <div class="form-group">
 
@@ -1378,7 +1395,6 @@
                         >
 
                     </div>
-
 
 
                     <div class="form-group">
@@ -1398,7 +1414,6 @@
                     </div>
 
 
-
                     <div class="form-group">
 
                         <label for="phone">
@@ -1416,7 +1431,6 @@
                         >
 
                     </div>
-
 
 
                     <div class="form-group">
@@ -1479,7 +1493,6 @@
                     </div>
 
 
-
                     <div class="form-group">
 
                         <label for="message">
@@ -1494,7 +1507,6 @@
                         ></textarea>
 
                     </div>
-
 
 
                     <div class="consent-row">
@@ -1512,7 +1524,6 @@
                         </label>
 
                     </div>
-
 
 
                     <button
@@ -1548,26 +1559,62 @@
         <div class="container footer-grid">
 
 
-            <!-- Brand -->
+            <!-- FOOTER BRAND -->
 
             <div class="footer-brand">
 
                 <img
                     src="CFSL_Logo.svg"
-                    alt="Chariot Financial Services"
+                    alt="Chariot Financial Services Limited logo"
                     class="footer-logo"
+                    width="285"
+                    height="102"
+                    loading="lazy"
                 >
-
 
                 <p>
                     Accounting, tax and commercial finance support for
                     UK businesses and professionals.
                 </p>
 
-
                 <p class="footer-tagline">
                     Clarity. Control. Confidence.
                 </p>
+
+
+                <!-- COMPANY INFORMATION -->
+
+                <div class="company-information">
+
+                    <strong>
+                        Chariot Financial Services Limited
+                    </strong>
+
+                    <br>
+
+                    Registered in England and Wales
+
+                    <br>
+
+                    Company No. 14357842
+
+                    <br>
+
+                    Location:
+                    Hampton Water, Peterborough,
+                    Cambridgeshire, UK
+
+                    <br>
+
+                    <a
+                        href="https://find-and-update.company-information.service.gov.uk/company/14357842"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Companies House
+                    </a>
+
+                </div>
 
 
                 <p class="footer-legal">
@@ -1579,7 +1626,7 @@
 
 
 
-            <!-- Explore -->
+            <!-- EXPLORE -->
 
             <div class="footer-column">
 
@@ -1587,31 +1634,25 @@
                     Explore
                 </h4>
 
-
                 <a href="#about">
                     About
                 </a>
-
 
                 <a href="#services">
                     Services
                 </a>
 
-
                 <a href="#clients">
                     Who We Support
                 </a>
-
 
                 <a href="#founder">
                     Founder
                 </a>
 
-
                 <a href="#how-it-works">
                     How It Works
                 </a>
-
 
                 <a href="#contact">
                     Contact
@@ -1621,7 +1662,7 @@
 
 
 
-            <!-- Services -->
+            <!-- SERVICES -->
 
             <div class="footer-column">
 
@@ -1629,31 +1670,25 @@
                     Services
                 </h4>
 
-
                 <a href="#services">
                     Accounting & Bookkeeping
                 </a>
-
 
                 <a href="#services">
                     Tax & VAT
                 </a>
 
-
                 <a href="#services">
                     Management Accounts
                 </a>
-
 
                 <a href="#services">
                     Fractional Finance
                 </a>
 
-
                 <a href="#services">
                     Commercial Finance
                 </a>
-
 
                 <a href="#services">
                     Specialist Support
@@ -1663,7 +1698,7 @@
 
 
 
-            <!-- Contact -->
+            <!-- CONTACT -->
 
             <div class="footer-column">
 
@@ -1671,19 +1706,17 @@
                     Contact
                 </h4>
 
-
                 <a href="tel:+447497528077">
                     07497 528077
                 </a>
-
 
                 <a href="mailto:info@chariotfinancialservices.com">
                     info@chariotfinancialservices.com
                 </a>
 
-
                 <span class="footer-location">
-                    Peterborough, UK
+                    Hampton Water, Peterborough,
+                    Cambridgeshire, UK
                 </span>
 
             </div>
@@ -1692,14 +1725,15 @@
 
 
 
+        <!-- FOOTER BOTTOM -->
+
         <div class="container footer-bottom">
 
             <span>
                 © <span data-current-year></span>
-                Chariot Financial Services Ltd.
+                Chariot Financial Services Limited.
                 All rights reserved.
             </span>
-
 
             <span>
                 Accounting · Tax · Commercial Finance
@@ -1715,12 +1749,14 @@
          MOBILE STICKY CTA
          ===================================================== -->
 
-    <div class="mobile-sticky-cta">
+    <div
+        class="mobile-sticky-cta"
+        aria-label="Quick contact options"
+    >
 
         <a href="tel:+447497528077">
             Call Chariot
         </a>
-
 
         <a href="#contact">
             Book a Consultation
