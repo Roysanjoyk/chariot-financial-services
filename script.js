@@ -1,6 +1,6 @@
 /* =========================================================
 CHARIOT FINANCIAL SERVICES — script.js
-Website interactions + GA4 consent-based analytics
+Navigation + consent-based GA4 analytics
 ========================================================= */
 
 "use strict";
@@ -10,7 +10,6 @@ CONFIGURATION
 ========================================================= */
 
 const GA4_MEASUREMENT_ID = "G-6GVKWZF6YZ";
-
 const CONSENT_STORAGE_KEY = "chariot_analytics_consent";
 
 /* =========================================================
@@ -18,17 +17,11 @@ DOM READY
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
 setCurrentYear();
-
 initSmoothScrolling();
-
 initMobileNavigation();
-
 initAnalyticsConsent();
-
 initAnalyticsEvents();
-
 });
 
 /* =========================================================
@@ -36,17 +29,13 @@ CURRENT YEAR
 ========================================================= */
 
 function setCurrentYear() {
-
-const yearElement =
-document.getElementById("year");
+const yearElement = document.getElementById("year");
 
 if (!yearElement) {
 return;
 }
 
-yearElement.textContent =
-new Date().getFullYear();
-
+yearElement.textContent = new Date().getFullYear();
 }
 
 /* =========================================================
@@ -54,26 +43,20 @@ SMOOTH SCROLLING
 ========================================================= */
 
 function initSmoothScrolling() {
-
-const anchorLinks =
-document.querySelectorAll(
+const anchorLinks = document.querySelectorAll(
 'a[href^="#"]:not([href="#"])'
 );
 
 anchorLinks.forEach((link) => {
+link.addEventListener("click", (event) => {
+const targetId = link.getAttribute("href");
 
 ```
-link.addEventListener("click", (event) => {
-
-  const targetId =
-    link.getAttribute("href");
-
   if (!targetId) {
     return;
   }
 
-  const target =
-    document.querySelector(targetId);
+  const target = document.querySelector(targetId);
 
   if (!target) {
     return;
@@ -87,12 +70,10 @@ link.addEventListener("click", (event) => {
   });
 
   closeMobileNavigation();
-
 });
 ```
 
 });
-
 }
 
 /* =========================================================
@@ -100,108 +81,67 @@ MOBILE NAVIGATION
 ========================================================= */
 
 function initMobileNavigation() {
-
-const toggle =
-document.querySelector(".menu-toggle");
-
-const navigation =
-document.querySelector(".primary-navigation");
+const toggle = document.querySelector(".menu-toggle");
+const navigation = document.querySelector(".primary-navigation");
 
 if (!toggle || !navigation) {
 return;
 }
 
 toggle.addEventListener("click", () => {
+const isOpen = navigation.classList.contains("is-open");
 
 ```
-const isOpen =
-  navigation.classList.contains("is-open");
-
 if (isOpen) {
-
   closeMobileNavigation();
-
 } else {
-
   openMobileNavigation();
-
 }
 ```
 
 });
 
-navigation
-.querySelectorAll("a")
-.forEach((link) => {
-
-```
-  link.addEventListener("click", () => {
-
-    closeMobileNavigation();
-
-  });
-
+navigation.querySelectorAll("a").forEach((link) => {
+link.addEventListener("click", () => {
+closeMobileNavigation();
 });
-```
+});
 
 document.addEventListener("click", (event) => {
-
-```
 if (!navigation.classList.contains("is-open")) {
-  return;
+return;
 }
 
+```
 const clickedInsideNavigation =
   navigation.contains(event.target);
 
 const clickedToggle =
   toggle.contains(event.target);
 
-if (
-  !clickedInsideNavigation &&
-  !clickedToggle
-) {
-
+if (!clickedInsideNavigation && !clickedToggle) {
   closeMobileNavigation();
-
 }
 ```
 
 });
 
 document.addEventListener("keydown", (event) => {
-
-```
 if (event.key === "Escape") {
-
-  closeMobileNavigation();
-
+closeMobileNavigation();
 }
-```
-
 });
 
 window.addEventListener("resize", () => {
-
-```
 if (window.innerWidth > 850) {
-
-  closeMobileNavigation();
-
+closeMobileNavigation();
 }
-```
-
 });
-
 }
 
 function openMobileNavigation() {
-
-const toggle =
-document.querySelector(".menu-toggle");
-
-const navigation =
-document.querySelector(".primary-navigation");
+const toggle = document.querySelector(".menu-toggle");
+const navigation = document.querySelector(".primary-navigation");
 
 if (!toggle || !navigation) {
 return;
@@ -209,28 +149,15 @@ return;
 
 navigation.classList.add("is-open");
 
-toggle.setAttribute(
-"aria-expanded",
-"true"
-);
+toggle.classList.add("is-open");
 
-toggle.setAttribute(
-"aria-label",
-"Close navigation"
-);
-
-toggle.innerHTML =
-'<span aria-hidden="true">×</span>';
-
+toggle.setAttribute("aria-expanded", "true");
+toggle.setAttribute("aria-label", "Close navigation");
 }
 
 function closeMobileNavigation() {
-
-const toggle =
-document.querySelector(".menu-toggle");
-
-const navigation =
-document.querySelector(".primary-navigation");
+const toggle = document.querySelector(".menu-toggle");
+const navigation = document.querySelector(".primary-navigation");
 
 if (!toggle || !navigation) {
 return;
@@ -238,19 +165,10 @@ return;
 
 navigation.classList.remove("is-open");
 
-toggle.setAttribute(
-"aria-expanded",
-"false"
-);
+toggle.classList.remove("is-open");
 
-toggle.setAttribute(
-"aria-label",
-"Open navigation"
-);
-
-toggle.innerHTML = `     <span></span>     <span></span>     <span></span>
-  `;
-
+toggle.setAttribute("aria-expanded", "false");
+toggle.setAttribute("aria-label", "Open navigation");
 }
 
 /* =========================================================
@@ -258,60 +176,72 @@ ANALYTICS CONSENT
 ========================================================= */
 
 function initAnalyticsConsent() {
+initialiseGoogleConsent();
 
-const savedConsent =
-getAnalyticsConsent();
+const banner = document.querySelector("[data-cookie-banner]");
+const acceptButton = document.querySelector("[data-consent-accept]");
+const declineButton = document.querySelector("[data-consent-decline]");
+const settingsButton = document.querySelector("[data-cookie-settings]");
 
-/*
-
-* Establish Google's initial consent state.
-  */
-
-updateGoogleConsent(
-savedConsent === "accepted"
-? "granted"
-: "denied"
-);
-
-/*
-
-* Analytics was previously accepted.
-  */
+const savedConsent = getAnalyticsConsent();
 
 if (savedConsent === "accepted") {
-
-```
+updateGoogleConsent("granted");
+hideCookieBanner();
 loadGoogleAnalytics();
-
-return;
-```
-
+} else if (savedConsent === "declined") {
+updateGoogleConsent("denied");
+hideCookieBanner();
+} else {
+showCookieBanner();
 }
 
-/*
-
-* Analytics was previously declined.
-  */
-
-if (savedConsent === "declined") {
-
-```
-return;
-```
-
+if (acceptButton) {
+acceptButton.addEventListener("click", () => {
+saveAnalyticsConsent("accepted");
+updateGoogleConsent("granted");
+hideCookieBanner();
+loadGoogleAnalytics();
+});
 }
 
-/*
+if (declineButton) {
+declineButton.addEventListener("click", () => {
+saveAnalyticsConsent("declined");
+updateGoogleConsent("denied");
+hideCookieBanner();
+});
+}
 
-* No consent decision has been made.
-*
-* This version does not display a cookie banner because
-* there is currently no cookie banner in index.html.
-*
-* Analytics therefore remains disabled until consent is
-* explicitly recorded as "accepted".
-  */
+if (settingsButton) {
+settingsButton.addEventListener("click", () => {
+showCookieBanner();
+});
+}
 
+if (!banner) {
+return;
+}
+}
+
+function showCookieBanner() {
+const banner = document.querySelector("[data-cookie-banner]");
+
+if (!banner) {
+return;
+}
+
+banner.hidden = false;
+}
+
+function hideCookieBanner() {
+const banner = document.querySelector("[data-cookie-banner]");
+
+if (!banner) {
+return;
+}
+
+banner.hidden = true;
 }
 
 /* =========================================================
@@ -319,74 +249,71 @@ LOCAL STORAGE — CONSENT
 ========================================================= */
 
 function getAnalyticsConsent() {
-
 try {
-
-```
-return localStorage.getItem(
-  CONSENT_STORAGE_KEY
-);
-```
-
+return localStorage.getItem(CONSENT_STORAGE_KEY);
 } catch (error) {
-
-```
 console.warn(
-  "Chariot Analytics: Unable to read consent storage.",
-  error
+"Chariot Analytics: Unable to read consent storage.",
+error
 );
 
+```
 return null;
 ```
 
 }
-
 }
 
 function saveAnalyticsConsent(value) {
-
 try {
-
-```
 localStorage.setItem(
-  CONSENT_STORAGE_KEY,
-  value
+CONSENT_STORAGE_KEY,
+value
 );
-```
-
 } catch (error) {
-
-```
 console.warn(
-  "Chariot Analytics: Unable to save consent.",
-  error
+"Chariot Analytics: Unable to save consent.",
+error
 );
-```
-
 }
-
 }
 
 /* =========================================================
 GOOGLE CONSENT MODE
 ========================================================= */
 
-function updateGoogleConsent(status) {
-
-window.dataLayer =
-window.dataLayer || [];
+function initialiseGoogleConsent() {
+window.dataLayer = window.dataLayer || [];
 
 window.gtag =
 window.gtag ||
 function () {
-
-```
-  window.dataLayer.push(
-    arguments
-  );
-
+window.dataLayer.push(arguments);
 };
-```
+
+window.gtag(
+"consent",
+"default",
+{
+analytics_storage: "denied",
+ad_storage: "denied",
+ad_user_data: "denied",
+ad_personalization: "denied",
+functionality_storage: "granted",
+security_storage: "granted",
+wait_for_update: 500
+}
+);
+}
+
+function updateGoogleConsent(status) {
+window.dataLayer = window.dataLayer || [];
+
+window.gtag =
+window.gtag ||
+function () {
+window.dataLayer.push(arguments);
+};
 
 window.gtag(
 "consent",
@@ -398,7 +325,6 @@ ad_user_data: "denied",
 ad_personalization: "denied"
 }
 );
-
 }
 
 /* =========================================================
@@ -406,38 +332,23 @@ LOAD GOOGLE ANALYTICS
 ========================================================= */
 
 function loadGoogleAnalytics() {
-
-/*
-
-* Prevent duplicate loading.
-  */
-
 if (
 document.querySelector(
-`script[src*="googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}"]`
+'script[src*="googletagmanager.com/gtag/js?id=' +
+GA4_MEASUREMENT_ID +
+'"]'
 )
 ) {
-
-```
 return;
-```
-
 }
 
-window.dataLayer =
-window.dataLayer || [];
+window.dataLayer = window.dataLayer || [];
 
 window.gtag =
 window.gtag ||
 function () {
-
-```
-  window.dataLayer.push(
-    arguments
-  );
-
+window.dataLayer.push(arguments);
 };
-```
 
 window.gtag(
 "js",
@@ -452,36 +363,27 @@ send_page_view: true
 }
 );
 
-const script =
-document.createElement("script");
+const script = document.createElement("script");
 
 script.async = true;
 
 script.src =
-`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`;
+"https://www.googletagmanager.com/gtag/js?id=" +
+GA4_MEASUREMENT_ID;
 
 script.onload = () => {
-
-```
 console.info(
-  "Chariot Analytics: Google Analytics 4 loaded."
+"Chariot Analytics: Google Analytics 4 loaded."
 );
-```
-
 };
 
 script.onerror = () => {
-
-```
 console.warn(
-  "Chariot Analytics: Google Analytics 4 could not be loaded."
+"Chariot Analytics: Google Analytics 4 could not be loaded."
 );
-```
-
 };
 
 document.head.appendChild(script);
-
 }
 
 /* =========================================================
@@ -489,53 +391,38 @@ ANALYTICS EVENT TRACKING
 ========================================================= */
 
 function initAnalyticsEvents() {
-
 const trackedElements =
-document.querySelectorAll(
-"[data-event]"
-);
+document.querySelectorAll("[data-event]");
 
 trackedElements.forEach((element) => {
+element.addEventListener("click", () => {
+const eventName =
+element.getAttribute("data-event");
 
 ```
-element.addEventListener(
-  "click",
-  () => {
-
-    const eventName =
-      element.getAttribute("data-event");
-
-
-    if (
-      !eventName ||
-      !hasAnalyticsConsent() ||
-      typeof window.gtag !== "function"
-    ) {
-
-      return;
-
-    }
-
-
-    const label =
-      element.textContent.trim();
-
-
-    window.gtag(
-      "event",
-      eventName,
-      {
-        event_category: "engagement",
-        event_label: label
-      }
-    );
-
+  if (
+    !eventName ||
+    !hasAnalyticsConsent() ||
+    typeof window.gtag !== "function"
+  ) {
+    return;
   }
-);
+
+  const label =
+    element.textContent.trim();
+
+  window.gtag(
+    "event",
+    eventName,
+    {
+      event_category: "engagement",
+      event_label: label
+    }
+  );
+});
 ```
 
 });
-
 }
 
 /* =========================================================
@@ -543,11 +430,7 @@ ANALYTICS CONSENT CHECK
 ========================================================= */
 
 function hasAnalyticsConsent() {
-
-return (
-getAnalyticsConsent() === "accepted"
-);
-
+return getAnalyticsConsent() === "accepted";
 }
 
 /* =========================================================
@@ -556,46 +439,29 @@ ANALYTICS DIAGNOSTIC
 
 Open the browser console and run:
 
-```
-   chariotAnalyticsStatus()
-```
+chariotAnalyticsStatus()
 
 ========================================================= */
 
 window.chariotAnalyticsStatus = function () {
-
-const googleScript =
-document.querySelector(
-`script[src*="googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}"]`
+const googleScript = document.querySelector(
+'script[src*="googletagmanager.com/gtag/js?id=' +
+GA4_MEASUREMENT_ID +
+'"]'
 );
 
 const status = {
-
-```
-measurementId:
-  GA4_MEASUREMENT_ID,
-
-consent:
-  getAnalyticsConsent(),
-
+measurementId: GA4_MEASUREMENT_ID,
+consent: getAnalyticsConsent(),
 gtagAvailable:
-  typeof window.gtag === "function",
-
+typeof window.gtag === "function",
 dataLayerFound:
-  Array.isArray(window.dataLayer),
-
+Array.isArray(window.dataLayer),
 googleScriptLoaded:
-  Boolean(googleScript)
-```
-
+Boolean(googleScript)
 };
 
 console.table(status);
 
 return status;
-
 };
-
-/* =========================================================
-END
-========================================================= */
