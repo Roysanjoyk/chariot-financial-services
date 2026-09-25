@@ -1,30 +1,37 @@
+```html
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8">
 
+  <!-- =========================================================
+       VIEWPORT
+       ========================================================= -->
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
 
+  <!-- =========================================================
+       PRIMARY SEO
+       ========================================================= -->
   <title>
-    Chariot Financial Services | Accounting, Tax &amp; Commercial Finance
+    Accountants in Peterborough | Chariot Financial Services
   </title>
 
   <meta
     name="description"
-    content="Chariot Financial Services is a Peterborough-based ACCA practice providing accounting, tax, VAT and commercial finance support to UK businesses and professionals."
-  >
-
-  <meta
-    name="author"
-    content="Sanjoy Kumar Roy ACCA"
+    content="Chariot Financial Services is an ACCA-led accountancy practice in Peterborough providing accounting, bookkeeping, tax, VAT, payroll, management accounts and commercial finance support for businesses and professionals across the UK."
   >
 
   <meta
     name="robots"
-    content="index, follow, max-image-preview:large"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  >
+
+  <meta
+    name="author"
+    content="Chariot Financial Services Limited"
   >
 
   <meta
@@ -32,39 +39,40 @@
     content="#101d2f"
   >
 
+  <!-- =========================================================
+       CANONICAL
+       ========================================================= -->
   <link
     rel="canonical"
     href="https://chariotfinancialservices.com/"
   >
 
+  <!-- =========================================================
+       FAVICON
+       Replace favicon.svg with your actual favicon if required.
+       ========================================================= -->
   <link
     rel="icon"
     type="image/svg+xml"
-    href="CFSL_Logo.svg"
+    href="assets/favicon.svg"
   >
 
-  <!-- =====================================================
-       OPEN GRAPH
-       ===================================================== -->
+  <link
+    rel="apple-touch-icon"
+    href="assets/apple-touch-icon.png"
+  >
 
+  <!-- =========================================================
+       PRECONNECT
+       ========================================================= -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <!-- =========================================================
+       OPEN GRAPH
+       ========================================================= -->
   <meta
     property="og:type"
     content="website"
-  >
-
-  <meta
-    property="og:title"
-    content="Chariot Financial Services | Accounting, Tax & Commercial Finance"
-  >
-
-  <meta
-    property="og:description"
-    content="Accounting, tax and commercial finance support for UK businesses and professionals."
-  >
-
-  <meta
-    property="og:url"
-    content="https://chariotfinancialservices.com/"
   >
 
   <meta
@@ -73,95 +81,202 @@
   >
 
   <meta
+    property="og:title"
+    content="Accountants in Peterborough | Chariot Financial Services"
+  >
+
+  <meta
+    property="og:description"
+    content="ACCA-led accounting, tax, VAT and commercial finance support for businesses and professionals in Peterborough and across the UK."
+  >
+
+  <meta
+    property="og:url"
+    content="https://chariotfinancialservices.com/"
+  >
+
+  <meta
     property="og:locale"
     content="en_GB"
   >
 
-  <!-- =====================================================
-       TWITTER / X
-       ===================================================== -->
+  <meta
+    property="og:image"
+    content="https://chariotfinancialservices.com/assets/og-image.jpg"
+  >
 
   <meta
+    property="og:image:alt"
+    content="Chariot Financial Services — Accountants in Peterborough"
+  >
+
+  <!-- =========================================================
+       TWITTER / X
+       ========================================================= -->
+  <meta
     name="twitter:card"
-    content="summary"
+    content="summary_large_image"
   >
 
   <meta
     name="twitter:title"
-    content="Chariot Financial Services | Accounting, Tax & Commercial Finance"
+    content="Accountants in Peterborough | Chariot Financial Services"
   >
 
   <meta
     name="twitter:description"
-    content="Accounting, tax and commercial finance support for UK businesses and professionals."
+    content="ACCA-led accounting, tax, VAT and commercial finance support for businesses and professionals."
   >
 
-  <!-- =====================================================
-       GOOGLE ANALYTICS 4
-       Loaded by script.js after analytics consent.
-       ===================================================== -->
+  <meta
+    name="twitter:image"
+    content="https://chariotfinancialservices.com/assets/og-image.jpg"
+  >
 
-  <!-- =====================================================
-       STRUCTURED DATA
-       ===================================================== -->
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AccountingService",
-    "name": "Chariot Financial Services Limited",
-    "url": "https://chariotfinancialservices.com/",
-    "logo": "https://chariotfinancialservices.com/CFSL_Logo.svg",
-    "description": "Accounting, tax, VAT and commercial finance support for UK businesses and professionals.",
-    "telephone": "+44 7497 528077",
-    "email": "info@chariotfinancialservices.com",
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Peterborough"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Cambridgeshire"
-      },
-      {
-        "@type": "Country",
-        "name": "United Kingdom"
-      }
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Peterborough",
-      "addressRegion": "Cambridgeshire",
-      "addressCountry": "GB"
-    },
-    "founder": {
-      "@type": "Person",
-      "name": "Sanjoy Kumar Roy",
-      "jobTitle": "Practice Principal",
-      "honorificSuffix": "ACCA"
-    },
-    "sameAs": []
-  }
-  </script>
-
-  <!-- =====================================================
+  <!-- =========================================================
        STYLESHEET
-       ===================================================== -->
-
+       ========================================================= -->
   <link
     rel="stylesheet"
     href="styles.css"
   >
-</head>
 
+  <!-- =========================================================
+       STRUCTURED DATA — ORGANISATION / ACCOUNTING SERVICE
+       ========================================================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AccountingService",
+        "@id": "https://chariotfinancialservices.com/#accountingservice",
+        "name": "Chariot Financial Services Limited",
+        "url": "https://chariotfinancialservices.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://chariotfinancialservices.com/assets/logo.svg"
+        },
+        "image": "https://chariotfinancialservices.com/assets/og-image.jpg",
+        "description": "ACCA-led accountancy practice providing accounting, bookkeeping, tax, VAT, payroll, management accounts and commercial finance support for businesses and professionals.",
+        "telephone": "+44 7497 528077",
+        "email": "info@chariotfinancialservices.com",
+        "priceRange": "££",
+        "currenciesAccepted": "GBP",
+        "paymentAccepted": "Bank Transfer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Peterborough",
+          "addressRegion": "Cambridgeshire",
+          "addressCountry": "GB"
+        },
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Peterborough"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Cambridgeshire"
+          },
+          {
+            "@type": "Country",
+            "name": "United Kingdom"
+          }
+        ],
+        "knowsAbout": [
+          "Accounting",
+          "Bookkeeping",
+          "Tax",
+          "VAT",
+          "Payroll",
+          "Management Accounts",
+          "Financial Reporting",
+          "Commercial Finance",
+          "Fractional Finance Management",
+          "Virtual CFO Services",
+          "GP Locum Accounting",
+          "Legal Practice Accounting"
+        ],
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "Companies House",
+          "value": "14357842"
+        },
+        "founder": {
+          "@type": "Person",
+          "@id": "https://chariotfinancialservices.com/#sanjoy-kumar-roy",
+          "name": "Sanjoy Kumar Roy",
+          "honorificSuffix": "ACCA",
+          "jobTitle": "Practice Principal"
+        }
+      },
+
+      {
+        "@type": "Organization",
+        "@id": "https://chariotfinancialservices.com/#organization",
+        "name": "Chariot Financial Services Limited",
+        "legalName": "Chariot Financial Services Limited",
+        "url": "https://chariotfinancialservices.com/",
+        "telephone": "+44 7497 528077",
+        "email": "info@chariotfinancialservices.com",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "Companies House",
+          "value": "14357842"
+        },
+        "founder": {
+          "@id": "https://chariotfinancialservices.com/#sanjoy-kumar-roy"
+        }
+      },
+
+      {
+        "@type": "Person",
+        "@id": "https://chariotfinancialservices.com/#sanjoy-kumar-roy",
+        "name": "Sanjoy Kumar Roy",
+        "honorificSuffix": "ACCA",
+        "jobTitle": "Practice Principal",
+        "worksFor": {
+          "@id": "https://chariotfinancialservices.com/#organization"
+        }
+      },
+
+      {
+        "@type": "WebSite",
+        "@id": "https://chariotfinancialservices.com/#website",
+        "url": "https://chariotfinancialservices.com/",
+        "name": "Chariot Financial Services",
+        "description": "Accounting, tax and commercial finance support for UK businesses and professionals.",
+        "publisher": {
+          "@id": "https://chariotfinancialservices.com/#organization"
+        },
+        "inLanguage": "en-GB"
+      },
+
+      {
+        "@type": "WebPage",
+        "@id": "https://chariotfinancialservices.com/#webpage",
+        "url": "https://chariotfinancialservices.com/",
+        "name": "Accountants in Peterborough | Chariot Financial Services",
+        "description": "ACCA-led accounting, tax, VAT and commercial finance support for businesses and professionals in Peterborough and across the UK.",
+        "isPartOf": {
+          "@id": "https://chariotfinancialservices.com/#website"
+        },
+        "about": {
+          "@id": "https://chariotfinancialservices.com/#accountingservice"
+        },
+        "inLanguage": "en-GB"
+      }
+    ]
+  }
+  </script>
+</head>
 
 <body>
 
-  <!-- =====================================================
-       ACCESSIBILITY
-       ===================================================== -->
-
+  <!-- =========================================================
+       SKIP LINK
+       ========================================================= -->
   <a
     class="skip-link"
     href="#main-content"
@@ -169,127 +284,120 @@
     Skip to main content
   </a>
 
-
-  <!-- =====================================================
+  <!-- =========================================================
        HEADER
-       ===================================================== -->
-
-  <header class="site-header">
+       ========================================================= -->
+  <header
+    class="site-header"
+    id="top"
+  >
 
     <div class="container header-inner">
 
       <a
         class="brand"
         href="#top"
-        aria-label="Chariot Financial Services home"
+        aria-label="Chariot Financial Services — Home"
       >
         <img
-          class="site-logo"
-          src="CFSL_Logo.svg"
+          src="assets/logo.svg"
           alt="Chariot Financial Services"
+          class="brand-logo"
+          width="220"
+          height="70"
         >
       </a>
 
-
       <button
-        class="nav-toggle"
+        class="menu-toggle"
         type="button"
-        aria-label="Open navigation"
         aria-expanded="false"
         aria-controls="primary-navigation"
+        aria-label="Open navigation menu"
       >
-        <span aria-hidden="true">☰</span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
 
-
       <nav
-        class="site-nav"
+        class="primary-navigation"
         id="primary-navigation"
         aria-label="Primary navigation"
       >
+        <ul>
+          <li>
+            <a href="#about">About</a>
+          </li>
 
-        <a href="#about">
-          About
-        </a>
+          <li>
+            <a href="#services">Services</a>
+          </li>
 
-        <a href="#services">
-          Services
-        </a>
+          <li>
+            <a href="#specialists">Who We Support</a>
+          </li>
 
-        <a href="#who-we-support">
-          Who We Support
-        </a>
+          <li>
+            <a href="#founder">Principal</a>
+          </li>
 
-        <a href="#founder">
-          Founder
-        </a>
-
-        <a href="#how-it-works">
-          How It Works
-        </a>
-
-        <a href="#contact">
-          Contact
-        </a>
-
-        <a
-          class="nav-cta"
-          href="#contact"
-        >
-          Book a Consultation
-        </a>
-
+          <li>
+            <a href="#contact">Contact</a>
+          </li>
+        </ul>
       </nav>
+
+      <a
+        class="header-cta"
+        href="#contact"
+      >
+        Book a Conversation
+      </a>
 
     </div>
 
   </header>
 
 
-  <!-- =====================================================
+  <!-- =========================================================
        MAIN
-       ===================================================== -->
-
+       ========================================================= -->
   <main id="main-content">
 
-
-    <!-- ===================================================
+    <!-- =======================================================
          HERO
-         =================================================== -->
-
+         ======================================================= -->
     <section
       class="hero"
-      id="top"
+      aria-labelledby="hero-heading"
     >
 
       <div class="container hero-grid">
 
         <div class="hero-content">
 
-          <div class="eyebrow">
-            Accounting · Tax · Commercial Finance
-          </div>
+          <p class="eyebrow">
+            Accountants in Peterborough
+          </p>
 
-          <h1>
+          <h1 id="hero-heading">
             Clear financial insight for better business decisions.
           </h1>
 
           <p class="hero-lead">
-            Chariot Financial Services provides practical accounting,
-            tax and commercial finance support for UK businesses and
-            professionals — helping you understand the numbers,
-            maintain control and make informed decisions.
+            Chariot Financial Services is an ACCA-led accountancy practice
+            providing accounting, tax and commercial finance support for
+            businesses and professionals in Peterborough and across the UK.
           </p>
-
 
           <div class="hero-actions">
 
             <a
               class="button button-primary"
               href="#contact"
-              data-event="book_consultation"
             >
-              Book a Consultation
+              Start a Conversation
             </a>
 
             <a
@@ -301,78 +409,48 @@
 
           </div>
 
+          <div class="hero-points">
 
-          <div class="hero-credentials">
+            <span>
+              ACCA-led
+            </span>
 
-            <div class="credential">
+            <span>
+              Peterborough-based
+            </span>
 
-              <strong>
-                ACCA-qualified
-              </strong>
-
-              <span>
-                Practice Principal
-              </span>
-
-            </div>
-
-
-            <div class="credential">
-
-              <strong>
-                Peterborough-based
-              </strong>
-
-              <span>
-                Local and UK-wide support
-              </span>
-
-            </div>
-
-
-            <div class="credential">
-
-              <strong>
-                Commercial focus
-              </strong>
-
-              <span>
-                Beyond compliance
-              </span>
-
-            </div>
-
-
-            <div class="credential">
-
-              <strong>
-                Flexible support
-              </strong>
-
-              <span>
-                From accounting to finance leadership
-              </span>
-
-            </div>
+            <span>
+              UK-wide support
+            </span>
 
           </div>
 
         </div>
 
 
-        <div class="hero-card">
+        <div class="hero-panel">
 
-          <div class="hero-card-inner">
+          <div class="hero-card">
 
-            <div class="hero-card-label">
+            <p class="hero-card-label">
               Chariot Financial Services
-            </div>
+            </p>
 
             <h2>
-              Clarity.<br>
-              Control.<br>
-              Confidence.
+              Accounting. Tax. Commercial Finance.
             </h2>
+
+            <p>
+              Practical financial support designed to give business owners
+              greater clarity, stronger control and confidence in their
+              financial decisions.
+            </p>
+
+            <div class="hero-card-line"></div>
+
+            <p class="hero-card-tagline">
+              Clarity. Control. Confidence.
+            </p>
 
           </div>
 
@@ -383,57 +461,83 @@
     </section>
 
 
-    <!-- ===================================================
-         ABOUT
-         =================================================== -->
-
+    <!-- =======================================================
+         TRUST STRIP
+         ======================================================= -->
     <section
-      class="section about-section"
+      class="trust-strip"
+      aria-label="Chariot Financial Services highlights"
+    >
+
+      <div class="container trust-grid">
+
+        <div class="trust-item">
+          <strong>ACCA-led</strong>
+          <span>Professional accountancy support</span>
+        </div>
+
+        <div class="trust-item">
+          <strong>Peterborough</strong>
+          <span>Local expertise with UK-wide support</span>
+        </div>
+
+        <div class="trust-item">
+          <strong>Xero &amp; Cloud Specialists</strong>
+          <span>Modern, connected financial systems</span>
+        </div>
+
+        <div class="trust-item">
+          <strong>Commercial Focus</strong>
+          <span>Finance that supports better decisions</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         ABOUT
+         ======================================================= -->
+    <section
+      class="section section-light"
       id="about"
+      aria-labelledby="about-heading"
     >
 
       <div class="container two-column">
 
-        <div class="section-heading">
+        <div>
 
-          <div class="eyebrow">
+          <p class="eyebrow">
             About Chariot
-          </div>
+          </p>
 
-          <h2>
-            Finance support built around your business.
+          <h2 id="about-heading">
+            More than accounts. Financial clarity for your business.
           </h2>
 
         </div>
 
-
         <div class="section-copy">
 
           <p>
-            Chariot Financial Services is an ACCA practice based in
-            Peterborough, providing accounting, tax, VAT and commercial
+            Chariot Financial Services Limited is a Peterborough-based
+            accountancy practice providing accounting, tax and commercial
             finance support to businesses and professionals across the UK.
           </p>
 
           <p>
-            The focus is not simply on producing accounts or meeting
-            deadlines. Good financial information should help business
-            owners understand performance, manage cash flow, identify
-            risks and make better decisions.
+            Our approach combines accurate financial reporting with practical
+            commercial insight, helping clients understand their numbers,
+            maintain control and make informed decisions.
           </p>
 
           <p>
-            Support can be structured around a specific requirement,
-            an ongoing accounting relationship or a broader finance
-            function — depending on the needs and stage of the business.
+            Whether you need reliable bookkeeping, year-end accounts, VAT
+            support, management reporting or ongoing finance leadership,
+            Chariot provides a flexible service built around your requirements.
           </p>
-
-          <a
-            class="text-link"
-            href="#services"
-          >
-            Explore our services
-          </a>
 
         </div>
 
@@ -442,269 +546,220 @@
     </section>
 
 
-    <!-- ===================================================
+    <!-- =======================================================
          SERVICES
-         =================================================== -->
-
+         ======================================================= -->
     <section
-      class="section services-section"
+      class="section section-dark"
       id="services"
+      aria-labelledby="services-heading"
     >
 
       <div class="container">
 
         <div class="section-heading">
 
-          <div class="eyebrow">
+          <p class="eyebrow">
             Services
-          </div>
+          </p>
 
-          <h2>
-            Practical finance support, from compliance to commercial insight.
+          <h2 id="services-heading">
+            Accounting and finance support built around your needs.
           </h2>
 
           <p>
-            Services can be provided individually or combined into a
-            broader finance support package.
+            From essential compliance through to commercial finance support,
+            our services can scale with your business.
           </p>
 
         </div>
 
 
-        <!-- CORE ACCOUNTING & TAX -->
+        <div class="service-grid">
 
-        <div class="service-group">
-
-          <div class="service-group-heading">
+          <!-- Accounting -->
+          <article class="service-card">
 
             <span class="service-number">
               01
             </span>
 
             <h3>
-              Core Accounting &amp; Tax
+              Accounting &amp; Bookkeeping
             </h3>
 
-          </div>
+            <p>
+              Reliable bookkeeping and accounting support designed to keep
+              your records accurate, organised and ready for decision-making.
+            </p>
+
+            <a href="#contact">
+              Discuss your requirements
+            </a>
+
+          </article>
 
 
-          <div class="service-group-grid">
-
-            <article class="service-card">
-
-              <h4>
-                Accounting &amp; Bookkeeping
-              </h4>
-
-              <p>
-                Accurate bookkeeping, reconciliations, year-end
-                preparation and ongoing accounting support.
-              </p>
-
-            </article>
-
-
-            <article class="service-card">
-
-              <h4>
-                Tax
-              </h4>
-
-              <p>
-                Practical support with business and personal tax
-                requirements, compliance and planning.
-              </p>
-
-            </article>
-
-
-            <article class="service-card">
-
-              <h4>
-                VAT
-              </h4>
-
-              <p>
-                VAT registration, return preparation, record review
-                and practical VAT support.
-              </p>
-
-            </article>
-
-
-            <article class="service-card">
-
-              <h4>
-                Payroll
-              </h4>
-
-              <p>
-                Payroll administration and related reporting support
-                for employers and owner-managed businesses.
-              </p>
-
-            </article>
-
-          </div>
-
-        </div>
-
-
-        <!-- MANAGEMENT & COMMERCIAL FINANCE -->
-
-        <div class="service-group">
-
-          <div class="service-group-heading">
+          <!-- Tax -->
+          <article class="service-card">
 
             <span class="service-number">
               02
             </span>
 
             <h3>
-              Management &amp; Commercial Finance
+              Tax
             </h3>
 
-          </div>
+            <p>
+              Practical support with company, personal and business tax
+              obligations, with a focus on accurate compliance and planning.
+            </p>
+
+            <a href="#contact">
+              Discuss your requirements
+            </a>
+
+          </article>
 
 
-          <div class="service-group-grid">
-
-            <article class="service-card">
-
-              <h4>
-                Management Accounts &amp; Reporting
-              </h4>
-
-              <p>
-                Management information designed to give business owners
-                a clearer view of performance, costs and cash flow.
-              </p>
-
-            </article>
-
-
-            <article class="service-card">
-
-              <h4>
-                Fractional Finance Manager
-              </h4>
-
-              <p>
-                Flexible finance management support without the
-                commitment of a full-time senior finance hire.
-              </p>
-
-            </article>
-
-
-            <article class="service-card">
-
-              <h4>
-                Commercial Finance
-              </h4>
-
-              <p>
-                Budgeting, forecasting, financial analysis and
-                decision-support for growing businesses.
-              </p>
-
-            </article>
-
-
-            <article class="service-card">
-
-              <h4>
-                CFO Support
-              </h4>
-
-              <p>
-                Senior-level financial insight for businesses that
-                need stronger financial control and decision support.
-              </p>
-
-            </article>
-
-          </div>
-
-        </div>
-
-
-        <!-- SPECIALIST SUPPORT -->
-
-        <div class="service-group">
-
-          <div class="service-group-heading">
+          <!-- VAT -->
+          <article class="service-card">
 
             <span class="service-number">
               03
             </span>
 
             <h3>
-              Specialist Support
+              VAT
             </h3>
 
-          </div>
+            <p>
+              VAT registration, return preparation and ongoing support to help
+              businesses manage their VAT responsibilities effectively.
+            </p>
+
+            <a href="#contact">
+              Discuss your requirements
+            </a>
+
+          </article>
 
 
-          <div class="service-group-grid">
+          <!-- Payroll -->
+          <article class="service-card">
 
-            <article class="service-card">
+            <span class="service-number">
+              04
+            </span>
 
-              <h4>
-                GP Locum Support
-              </h4>
+            <h3>
+              Payroll
+            </h3>
 
-              <p>
-                Accounting and tax support designed around the
-                financial administration of GP locum work.
-              </p>
+            <p>
+              Practical payroll support for businesses that want accurate,
+              timely processing without adding unnecessary administrative
+              burden.
+            </p>
 
-            </article>
+            <a href="#contact">
+              Discuss your requirements
+            </a>
 
-
-            <article class="service-card">
-
-              <h4>
-                Legal Professionals
-              </h4>
-
-              <p>
-                Accounting and finance support for solicitors and
-                legal professionals, including relevant financial
-                administration requirements.
-              </p>
-
-            </article>
+          </article>
 
 
-            <article class="service-card">
+          <!-- Management Accounts -->
+          <article class="service-card">
 
-              <h4>
-                Finance Support
-              </h4>
+            <span class="service-number">
+              05
+            </span>
 
-              <p>
-                Additional finance resource for businesses requiring
-                experienced support during periods of change or growth.
-              </p>
+            <h3>
+              Management Accounts
+            </h3>
 
-            </article>
+            <p>
+              Clear management reporting that turns financial information into
+              useful insight for business owners and management teams.
+            </p>
+
+            <a href="#contact">
+              Discuss your requirements
+            </a>
+
+          </article>
 
 
-            <article class="service-card">
+          <!-- Fractional Finance -->
+          <article class="service-card">
 
-              <h4>
-                Advisory Support
-              </h4>
+            <span class="service-number">
+              06
+            </span>
 
-              <p>
-                Practical financial analysis and structured support
-                for business owners facing specific decisions.
-              </p>
+            <h3>
+              Fractional Finance Manager
+            </h3>
 
-            </article>
+            <p>
+              Flexible finance management support for businesses that need
+              experienced financial leadership without a full-time hire.
+            </p>
 
-          </div>
+            <a href="#contact">
+              Discuss your requirements
+            </a>
+
+          </article>
+
+
+          <!-- Commercial Finance -->
+          <article class="service-card">
+
+            <span class="service-number">
+              07
+            </span>
+
+            <h3>
+              Commercial Finance
+            </h3>
+
+            <p>
+              Budgeting, forecasting, financial analysis and decision support
+              to help business owners understand performance and plan ahead.
+            </p>
+
+            <a href="#contact">
+              Discuss your requirements
+            </a>
+
+          </article>
+
+
+          <!-- CFO -->
+          <article class="service-card">
+
+            <span class="service-number">
+              08
+            </span>
+
+            <h3>
+              Virtual CFO Support
+            </h3>
+
+            <p>
+              Senior-level financial insight for businesses that need stronger
+              financial oversight, reporting and strategic support.
+            </p>
+
+            <a href="#contact">
+              Discuss your requirements
+            </a>
+
+          </article>
 
         </div>
 
@@ -713,105 +768,90 @@
     </section>
 
 
-    <!-- ===================================================
-         WHO WE SUPPORT
-         =================================================== -->
-
+    <!-- =======================================================
+         SPECIALIST SUPPORT
+         ======================================================= -->
     <section
-      class="section clients-section"
-      id="who-we-support"
+      class="section section-light"
+      id="specialists"
+      aria-labelledby="specialists-heading"
     >
 
       <div class="container">
 
         <div class="section-heading">
 
-          <div class="eyebrow">
+          <p class="eyebrow">
             Who We Support
-          </div>
+          </p>
 
-          <h2>
-            Finance support for businesses and professionals.
+          <h2 id="specialists-heading">
+            Financial support for professionals and growing businesses.
           </h2>
 
           <p>
-            Chariot works with organisations and individuals that
-            value clear financial information, responsive support
-            and commercially useful advice.
+            We work with businesses and professionals who value accurate
+            financial information, practical advice and responsive support.
           </p>
 
         </div>
 
 
-        <div class="client-grid">
+        <div class="specialist-grid">
 
-          <article class="client-card">
-
-            <div class="client-index">
-              01
-            </div>
+          <article class="specialist-card">
 
             <h3>
               Owner-Managed Businesses
             </h3>
 
             <p>
-              Accounting, tax and financial support for directors and
-              business owners who need reliable information and control.
+              Accounting, tax and commercial finance support for directors and
+              business owners who want greater visibility over performance and
+              cash flow.
             </p>
 
           </article>
 
 
-          <article class="client-card">
-
-            <div class="client-index">
-              02
-            </div>
+          <article class="specialist-card">
 
             <h3>
-              Professional &amp; Legal Services
+              GP Locums &amp; Medical Professionals
             </h3>
 
             <p>
-              Finance support tailored to professional practices and
-              businesses operating in specialist service environments.
+              Accounting and financial support designed around the needs of
+              doctors, GP locums and other medical professionals.
             </p>
 
           </article>
 
 
-          <article class="client-card">
-
-            <div class="client-index">
-              03
-            </div>
+          <article class="specialist-card">
 
             <h3>
-              Medical Professionals
+              Legal Professionals
             </h3>
 
             <p>
-              Practical accounting and tax support for doctors,
-              consultants and other medical professionals.
+              Financial and accounting support for legal professionals and
+              firms, including appropriate consideration of professional
+              compliance requirements.
             </p>
 
           </article>
 
 
-          <article class="client-card">
-
-            <div class="client-index">
-              04
-            </div>
+          <article class="specialist-card">
 
             <h3>
-              Growing Businesses
+              Consultants &amp; Professionals
             </h3>
 
             <p>
-              Flexible finance capability for businesses moving beyond
-              basic bookkeeping and requiring stronger reporting and control.
+              Practical accounting, tax and financial support for consultants,
+              contractors and professional service businesses.
             </p>
 
           </article>
@@ -823,96 +863,176 @@
     </section>
 
 
-    <!-- ===================================================
-         FOUNDER
-         =================================================== -->
-
+    <!-- =======================================================
+         APPROACH
+         ======================================================= -->
     <section
-      class="section founder-section"
+      class="section section-stone"
+      aria-labelledby="approach-heading"
+    >
+
+      <div class="container two-column">
+
+        <div>
+
+          <p class="eyebrow">
+            Our Approach
+          </p>
+
+          <h2 id="approach-heading">
+            Financial information should help you run your business.
+          </h2>
+
+        </div>
+
+        <div class="section-copy">
+
+          <p>
+            Good accounting is more than producing historical numbers. It
+            should help you understand what is happening in your business and
+            what needs attention next.
+          </p>
+
+          <p>
+            We focus on accurate information, clear communication and
+            commercially useful reporting, giving business owners the
+            information they need to make informed decisions.
+          </p>
+
+          <div class="principles">
+
+            <div class="principle">
+              <strong>Clarity</strong>
+              <span>
+                Understand the numbers that matter.
+              </span>
+            </div>
+
+            <div class="principle">
+              <strong>Control</strong>
+              <span>
+                Maintain reliable financial processes and information.
+              </span>
+            </div>
+
+            <div class="principle">
+              <strong>Confidence</strong>
+              <span>
+                Make decisions with better financial visibility.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         XERO / CLOUD
+         ======================================================= -->
+    <section
+      class="section section-light"
+      aria-labelledby="cloud-heading"
+    >
+
+      <div class="container feature-panel">
+
+        <div class="feature-content">
+
+          <p class="eyebrow">
+            Cloud Accounting
+          </p>
+
+          <h2 id="cloud-heading">
+            Xero &amp; Cloud Specialists
+          </h2>
+
+          <p>
+            Modern accounting systems can make financial information easier
+            to access, understand and manage. We support businesses using
+            cloud-based accounting technology and connected financial
+            workflows.
+          </p>
+
+          <p>
+            The objective is simple: reduce unnecessary administration and
+            give you better visibility over your financial information.
+          </p>
+
+          <a
+            class="text-link"
+            href="#contact"
+          >
+            Talk to us about your accounting systems
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         FOUNDER
+         ======================================================= -->
+    <section
+      class="section section-dark"
       id="founder"
+      aria-labelledby="founder-heading"
     >
 
       <div class="container founder-grid">
 
+        <div class="founder-image-wrap">
 
-        <div class="founder-image">
-
-          <!--
-            Replace this placeholder with the final founder image.
-
-            Example:
-            <img
-              src="images/sanjoy-kumar-roy.webp"
-              alt="Sanjoy Kumar Roy ACCA, Practice Principal at Chariot Financial Services"
-            >
-          -->
-
-          <div
-            class="founder-image-placeholder"
-            role="img"
-            aria-label="Founder photograph placeholder"
+          <img
+            src="assets/sanjoy-kumar-roy.jpg"
+            alt="Sanjoy Kumar Roy ACCA, Practice Principal at Chariot Financial Services"
+            class="founder-image"
+            width="600"
+            height="700"
+            loading="lazy"
           >
-            Founder Photograph
-          </div>
 
         </div>
 
 
         <div class="founder-content">
 
-          <div class="eyebrow">
-            Founder
-          </div>
+          <p class="eyebrow">
+            Practice Principal
+          </p>
 
-          <h2>
+          <h2 id="founder-heading">
             Sanjoy Kumar Roy ACCA
           </h2>
 
-          <div class="founder-role">
-            Practice Principal
-          </div>
-
-
-          <p>
-            Chariot Financial Services is led by Sanjoy Kumar Roy,
-            an ACCA-qualified finance professional with experience
-            across accounting, financial reporting, management finance
-            and commercial finance environments.
+          <p class="founder-role">
+            Founder &amp; Practice Principal
           </p>
 
           <p>
-            His experience includes financial reporting, statutory
-            accounts, management reporting, budgeting and forecasting,
-            VAT, financial controls, group reporting and finance
-            transformation across different business environments.
+            Chariot Financial Services is led by Sanjoy Kumar Roy ACCA, an
+            experienced finance professional with a background spanning
+            financial reporting, statutory accounts, management reporting,
+            budgeting, forecasting, financial controls and commercial finance.
           </p>
 
           <p>
-            The practice combines this technical finance experience
-            with a practical approach to supporting business owners
-            and professionals.
+            His experience includes working across multi-entity environments,
+            financial reporting, audit support, financial analysis and
+            management information.
           </p>
 
-
-          <div class="founder-credentials">
-
-            <span>
-              ACCA-qualified
-            </span>
-
-            <span>
-              Practice Principal
-            </span>
-
-            <span>
-              Commercial Finance
-            </span>
-
-            <span>
-              Financial Reporting
-            </span>
-
-          </div>
+          <p>
+            This experience informs Chariot's approach: technically sound
+            accounting combined with practical financial insight.
+          </p>
 
         </div>
 
@@ -921,151 +1041,85 @@
     </section>
 
 
-    <!-- ===================================================
-         HOW IT WORKS
-         =================================================== -->
-
+    <!-- =======================================================
+         WHY CHARIOT
+         ======================================================= -->
     <section
-      class="section process-section"
-      id="how-it-works"
+      class="section section-light"
+      aria-labelledby="why-heading"
     >
 
       <div class="container">
 
         <div class="section-heading">
 
-          <div class="eyebrow">
-            How It Works
-          </div>
-
-          <h2>
-            A straightforward approach to getting the right support.
-          </h2>
-
-        </div>
-
-
-        <div class="process-grid">
-
-
-          <article class="process-card">
-
-            <div class="process-card-number">
-              01
-            </div>
-
-            <h3>
-              Initial Discussion
-            </h3>
-
-            <p>
-              We discuss your business, current finance arrangements,
-              requirements and priorities.
-            </p>
-
-          </article>
-
-
-          <article class="process-card">
-
-            <div class="process-card-number">
-              02
-            </div>
-
-            <h3>
-              Recommended Approach
-            </h3>
-
-            <p>
-              We identify the appropriate scope of work and explain
-              how the support could be structured.
-            </p>
-
-          </article>
-
-
-          <article class="process-card">
-
-            <div class="process-card-number">
-              03
-            </div>
-
-            <h3>
-              Onboarding
-            </h3>
-
-            <p>
-              Once agreed, the necessary information, systems and
-              engagement arrangements are put in place.
-            </p>
-
-          </article>
-
-
-          <article class="process-card">
-
-            <div class="process-card-number">
-              04
-            </div>
-
-            <h3>
-              Ongoing Support
-            </h3>
-
-            <p>
-              We provide the agreed accounting, tax or finance support
-              and maintain communication around your requirements.
-            </p>
-
-          </article>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ===================================================
-         FINAL CTA
-         =================================================== -->
-
-    <section class="section final-cta">
-
-      <div class="container final-cta-inner">
-
-        <div>
-
-          <h2>
-            Let’s make your finances clearer.
-          </h2>
-
-          <p>
-            If you are looking for reliable accounting, tax or
-            commercial finance support, start with a conversation.
+          <p class="eyebrow">
+            Why Chariot
           </p>
 
+          <h2 id="why-heading">
+            Professional support without unnecessary complexity.
+          </h2>
+
         </div>
 
 
-        <div class="final-cta-actions">
+        <div class="benefits-grid">
 
-          <a
-            class="button button-light"
-            href="#contact"
-            data-event="book_consultation"
-          >
-            Book a Consultation
-          </a>
+          <article class="benefit">
 
-          <a
-            class="button button-outline-light"
-            href="tel:+447497528077"
-            data-event="phone_click"
-          >
-            Call 07497 528077
-          </a>
+            <h3>
+              Professional
+            </h3>
+
+            <p>
+              ACCA-led financial support with a strong focus on accuracy,
+              professional standards and clear communication.
+            </p>
+
+          </article>
+
+
+          <article class="benefit">
+
+            <h3>
+              Practical
+            </h3>
+
+            <p>
+              Advice and reporting designed around real business decisions,
+              rather than financial information for its own sake.
+            </p>
+
+          </article>
+
+
+          <article class="benefit">
+
+            <h3>
+              Flexible
+            </h3>
+
+            <p>
+              Support can be tailored around the size, structure and changing
+              requirements of your business.
+            </p>
+
+          </article>
+
+
+          <article class="benefit">
+
+            <h3>
+              Commercial
+            </h3>
+
+            <p>
+              Beyond compliance, we focus on helping clients understand
+              performance, cash flow and financial priorities.
+            </p>
+
+          </article>
 
         </div>
 
@@ -1074,464 +1128,10 @@
     </section>
 
 
-    <!-- ===================================================
-         CONTACT
-         =================================================== -->
-
+    <!-- =======================================================
+         PROCESS
+         ======================================================= -->
     <section
-      class="section contact-section"
-      id="contact"
-    >
-
-      <div class="container contact-grid">
-
-
-        <div class="contact-intro">
-
-          <div class="eyebrow">
-            Contact
-          </div>
-
-          <h2>
-            Start a conversation.
-          </h2>
-
-          <p>
-            Tell us a little about what you need and we can discuss
-            the appropriate next step.
-          </p>
-
-
-          <div class="contact-details">
-
-
-            <div class="contact-detail">
-
-              <span class="contact-label">
-                Phone
-              </span>
-
-              <a
-                href="tel:+447497528077"
-                data-event="phone_click"
-              >
-                07497 528077
-              </a>
-
-            </div>
-
-
-            <div class="contact-detail">
-
-              <span class="contact-label">
-                Email
-              </span>
-
-              <a
-                href="mailto:info@chariotfinancialservices.com"
-                data-event="email_click"
-              >
-                info@chariotfinancialservices.com
-              </a>
-
-            </div>
-
-
-            <div class="contact-detail">
-
-              <span class="contact-label">
-                Location
-              </span>
-
-              <span>
-                Hampton Water, Peterborough, Cambridgeshire
-              </span>
-
-            </div>
-
-
-          </div>
-
-
-          <div class="company-information">
-
-            <strong>
-              Chariot Financial Services Limited
-            </strong>
-
-            <br>
-
-            Company number 14357842
-
-          </div>
-
-        </div>
-
-
-        <!-- CONTACT FORM -->
-
-        <form
-          class="contact-form"
-          id="contact-form"
-          action="mailto:info@chariotfinancialservices.com"
-          method="post"
-          enctype="text/plain"
-        >
-
-
-          <div class="form-field">
-
-            <label for="name">
-              Name
-            </label>
-
-            <input
-              type="text"
-              id="name"
-              name="name"
-              autocomplete="name"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-field">
-
-            <label for="email">
-              Email address
-            </label>
-
-            <input
-              type="email"
-              id="email"
-              name="email"
-              autocomplete="email"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-field">
-
-            <label for="phone">
-              Phone number
-            </label>
-
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              autocomplete="tel"
-            >
-
-          </div>
-
-
-          <div class="form-field">
-
-            <label for="message">
-              How can we help?
-            </label>
-
-            <textarea
-              id="message"
-              name="message"
-              required
-            ></textarea>
-
-          </div>
-
-
-          <label class="form-consent">
-
-            <input
-              type="checkbox"
-              id="contact-consent"
-              name="contact-consent"
-              required
-            >
-
-            <span>
-              I consent to Chariot Financial Services using the
-              information provided to respond to my enquiry.
-            </span>
-
-          </label>
-
-
-          <button
-            class="button button-primary button-full"
-            type="submit"
-          >
-            Send Enquiry
-          </button>
-
-
-          <p class="form-note">
-            Submitting this form prepares an email using your
-            device's email application. Your enquiry is not stored
-            on this website.
-          </p>
-
-
-        </form>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
-
-  <footer class="site-footer">
-
-    <div class="container footer-grid">
-
-
-      <div class="footer-brand">
-
-        <a
-          href="#top"
-          aria-label="Chariot Financial Services home"
-        >
-
-          <img
-            class="footer-logo"
-            src="CFSL_Logo.svg"
-            alt="Chariot Financial Services"
-          >
-
-        </a>
-
-
-        <p>
-          Accounting, tax and commercial finance support for UK
-          businesses and professionals.
-        </p>
-
-        <p style="margin-top: 14px;">
-          Clarity. Control. Confidence.
-        </p>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h3>
-          Explore
-        </h3>
-
-        <ul>
-
-          <li>
-            <a href="#about">
-              About
-            </a>
-          </li>
-
-          <li>
-            <a href="#services">
-              Services
-            </a>
-          </li>
-
-          <li>
-            <a href="#who-we-support">
-              Who We Support
-            </a>
-          </li>
-
-          <li>
-            <a href="#founder">
-              Founder
-            </a>
-          </li>
-
-          <li>
-            <a href="#how-it-works">
-              How It Works
-            </a>
-          </li>
-
-          <li>
-            <a href="#contact">
-              Contact
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-
-      <div class="footer-column">
-
-        <h3>
-          Contact
-        </h3>
-
-        <ul>
-
-          <li>
-            <a
-              href="tel:+447497528077"
-              data-event="phone_click"
-            >
-              07497 528077
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="mailto:info@chariotfinancialservices.com"
-              data-event="email_click"
-            >
-              info@chariotfinancialservices.com
-            </a>
-          </li>
-
-          <li>
-            Hampton Water
-          </li>
-
-          <li>
-            Peterborough
-          </li>
-
-          <li>
-            Cambridgeshire
-          </li>
-
-        </ul>
-
-      </div>
-
-
-    </div>
-
-
-    <div class="container footer-bottom">
-
-      <p>
-        © <span id="current-year">2026</span>
-        Chariot Financial Services Limited.
-        Company number 14357842.
-      </p>
-
-
-      <div class="footer-legal">
-
-        <a href="#privacy">
-          Privacy
-        </a>
-
-        <a href="#cookies">
-          Cookies
-        </a>
-
-      </div>
-
-    </div>
-
-  </footer>
-
-
-  <!-- =====================================================
-       MOBILE STICKY CTA
-       ===================================================== -->
-
-  <div
-    class="mobile-sticky-cta"
-    aria-label="Mobile contact options"
-  >
-
-    <div class="mobile-sticky-cta-inner">
-
-      <a
-        href="tel:+447497528077"
-        data-event="phone_click"
-      >
-        Call Chariot
-      </a>
-
-      <a
-        href="#contact"
-        data-event="book_consultation"
-      >
-        Book a Consultation
-      </a>
-
-    </div>
-
-  </div>
-
-
-  <!-- =====================================================
-       COOKIE CONSENT
-       ===================================================== -->
-
-  <div
-    class="cookie-banner"
-    id="cookie-banner"
-    role="dialog"
-    aria-labelledby="cookie-banner-title"
-    aria-describedby="cookie-banner-description"
-    hidden
-  >
-
-    <div class="cookie-banner-content">
-
-      <div>
-
-        <h2 id="cookie-banner-title">
-          Privacy &amp; analytics
-        </h2>
-
-        <p id="cookie-banner-description">
-          We use analytics cookies to understand how visitors use
-          this website and improve the experience. Analytics are
-          only enabled if you choose to accept them.
-        </p>
-
-      </div>
-
-
-      <div class="cookie-banner-actions">
-
-        <button
-          type="button"
-          class="cookie-banner-accept"
-          data-consent-accept
-        >
-          Accept analytics
-        </button>
-
-        <button
-          type="button"
-          data-consent-decline
-        >
-          Decline
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
-
-  <script src="script.js"></script>
-
-</body>
-</html>
+      class="section section-stone"
+      aria-labelledby="process-headi
+```
