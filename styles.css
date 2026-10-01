@@ -1,662 +1,1765 @@
-You are a senior front-end developer and digital art director specialising in premium professional-services websites.
+/* =========================================================
+   CHARIOT FINANCIAL SERVICES
+   Main Stylesheet
+   ========================================================= */
 
-Create the complete `style.css` for the Chariot Financial Services Ltd website.
-
-The corresponding `index.html` already exists and uses semantic HTML and the class names described below.
-
-The visual direction should be inspired by the simplicity and premium professional-services feel of Pantelly, but MUST be distinctly Chariot.
-
-Do not copy Pantelly's:
-- CSS
-- exact layout
-- branding
-- colours
-- typography
-- proprietary design
-- animations
-
-==================================================
-BRAND
-==================================================
-
-Business:
-Chariot Financial Services Ltd
-
-Tagline:
-Clarity. Control. Confidence.
-
-Positioning:
-ACCA-led accounting, tax and finance support for GP locums, professionals and growing businesses.
-
-Location:
-Peterborough-based. Supporting clients across the UK.
-
-==================================================
-VISUAL OBJECTIVE
-==================================================
-
-Create a website that feels:
-
-Premium
-Editorial
-Professional
-Calm
-Modern
-Trustworthy
-Financial
-Established
-Human
-
-The design should feel closer to a sophisticated professional-services firm than a typical local accountant website.
-
-Avoid:
-- generic accounting website templates
-- excessive cards
-- excessive rounded corners
-- bright colours
-- gradients
-- glassmorphism
-- huge shadows
-- excessive animations
-- cartoon illustrations
-- emoji
-- generic SaaS styling
-
-Prioritise:
-- whitespace
-- typography
-- alignment
-- hierarchy
-- subtle borders
-- strong composition
-- restrained interactions
-
-==================================================
-COLOUR SYSTEM
-==================================================
-
-Use these colours consistently:
-
-Primary navy:
-#10243A
-
-Deep navy:
-#0B1828
-
-Warm white:
-#F8F6F1
-
-Stone:
-#E9E4DA
-
-Muted gold:
-#B69A63
-
-White:
-#FFFFFF
-
-Dark text:
-#17202A
-
-Muted text:
-#5F6872
-
-Create CSS custom properties:
+/* =========================================================
+   1. DESIGN TOKENS
+   ========================================================= */
 
 :root {
-  --navy: #10243A;
-  --deep-navy: #0B1828;
-  --warm-white: #F8F6F1;
-  --stone: #E9E4DA;
-  --gold: #B69A63;
-  --white: #FFFFFF;
-  --text: #17202A;
-  --muted: #5F6872;
+    --navy: #10243a;
+    --deep-navy: #0b1828;
+    --navy-soft: #172f48;
+
+    --warm-white: #f8f6f1;
+    --stone: #e9e4da;
+    --stone-dark: #d9d2c5;
+
+    --gold: #b69a63;
+    --gold-light: #cbb88d;
+
+    --white: #ffffff;
+    --text: #17202a;
+    --muted: #5f6872;
+    --muted-light: #7c848c;
+
+    --border: rgba(16, 36, 58, 0.14);
+    --border-light: rgba(255, 255, 255, 0.18);
+
+    --max-width: 1240px;
+    --content-width: 760px;
+
+    --header-height: 88px;
+
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-2xl: 5rem;
+    --space-3xl: 7.5rem;
+    --space-4xl: 10rem;
+
+    --transition-fast: 180ms ease;
+    --transition: 300ms ease;
+    --transition-slow: 600ms ease;
+
+    --shadow-soft: 0 20px 60px rgba(11, 24, 40, 0.08);
+
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    --sans: "DM Sans", Arial, Helvetica, sans-serif;
 }
 
-Use the variables throughout the stylesheet.
 
-==================================================
-TYPOGRAPHY
-==================================================
+/* =========================================================
+   2. RESET
+   ========================================================= */
 
-Use an elegant serif for major headings and a clean sans-serif for body text.
-
-Preferred heading font:
-
-Playfair Display
-
-Preferred body font:
-
-DM Sans
-
-If external Google Fonts are loaded in the HTML, use them.
-
-If they are not loaded, provide sensible fallbacks.
-
-Heading:
-
-font-family: "Playfair Display", Georgia, serif;
-
-Body:
-
-font-family: "DM Sans", Arial, sans-serif;
-
-Typography should have:
-
-- large editorial H1
-- generous line-height
-- restrained letter spacing
-- strong H2 hierarchy
-- readable body text
-- uppercase small eyebrow text
-
-Do not make every element oversized.
-
-==================================================
-GLOBAL LAYOUT
-==================================================
-
-Use:
-
-box-sizing: border-box
-
-Remove default body margin.
-
-Use:
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
+    font-size: 16px;
 }
 
-However, respect reduced-motion preferences.
-
-Create a reusable content container:
-
-max-width around 1200–1280px
-
-Use responsive horizontal padding.
-
-Example concept:
-
-padding-inline: clamp(1.25rem, 4vw, 4rem);
-
-Do not force an unnecessarily narrow page.
-
-==================================================
-HEADER
-==================================================
-
-Create a sophisticated sticky header.
-
-The header should:
-
-- sit above content
-- have generous horizontal spacing
-- use a white/warm-white background
-- have a subtle bottom border
-- transition subtly when `.scrolled` is added
-
-Logo should remain visually prominent but not oversized.
-
-Navigation:
-
-Services
-Who We Help
-About
-Insights
-
-Primary contact:
-Call 07497 528077
-
-CTA:
-Book a consultation
-
-Use restrained hover effects.
-
-Do not create pill-shaped navigation.
-
-==================================================
-MOBILE NAVIGATION
-==================================================
-
-The JavaScript will add/remove:
-
-.nav-open
-
-and may manipulate:
-
-aria-expanded
-
-The CSS must support the mobile navigation.
-
-Desktop:
-- horizontal navigation
-- dropdowns positioned correctly
-
-Mobile:
-- navigation becomes a full-width or full-screen menu
-- stacked links
-- accessible spacing
-- dropdowns become accordions
-
-The mobile experience must feel premium rather than like a default hamburger menu.
-
-==================================================
-HERO
-==================================================
-
-Create a large editorial hero.
-
-Desktop:
-Two-column composition.
-
-Left:
-- eyebrow
-- large H1
-- supporting copy
-- CTA buttons
-- trust line
-
-Right:
-A sophisticated visual composition.
-
-Do not use generic stock photography.
-
-If the HTML contains an image, style it elegantly.
-
-If the visual is CSS-generated, make it subtle.
-
-Hero should have substantial vertical spacing.
-
-H1 should be approximately:
-
-clamp(3rem, 7vw, 6.5rem)
-
-but adjust to prevent awkward line wrapping.
-
-The phrase:
-
-Clarity. Control. Confidence.
-
-should feel like the defining brand statement.
-
-==================================================
-BUTTONS
-==================================================
-
-Primary button:
-- navy background
-- white text
-- subtle hover transition
-
-Secondary button:
-- transparent
-- dark/navy border
-- dark text
-
-Do not use excessive rounded pills.
-
-Use a small radius, approximately:
-
-2px–6px
-
-Buttons should have comfortable touch targets.
-
-Hover:
-- subtle movement
-- subtle colour transition
-
-Focus:
-- visible keyboard focus
-
-==================================================
-SERVICE STRIP
-==================================================
-
-Create a sophisticated horizontal strip.
-
-Items:
-
-ACCOUNTING
-TAX
-VAT
-PAYROLL
-MANAGEMENT ACCOUNTS
-COMMERCIAL FINANCE
-
-Use:
-- uppercase typography
-- small font size
-- letter spacing
-- thin borders
-
-On mobile, allow wrapping rather than forcing horizontal overflow unless the HTML specifically requires a scrolling strip.
-
-==================================================
-CORE SERVICES
-==================================================
-
-Use an editorial three-column layout on desktop.
-
-Accounting
-Tax
-Finance
-
-Avoid making them look like generic SaaS cards.
-
-Use:
-- large typography
-- thin top borders
-- generous spacing
-- understated CTA links
-
-On mobile, stack vertically.
-
-==================================================
-GP LOCUM SECTION
-==================================================
-
-Make this section visually distinctive.
-
-Use a deep navy background.
-
-Text should be white/warm white.
-
-Gold may be used sparingly as an accent.
-
-Layout:
-- editorial heading on one side
-- service list on the other
-
-Items:
-
-Self Assessment
-NHS Pension support
-Tax planning
-Sole trader vs limited company
-VAT considerations
-Locum expenses
-
-Avoid excessive icons.
-
-The section should communicate specialist expertise without making unsupported claims.
-
-==================================================
-WHO WE HELP
-==================================================
-
-Create four editorial blocks:
-
-GP Locums & Healthcare Professionals
-Owner-Managed Businesses
-Professionals & Contractors
-Growing Businesses
-
-Use borders and typography rather than heavy cards.
-
-Subtle hover interaction is acceptable.
-
-==================================================
-FINANCE & ADVISORY
-==================================================
-
-Create a large editorial section.
-
-Heading:
-
-Your accountant should understand the numbers behind the business.
-
-Use a spacious layout.
-
-Services can be displayed in a clean list/grid:
-
-Management Accounts
-Cash Flow Forecasting
-Budgeting & Forecasting
-Commercial Finance
-Fractional Finance Manager
-Virtual CFO
-
-Use typography and spacing to create hierarchy.
-
-==================================================
-WHY CHARIOT
-==================================================
-
-Use a calm warm-white or stone background.
-
-Create five principles:
-
-ACCA-led
-Commercial perspective
-Cloud-first
-Personal service
-UK-wide
-
-Use restrained borders.
-
-Do not create badges or fake statistics.
-
-==================================================
-ABOUT
-==================================================
-
-Use a split editorial layout.
-
-Heading:
-An accounting practice built around clarity.
-
-Keep the section spacious.
-
-Avoid generic founder photography unless an actual image exists.
-
-==================================================
-FINAL CTA
-==================================================
-
-Deep navy background.
-
-Large serif heading:
-
-Let's make your finances clearer.
-
-Supporting copy.
-
-Buttons:
-
-Book a consultation
-Call 07497 528077
-Email info@chariotfinancialservices.com
-
-Make this section visually strong but restrained.
-
-==================================================
-FOOTER
-==================================================
-
-Deep navy footer.
-
-Use:
-- white/warm-white typography
-- muted text
-- subtle borders
-- gold only as a restrained accent
-
-Include columns for:
-
-Services
-Who We Help
-Company
-Legal
-
-Ensure good contrast.
-
-==================================================
-REVEAL ANIMATIONS
-==================================================
-
-The JavaScript adds:
-
-.reveal
-
-and then:
-
-.is-visible
-
-Create subtle CSS transitions.
-
-Example concept:
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--warm-white);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    text-wrap: balance;
+}
+
+
+/* =========================================================
+   3. GLOBAL LAYOUT
+   ========================================================= */
+
+.container {
+    width: min(
+        calc(100% - 3rem),
+        var(--max-width)
+    );
+    margin-inline: auto;
+}
+
+.section {
+    padding-block: var(--space-4xl);
+}
+
+.section-intro {
+    max-width: var(--content-width);
+    margin-bottom: var(--space-3xl);
+}
+
+.section-intro > p:last-child {
+    margin-bottom: 0;
+}
+
+.eyebrow {
+    margin-bottom: 1.25rem;
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.section-intro h2 {
+    margin-bottom: 1.75rem;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(2.7rem, 5vw, 5rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+}
+
+.section-intro > p:not(.eyebrow) {
+    max-width: 700px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   4. BUTTONS
+   ========================================================= */
+
+.button {
+    display: inline-flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    border: 1px solid transparent;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    transition:
+        background-color var(--transition),
+        border-color var(--transition),
+        color var(--transition),
+        transform var(--transition);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button:focus-visible,
+.text-link:focus-visible,
+.nav-link:focus-visible,
+.nav-phone:focus-visible,
+.dropdown-toggle:focus-visible,
+.menu-toggle:focus-visible,
+.back-to-top:focus-visible,
+.footer-column a:focus-visible,
+.contact-detail a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+}
+
+.button-primary {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+}
+
+.button-primary:hover {
+    background: var(--deep-navy);
+    border-color: var(--deep-navy);
+}
+
+.button-secondary {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--navy);
+}
+
+.button-secondary:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+}
+
+.button-dark {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+}
+
+.button-dark:hover {
+    background: var(--deep-navy);
+}
+
+.button-light {
+    background: var(--warm-white);
+    border-color: var(--warm-white);
+    color: var(--navy);
+}
+
+.button-light:hover {
+    background: var(--white);
+    border-color: var(--white);
+}
+
+.button-outline-light {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.45);
+    color: var(--white);
+}
+
+.button-outline-light:hover {
+    background: var(--white);
+    border-color: var(--white);
+    color: var(--navy);
+}
+
+
+/* =========================================================
+   5. HEADER
+   ========================================================= */
+
+.site-header {
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+    background: rgba(248, 246, 241, 0.96);
+    border-bottom: 1px solid transparent;
+    transition:
+        background-color var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.site-header.scrolled {
+    background: rgba(248, 246, 241, 0.98);
+    border-bottom-color: var(--border);
+    box-shadow: 0 8px 30px rgba(11, 24, 40, 0.04);
+}
+
+.header-inner {
+    min-height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.site-logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.site-logo-image {
+    width: auto;
+    height: 48px;
+    max-width: 210px;
+    object-fit: contain;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link,
+.nav-phone,
+.dropdown-toggle {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    color: var(--navy);
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.nav-link,
+.nav-phone {
+    transition: color var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-phone:hover {
+    color: var(--gold);
+}
+
+.dropdown-toggle {
+    gap: 0.4rem;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.dropdown-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform var(--transition);
+}
+
+.has-dropdown.is-open .dropdown-icon {
+    transform: rotate(45deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.8rem);
+    left: -1rem;
+    min-width: 245px;
+    padding: 0.7rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+}
+
+.dropdown-menu[hidden] {
+    display: none;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.7rem 0.85rem;
+    color: var(--navy);
+    font-size: 0.82rem;
+    line-height: 1.4;
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.dropdown-menu a:hover {
+    background: var(--warm-white);
+    color: var(--gold);
+}
+
+.nav-phone {
+    margin-left: 0.3rem;
+    font-weight: 600;
+}
+
+.nav-cta {
+    margin-left: 0.2rem;
+}
+
+.nav-cta .button {
+    min-height: 46px;
+    padding-inline: 1.25rem;
+}
+
+.menu-toggle {
+    display: none;
+    width: 46px;
+    height: 46px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.menu-toggle-line {
+    display: block;
+    width: 23px;
+    height: 1px;
+    background: var(--navy);
+    transition:
+        transform var(--transition),
+        opacity var(--transition);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-line:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+
+/* =========================================================
+   6. HERO
+   ========================================================= */
+
+.hero {
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    padding-block: clamp(5rem, 9vw, 9rem);
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    max-width: 700px;
+    margin-bottom: 2rem;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(4.2rem, 8vw, 8.5rem);
+    font-weight: 500;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+}
+
+.hero-lead {
+    max-width: 650px;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    line-height: 1.55;
+}
+
+.hero-location {
+    margin-bottom: 2.25rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2.25rem;
+}
+
+.trust-line {
+    margin: 0;
+    color: var(--muted-light);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.hero-visual {
+    position: relative;
+    min-height: 590px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-visual-frame {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 500px);
+    aspect-ratio: 0.84;
+    padding: 1rem;
+    background: var(--stone);
+}
+
+.hero-visual-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--navy);
+    overflow: hidden;
+}
+
+.hero-visual-inner::before,
+.hero-visual-inner::after {
+    position: absolute;
+    content: "";
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hero-visual-inner::before {
+    width: 72%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.hero-visual-inner::after {
+    width: 52%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.hero-visual-mark {
+    position: relative;
+    z-index: 2;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 2rem;
+}
+
+.hero-mark-line {
+    display: block;
+    width: 12px;
+    background: var(--gold);
+}
+
+.hero-mark-line:nth-child(1) {
+    height: 44%;
+}
+
+.hero-mark-line:nth-child(2) {
+    height: 75%;
+}
+
+.hero-mark-line:nth-child(3) {
+    height: 100%;
+}
+
+.hero-visual-word {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+}
+
+.hero-visual-caption {
+    position: relative;
+    z-index: 2;
+    margin-top: 0.7rem;
+    color: var(--gold-light);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+}
+
+.hero-visual-accent {
+    position: absolute;
+    right: -30px;
+    bottom: 15px;
+    width: 145px;
+    height: 145px;
+    border: 1px solid var(--gold);
+}
+
+
+/* =========================================================
+   7. SERVICE STRIP
+   ========================================================= */
+
+.service-strip {
+    background: var(--navy);
+    color: var(--white);
+}
+
+.service-strip-list {
+    min-height: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    overflow-x: auto;
+}
+
+.service-strip-list li {
+    flex: 0 0 auto;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   8. CORE SERVICES
+   ========================================================= */
+
+.services-section {
+    background: var(--warm-white);
+}
+
+.editorial-services {
+    border-top: 1px solid var(--border);
+}
+
+.service-block {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 2.5rem;
+    padding-block: 4rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.service-block-offset {
+    margin-left: 8%;
+}
+
+.service-number {
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 1.25rem;
+}
+
+.service-content {
+    max-width: 720px;
+}
+
+.service-label {
+    margin-bottom: 1rem;
+    color: var(--muted-light);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.service-content h3 {
+    max-width: 700px;
+    margin-bottom: 1.25rem;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+}
+
+.service-content > p:not(.service-label) {
+    max-width: 650px;
+    margin-bottom: 1.75rem;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--navy);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 0.25rem;
+    transition:
+        color var(--transition),
+        gap var(--transition);
+}
+
+.text-link:hover {
+    color: var(--gold);
+    gap: 1rem;
+}
+
+
+/* =========================================================
+   9. GP LOCUM SPECIALIST
+   ========================================================= */
+
+.specialist-section {
+    background: var(--stone);
+}
+
+.specialist-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(4rem, 10vw, 10rem);
+}
+
+.specialist-intro h2 {
+    margin-bottom: 2rem;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 6vw, 6rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+}
+
+.specialist-statement {
+    max-width: 500px;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    line-height: 1.35;
+}
+
+.specialist-content > p {
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.8;
+}
+
+.specialist-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 2.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.specialist-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--navy);
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.specialist-list li:nth-child(odd) {
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--border);
+}
+
+.specialist-list li:nth-child(even) {
+    padding-left: 1.5rem;
+}
+
+
+/* =========================================================
+   10. WHO WE HELP
+   ========================================================= */
+
+.audience-section {
+    background: var(--warm-white);
+}
+
+.audience-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+}
+
+.audience-item {
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.audience-number {
+    margin-bottom: 3rem;
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 1.1rem;
+}
+
+.audience-item h3 {
+    max-width: 450px;
+    margin-bottom: 1rem;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+}
+
+.audience-item p {
+    max-width: 450px;
+    margin-bottom: 1.5rem;
+    color: var(--muted);
+}
+
+.audience-item .text-link {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+
+/* =========================================================
+   11. FINANCE & ADVISORY
+   ========================================================= */
+
+.finance-section {
+    background: var(--navy);
+    color: var(--white);
+}
+
+.finance-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(4rem, 10vw, 10rem);
+}
+
+.finance-heading .eyebrow {
+    color: var(--gold-light);
+}
+
+.finance-heading h2 {
+    max-width: 650px;
+    margin: 0;
+    color: var(--white);
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+}
+
+.finance-content > p {
+    max-width: 650px;
+    margin-bottom: 2.5rem;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.finance-services {
+    margin-bottom: 2.5rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.finance-services li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-light);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   12. PRINCIPLES
+   ========================================================= */
+
+.principles-section {
+    background: var(--warm-white);
+}
+
+.principles-list {
+    border-top: 1px solid var(--border);
+}
+
+.principle-item {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 2rem;
+    padding-block: 2.25rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.principle-number {
+    color: var(--gold);
+    font-family: var(--serif);
+    font-size: 1.1rem;
+}
+
+.principle-item h3 {
+    margin-bottom: 0.45rem;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+}
+
+.principle-item p {
+    max-width: 650px;
+    margin: 0;
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   13. ABOUT
+   ========================================================= */
+
+.about-section {
+    background: var(--stone);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 0.55fr 1.45fr;
+    gap: clamp(3rem, 10vw, 10rem);
+}
+
+.about-content {
+    max-width: 800px;
+}
+
+.about-content h2 {
+    margin-bottom: 2.5rem;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 5.5rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+}
+
+.about-content p {
+    max-width: 720px;
+    margin-bottom: 1.5rem;
+    color: var(--muted);
+    font-size: 1.02rem;
+    line-height: 1.8;
+}
+
+.about-content .text-link {
+    margin-top: 1rem;
+}
+
+
+/* =========================================================
+   14. INSIGHTS
+   ========================================================= */
+
+.insights-section {
+    background: var(--warm-white);
+}
+
+.insights-placeholder {
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.insights-placeholder p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   15. FINAL CTA
+   ========================================================= */
+
+.final-cta-section {
+    background: var(--deep-navy);
+}
+
+.final-cta {
+    max-width: 1050px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.final-cta .eyebrow {
+    color: var(--gold-light);
+}
+
+.final-cta h2 {
+    margin-bottom: 1.5rem;
+    color: var(--white);
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+}
+
+.final-cta > p:not(.eyebrow) {
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.final-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+
+/* =========================================================
+   16. CONTACT
+   ========================================================= */
+
+.contact-section {
+    background: var(--warm-white);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.85fr);
+    gap: clamp(4rem, 10vw, 10rem);
+    align-items: start;
+}
+
+.contact-intro h2 {
+    max-width: 650px;
+    margin-bottom: 1.5rem;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+}
+
+.contact-intro > p:not(.eyebrow) {
+    max-width: 650px;
+    margin-bottom: 3rem;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.contact-details {
+    border-top: 1px solid var(--border);
+}
+
+.contact-detail {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    padding-block: 1.2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.contact-detail-label {
+    color: var(--muted-light);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.contact-detail a,
+.contact-detail span:last-child {
+    color: var(--navy);
+    font-size: 0.92rem;
+}
+
+.contact-detail a {
+    transition: color var(--transition-fast);
+}
+
+.contact-detail a:hover {
+    color: var(--gold);
+}
+
+.contact-action {
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+    padding: 2.5rem;
+    background: var(--stone);
+}
+
+.contact-action-inner {
+    max-width: 520px;
+}
+
+.contact-action-label {
+    margin-bottom: 1rem;
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.contact-action h3 {
+    margin-bottom: 1rem;
+    color: var(--navy);
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.contact-action p:not(.contact-action-label) {
+    margin-bottom: 2rem;
+    color: var(--muted);
+}
+
+.contact-action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+}
+
+.contact-action-buttons .button {
+    width: 100%;
+}
+
+
+/* =========================================================
+   17. FOOTER
+   ========================================================= */
+
+.site-footer {
+    background: var(--deep-navy);
+    color: var(--white);
+    padding-top: 5rem;
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(4, 1fr);
+    gap: 3rem;
+    padding-bottom: 4rem;
+}
+
+.footer-brand {
+    max-width: 300px;
+}
+
+.footer-logo {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo img {
+    width: auto;
+    height: 54px;
+    filter: brightness(0) invert(1);
+}
+
+.footer-brand p {
+    margin-bottom: 0.45rem;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.82rem;
+}
+
+.footer-column h3 {
+    margin-bottom: 1.2rem;
+    color: var(--gold-light);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.footer-column li {
+    margin-bottom: 0.65rem;
+}
+
+.footer-column a {
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.8rem;
+    transition: color var(--transition-fast);
+}
+
+.footer-column a:hover {
+    color: var(--white);
+}
+
+.footer-bottom {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.footer-bottom p,
+.footer-bottom a {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 0.72rem;
+}
+
+.footer-bottom a:hover {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   18. BACK TO TOP
+   ========================================================= */
+
+.back-to-top {
+    position: fixed;
+    z-index: 900;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy);
+    color: var(--white);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition:
+        opacity var(--transition),
+        visibility var(--transition),
+        transform var(--transition),
+        background-color var(--transition);
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--gold);
+}
+
+
+/* =========================================================
+   19. REVEAL ANIMATIONS
+   ========================================================= */
 
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 700ms ease,
+        transform 700ms ease;
 }
 
 .reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
-Use approximately 500–800ms transitions.
 
-Do NOT animate everything.
+/* =========================================================
+   20. SELECTION
+   ========================================================= */
 
-Respect:
+::selection {
+    background: var(--gold);
+    color: var(--white);
+}
 
-@media (prefers-reduced-motion: reduce)
 
-In reduced-motion mode:
+/* =========================================================
+   21. RESPONSIVE — LARGE TABLETS
+   ========================================================= */
 
-- remove transforms
-- remove transition delays
-- make content immediately visible
+@media (max-width: 1100px) {
 
-==================================================
-RESPONSIVE DESIGN
-==================================================
+    .container {
+        width: min(
+            calc(100% - 2.5rem),
+            var(--max-width)
+        );
+    }
 
-Breakpoints should cover:
+    .nav-list {
+        gap: 1rem;
+    }
 
-large desktop
-desktop
-tablet
-mobile
+    .nav-phone {
+        display: none;
+    }
 
-Do not design only for 1440px.
+    .hero-grid {
+        gap: 4rem;
+    }
 
-Test mentally at:
+    .hero h1 {
+        font-size: clamp(4rem, 7vw, 6.5rem);
+    }
 
-1440px
-1200px
-1024px
-768px
-480px
-375px
+    .hero-visual {
+        min-height: 500px;
+    }
 
-At mobile:
-- typography scales appropriately
-- navigation works
-- buttons do not overflow
-- columns stack
-- padding reduces
-- tables/lists do not overflow
-- headings remain readable
+    .footer-main {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
-==================================================
-ACCESSIBILITY
-==================================================
+    .footer-brand {
+        grid-column: span 3;
+        max-width: 450px;
+    }
+}
 
-Ensure:
 
-- sufficient colour contrast
-- visible focus states
-- readable body text
-- no text smaller than necessary
-- touch targets are sufficiently large
-- animations respect reduced motion
+/* =========================================================
+   22. RESPONSIVE — TABLET
+   ========================================================= */
 
-Do not remove browser focus outlines without replacing them.
+@media (max-width: 900px) {
 
-==================================================
-TECHNICAL REQUIREMENTS
-==================================================
+    :root {
+        --header-height: 76px;
+        --space-4xl: 7rem;
+    }
 
-Use plain CSS.
+    .site-logo-image {
+        height: 42px;
+        max-width: 185px;
+    }
 
-No:
-- Bootstrap
-- Tailwind
-- Sass
-- Less
-- CSS frameworks
-- external component libraries
+    .menu-toggle {
+        display: flex;
+    }
 
-Use:
-- CSS variables
-- Flexbox
-- CSS Grid
-- clamp()
-- min()
-- max()
-- calc()
-- media queries
+    .site-nav {
+        position: absolute;
+        top: var(--header-height);
+        right: 0;
+        left: 0;
+        display: none;
+        background: var(--warm-white);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 20px 40px rgba(11, 24, 40, 0.08);
+    }
 
-Keep CSS organised into sections:
+    .site-nav.is-open {
+        display: block;
+    }
 
-1. Variables
-2. Reset
-3. Base
-4. Typography
-5. Layout
-6. Header
-7. Navigation
-8. Buttons
-9. Hero
-10. Services
-11. GP Locum
-12. Who We Help
-13. Finance
-14. Why Chariot
-15. About
-16. CTA
-17. Footer
-18. Animations
-19. Responsive
-20. Accessibility
+    .nav-list {
+        width: min(
+            calc(100% - 3rem),
+            var(--max-width)
+        );
+        margin-inline: auto;
+        padding-block: 1.5rem 2rem;
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+    }
 
-Do not use excessive comments.
+    .nav-item {
+        border-bottom: 1px solid var(--border);
+    }
 
-==================================================
-IMPORTANT
-==================================================
+    .nav-item:last-child {
+        border-bottom: 0;
+    }
 
-The CSS must match the existing HTML classes.
+    .nav-link,
+    .nav-phone,
+    .dropdown-toggle {
+        width: 100%;
+        min-height: 54px;
+        justify-content: space-between;
+        font-size: 0.9rem;
+    }
 
-The JavaScript will use hooks including:
+    .dropdown-menu {
+        position: static;
+        min-width: 0;
+        padding: 0 0 0.75rem;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+    }
 
-.menu-toggle
-.site-nav
-.has-dropdown
-.dropdown-toggle
-.dropdown-menu
-.site-header
-.reveal
-.back-to-top
-.current-year
-.contact-form
-.nav-link
+    .dropdown-menu a {
+        padding: 0.65rem 0 0.65rem 1rem;
+    }
 
-If a class is not actually used by the HTML, do not create unnecessary CSS for it.
+    .nav-phone {
+        display: flex;
+    }
 
-==================================================
-OUTPUT
-==================================================
+    .nav-cta {
+        padding-top: 1rem;
+    }
 
-Return ONLY the complete contents of:
+    .nav-cta .button {
+        width: 100%;
+    }
 
-style.css
+    .hero {
+        min-height: auto;
+    }
 
-inside one CSS code block.
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
 
-Do not return HTML or JavaScript.
+    .hero-visual {
+        max-width: 560px;
+        min-height: auto;
+        margin-inline: auto;
+    }
+
+    .specialist-grid,
+    .finance-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .contact-action {
+        position: static;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-label {
+        margin-bottom: 0;
+    }
+}
+
+
+/* =========================================================
+   23. RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    :root {
+        --space-3xl: 4.5rem;
+        --space-4xl: 5rem;
+    }
+
+    .container {
+        width: calc(100% - 2rem);
+    }
+
+    .section {
+        padding-block: 5rem;
+    }
+
+    .header-inner {
+        min-height: var(--header-height);
+    }
+
+    .site-logo-image {
+        height: 38px;
+        max-width: 170px;
+    }
+
+    .nav-list {
+        width: calc(100% - 2rem);
+    }
+
+    .hero {
+        padding-top: 4.5rem;
+        padding-bottom: 4.5rem;
+    }
+
+    .hero h1 {
+        margin-bottom: 1.5rem;
+        font-size: clamp(3.5rem, 17vw, 5.5rem);
+    }
+
+    .hero-lead {
+        font-size: 1.1rem;
+    }
+
+    .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+    }
+
+    .trust-line {
+        font-size: 0.64rem;
+        line-height: 1.7;
+    }
+
+    .hero-visual {
+        width: 100%;
+    }
+
+    .hero-visual-frame {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .hero-visual-accent {
+        right: -10px;
+        bottom: 5px;
+        width: 90px;
+        height: 90px;
+    }
+
+    .service-strip-list {
+        min-height: 70px;
+        justify-content: flex-start;
+        gap: 2.5rem;
+        padding-block: 0.5rem;
+    }
+
+    .section-intro {
+        margin-bottom: 3.5rem;
+    }
+
+    .section-intro h2 {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    .service-block,
+    .service-block-offset {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-left: 0;
+        padding-block: 3rem;
+    }
+
+    .service-content h3 {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .specialist-intro h2 {
+        font-size: clamp(3rem, 14vw, 4.5rem);
+    }
+
+    .specialist-list {
+        grid-template-columns: 1fr;
+    }
+
+    .specialist-list li:nth-child(odd),
+    .specialist-list li:nth-child(even) {
+        padding-inline: 0;
+        border-right: 0;
+    }
+
+    .audience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .audience-item {
+        min-height: 300px;
+        padding: 2rem;
+    }
+
+    .finance-heading h2 {
+        font-size: clamp(2.5rem, 11vw, 4rem);
+    }
+
+    .principle-item {
+        grid-template-columns: 50px minmax(0, 1fr);
+        gap: 1rem;
+    }
+
+    .about-content h2 {
+        font-size: clamp(2.7rem, 12vw, 4rem);
+    }
+
+    .final-cta h2 {
+        font-size: clamp(3rem, 14vw, 5rem);
+    }
+
+    .final-cta-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .final-cta-actions .button {
+        width: 100%;
+    }
+
+    .contact-detail {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+    }
+
+    .contact-action {
+        padding: 2rem;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem 1.5rem;
+    }
+
+    .footer-brand {
+        grid-column: span 2;
+    }
+
+    .footer-bottom {
+        min-height: auto;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-block: 1.5rem;
+    }
+
+    .back-to-top {
+        right: 1rem;
+        bottom: 1rem;
+    }
+}
+
+
+/* =========================================================
+   24. SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .hero h1 {
+        font-size: 3.35rem;
+    }
+
+    .hero-visual-frame {
+        aspect-ratio: 0.82;
+    }
+
+    .audience-item {
+        min-height: 270px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-brand {
+        grid-column: span 1;
+    }
+}
+
+
+/* =========================================================
+   25. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   26. PRINT
+   ========================================================= */
+
+@media print {
+
+    .site-header,
+    .menu-toggle,
+    .hero-actions,
+    .final-cta-section,
+    .back-to-top {
+        display: none !important;
+    }
+
+    body {
+        background: #fff;
+        color: #000;
+    }
+
+    .section {
+        padding-block: 2rem;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+}
