@@ -1,683 +1,1047 @@
-You are a senior web designer, UX designer and front-end developer specialising in premium professional-services websites.
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chariot Financial Services | ACCA Accountants in Peterborough</title>
+
+    <meta
+        name="description"
+        content="ACCA-led accounting, tax and finance support for GP locums, professionals and growing businesses. Peterborough-based, supporting clients across the UK."
+    >
+
+    <meta
+        name="keywords"
+        content="accountants Peterborough, ACCA accountant Peterborough, GP locum accountant, GP locum tax, accounting services Peterborough, business accountants Peterborough, management accounts, fractional finance manager"
+    >
+
+    <meta name="author" content="Chariot Financial Services Ltd">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://chariotfinancialservices.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chariot Financial Services | ACCA Accountants in Peterborough">
+    <meta
+        property="og:description"
+        content="ACCA-led accounting, tax and finance support for GP locums, professionals and growing businesses."
+    >
+    <meta property="og:url" content="https://chariotfinancialservices.com/">
+    <meta property="og:site_name" content="Chariot Financial Services Ltd">
+
+    <!-- Favicon / site icon -->
+    <link rel="icon" href="CFSL_Logo.svg" type="image/svg+xml">
+
+    <!-- Preconnects for typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AccountingService",
+        "name": "Chariot Financial Services Ltd",
+        "url": "https://chariotfinancialservices.com/",
+        "telephone": "+447497528077",
+        "email": "info@chariotfinancialservices.com",
+        "description": "ACCA-led accounting, tax and finance support for GP locums, professionals, contractors and growing businesses.",
+        "areaServed": "GB",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Peterborough",
+            "addressCountry": "GB"
+        },
+        "sameAs": []
+    }
+    </script>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         SITE HEADER
+    ========================================================== -->
+    <header class="site-header" id="site-header">
+        <div class="container header-inner">
+
+            <a
+                class="site-logo"
+                href="/"
+                aria-label="Chariot Financial Services home"
+            >
+                <img
+                    src="CFSL_Logo.svg"
+                    alt="Chariot Financial Services Ltd"
+                    class="site-logo-image"
+                >
+            </a>
+
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="site-nav"
+                aria-label="Open navigation"
+            >
+                <span class="menu-toggle-line"></span>
+                <span class="menu-toggle-line"></span>
+                <span class="menu-toggle-line"></span>
+            </button>
+
+            <nav
+                class="site-nav"
+                id="site-nav"
+                aria-label="Primary navigation"
+            >
+                <ul class="nav-list">
+
+                    <li class="nav-item has-dropdown">
+                        <button
+                            class="dropdown-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="services-dropdown"
+                        >
+                            Services
+                            <span class="dropdown-icon" aria-hidden="true">+</span>
+                        </button>
+
+                        <div
+                            class="dropdown-menu"
+                            id="services-dropdown"
+                            hidden
+                        >
+                            <a href="#accounting">Accounting &amp; Bookkeeping</a>
+                            <a href="#tax">Tax</a>
+                            <a href="#vat">VAT</a>
+                            <a href="#payroll">Payroll</a>
+                            <a href="#finance">Management Accounts</a>
+                            <a href="#finance">Finance Support</a>
+                            <a href="#gp-locums">GP Locum Services</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#who-we-help">Who We Help</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#insights">Insights</a>
+                    </li>
+
+                    <li class="nav-item nav-contact">
+                        <a
+                            class="nav-phone"
+                            href="tel:+447497528077"
+                            aria-label="Call Chariot Financial Services on 07497 528077"
+                        >
+                            07497 528077
+                        </a>
+                    </li>
+
+                    <li class="nav-item nav-cta">
+                        <a class="button button-primary" href="#contact">
+                            Book a consultation
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+        <section class="hero section" id="hero">
+            <div class="container hero-grid">
+
+                <div class="hero-content reveal">
+
+                    <p class="eyebrow">
+                        ACCA-LED ACCOUNTING &amp; FINANCE
+                    </p>
+
+                    <h1>
+                        Clarity.<br>
+                        Control.<br>
+                        Confidence.
+                    </h1>
+
+                    <p class="hero-lead">
+                        Accounting, tax and finance support for GP locums,
+                        professionals and growing businesses.
+                    </p>
+
+                    <p class="hero-location">
+                        Peterborough-based. Supporting clients across the UK.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#contact">
+                            Book a consultation
+                        </a>
+
+                        <a class="button button-secondary" href="#services">
+                            Explore our services
+                        </a>
+                    </div>
+
+                    <p class="trust-line">
+                        ACCA-led <span aria-hidden="true">•</span>
+                        Cloud accounting <span aria-hidden="true">•</span>
+                        UK-wide support
+                    </p>
+
+                </div>
+
+                <div class="hero-visual reveal" aria-hidden="true">
+
+                    <div class="hero-visual-frame">
+                        <div class="hero-visual-inner">
+
+                            <div class="hero-visual-mark">
+                                <span class="hero-mark-line"></span>
+                                <span class="hero-mark-line"></span>
+                                <span class="hero-mark-line"></span>
+                            </div>
+
+                            <div class="hero-visual-word">
+                                CHARIOT
+                            </div>
+
+                            <div class="hero-visual-caption">
+                                FINANCIAL SERVICES
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="hero-visual-accent"></div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             SERVICE STRIP
+        ====================================================== -->
+        <section class="service-strip" aria-label="Core services">
+            <div class="container">
+                <ul class="service-strip-list">
+                    <li>Accounting</li>
+                    <li>Tax</li>
+                    <li>VAT</li>
+                    <li>Payroll</li>
+                    <li>Management Accounts</li>
+                    <li>Commercial Finance</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             CORE SERVICES
+        ====================================================== -->
+        <section class="section services-section" id="services">
+            <div class="container">
+
+                <div class="section-intro reveal">
+                    <p class="eyebrow">WHAT WE DO</p>
+
+                    <h2>
+                        Accounting, tax and finance — connected.
+                    </h2>
+
+                    <p>
+                        From keeping your accounts and tax affairs organised
+                        to giving you clearer financial information for
+                        decision-making, Chariot supports the numbers behind
+                        your work and business.
+                    </p>
+                </div>
+
+                <div class="editorial-services">
+
+                    <article class="service-block reveal" id="accounting">
+
+                        <div class="service-number">01</div>
+
+                        <div class="service-content">
+
+                            <p class="service-label">ACCOUNTING</p>
+
+                            <h3>
+                                Accurate. Organised. Under control.
+                            </h3>
 
-Create the complete `index.html` for Chariot Financial Services Ltd.
+                            <p>
+                                Bookkeeping and accounting support designed
+                                to keep your financial records organised,
+                                reliable and ready for what comes next.
+                            </p>
+
+                            <a
+                                class="text-link"
+                                href="#contact"
+                                aria-label="Enquire about Accounting and Bookkeeping"
+                            >
+                                Accounting &amp; Bookkeeping
+                                <span aria-hidden="true">→</span>
+                            </a>
 
-IMPORTANT:
-This is a production website for a real UK accounting and finance practice.
+                        </div>
 
-Use Pantelly only as a visual/design reference for:
-- simplicity
-- premium professional-services feel
-- typography hierarchy
-- generous whitespace
-- restrained colour palette
-- editorial-style layout
-- sophisticated navigation
-- clear calls to action
+                    </article>
+
+
+                    <article class="service-block service-block-offset reveal" id="tax">
+
+                        <div class="service-number">02</div>
+
+                        <div class="service-content">
+
+                            <p class="service-label">TAX</p>
+
+                            <h3>
+                                Plan ahead. Stay compliant.
+                            </h3>
+
+                            <p>
+                                Practical support across personal and business
+                                tax, with a focus on understanding your
+                                obligations and planning ahead.
+                            </p>
+
+                            <a
+                                class="text-link"
+                                href="#contact"
+                                aria-label="Enquire about Tax Services"
+                            >
+                                Tax Services
+                                <span aria-hidden="true">→</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="service-block reveal" id="finance">
+
+                        <div class="service-number">03</div>
+
+                        <div class="service-content">
+
+                            <p class="service-label">FINANCE</p>
 
-DO NOT copy Pantelly's:
-- text
-- branding
-- logo
-- proprietary code
-- exact layout
-- images
-- testimonials
-- claims
-- intellectual property
+                            <h3>
+                                Understand the numbers behind the business.
+                            </h3>
 
-The result must be distinctly Chariot.
+                            <p>
+                                Management information, cash-flow insight and
+                                commercial finance support for businesses that
+                                want greater visibility over their numbers.
+                            </p>
 
-==================================================
-BUSINESS INFORMATION
-==================================================
+                            <a
+                                class="text-link"
+                                href="#finance-advisory"
+                                aria-label="Explore Finance Support"
+                            >
+                                Finance Support
+                                <span aria-hidden="true">→</span>
+                            </a>
 
-Business:
-Chariot Financial Services Ltd
+                        </div>
 
-Tagline:
-Clarity. Control. Confidence.
+                    </article>
 
-Positioning:
-ACCA-led accounting, tax and finance support for GP locums, professionals, contractors and growing businesses.
+                </div>
 
-Location:
-Peterborough-based, supporting clients across the UK.
+            </div>
+        </section>
 
-Website:
-https://chariotfinancialservices.com/
 
-Telephone:
-07497 528077
+        <!-- =====================================================
+             GP LOCUM SPECIALIST
+        ====================================================== -->
+        <section class="section specialist-section" id="gp-locums">
+            <div class="container specialist-grid">
 
-Email:
-info@chariotfinancialservices.com
+                <div class="specialist-intro reveal">
 
-Brand:
-Chariot Financial Services Ltd
+                    <p class="eyebrow">SPECIALIST SUPPORT</p>
 
-Use factual language.
+                    <h2>
+                        Accounting for GP locums.
+                    </h2>
 
-Do NOT invent:
-- testimonials
-- awards
-- client numbers
-- revenue figures
-- years of experience
-- rankings
-- certifications other than those supplied
-- client logos
-- case studies
-- statistics
-- reviews
-- guarantees
+                    <p class="specialist-statement">
+                        Your work is complex enough.
+                        Your finances shouldn't be.
+                    </p>
 
-The practice is ACCA-led.
+                </div>
 
-==================================================
-BRAND MESSAGE
-==================================================
+                <div class="specialist-content reveal">
 
-Primary tagline:
+                    <p>
+                        Chariot provides accounting and tax support designed
+                        around the financial needs of GP locums, including
+                        Self Assessment, NHS Pension-related accounting and
+                        administrative support, expenses, VAT considerations
+                        and decisions around business structure.
+                    </p>
 
-Clarity. Control. Confidence.
+                    <ul class="specialist-list">
+                        <li>Self Assessment</li>
+                        <li>NHS Pension support</li>
+                        <li>Tax planning</li>
+                        <li>Sole trader vs limited company</li>
+                        <li>VAT considerations</li>
+                        <li>Locum expenses</li>
+                    </ul>
 
-Core positioning:
+                    <a
+                        class="button button-dark"
+                        href="#contact"
+                    >
+                        Explore GP Locum Services
+                    </a>
 
-Accounting, tax and finance support for GP locums, professionals and growing businesses.
+                </div>
 
-Secondary positioning:
+            </div>
+        </section>
 
-Peterborough-based. Supporting clients across the UK.
 
-The site should communicate three levels of value:
+        <!-- =====================================================
+             WHO WE HELP
+        ====================================================== -->
+        <section class="section audience-section" id="who-we-help">
+            <div class="container">
 
-COMPLIANCE
-Accurate accounts, tax, VAT and payroll.
+                <div class="section-intro reveal">
 
-INSIGHT
-Management accounts, reporting, cash flow and financial visibility.
+                    <p class="eyebrow">WHO WE SUPPORT</p>
 
-ADVISORY
-Commercial finance, fractional finance management and strategic support.
+                    <h2>
+                        Built around the people behind the numbers.
+                    </h2>
 
-==================================================
-TARGET CLIENTS
-==================================================
+                </div>
 
-Primary audiences:
+                <div class="audience-grid">
 
-1. GP Locums & Healthcare Professionals
-2. Owner-Managed Businesses
-3. Professionals & Contractors
-4. Growing Businesses
+                    <article class="audience-item reveal">
 
-GP locums should receive particularly strong positioning because this is a specialist area for Chariot.
+                        <span class="audience-number">01</span>
 
-==================================================
-SERVICES
-==================================================
+                        <h3>
+                            GP Locums &amp; Healthcare Professionals
+                        </h3>
 
-Core services:
+                        <p>
+                            Accounting and tax support for doctors and
+                            healthcare professionals.
+                        </p>
 
-- Accounting & Bookkeeping
-- Tax
-- VAT
-- Payroll
-- Management Accounts
-- Fractional Finance Manager
-- Commercial Finance
-- Virtual CFO
+                        <a class="text-link" href="#gp-locums">
+                            GP Locum Services
+                            <span aria-hidden="true">→</span>
+                        </a>
 
-Specialist services/content:
+                    </article>
 
-- GP Locum Accounting
-- GP Locum Tax Support
-- NHS Pension-related accounting and administrative support
-- Tax planning around the Personal Allowance taper
-- Sole trader vs limited company considerations
-- VAT considerations
-- Locum expense support
-- Contractor and professional accounting
-- Business finance health checks
-- Cash-flow review
-- Startup finance setup
-- MTD readiness
 
-Do not overstate what Chariot can legally or professionally advise on.
+                    <article class="audience-item reveal">
 
-==================================================
-PAGE STRUCTURE
-==================================================
+                        <span class="audience-number">02</span>
 
-Create the homepage with the following structure.
+                        <h3>
+                            Owner-Managed Businesses
+                        </h3>
 
-1. HEADER
+                        <p>
+                            Practical accounting, tax and financial
+                            information for business owners.
+                        </p>
 
-Include:
+                        <a class="text-link" href="#contact">
+                            Business Support
+                            <span aria-hidden="true">→</span>
+                        </a>
 
-Chariot logo
+                    </article>
 
-Navigation:
 
-Services
-Who We Help
-About
-Insights
+                    <article class="audience-item reveal">
 
-Primary contact:
-Call 07497 528077
+                        <span class="audience-number">03</span>
 
-Primary CTA:
-Book a consultation
+                        <h3>
+                            Professionals &amp; Contractors
+                        </h3>
 
-Desktop navigation should be elegant and minimal.
+                        <p>
+                            Support for consultants, contractors and other
+                            professionals managing their own finances.
+                        </p>
 
-On mobile, provide a hamburger menu.
+                        <a class="text-link" href="#contact">
+                            Professional Support
+                            <span aria-hidden="true">→</span>
+                        </a>
 
-Use semantic HTML.
+                    </article>
 
-Suggested structure:
 
-<header>
-<nav>
-...
-</nav>
-</header>
+                    <article class="audience-item reveal">
 
-Provide suitable IDs/classes for the JavaScript.
+                        <span class="audience-number">04</span>
 
-==================================================
-2. HERO
-==================================================
+                        <h3>
+                            Growing Businesses
+                        </h3>
 
-Create a large editorial-style hero section.
+                        <p>
+                            Finance support that can develop as your
+                            business becomes more complex.
+                        </p>
 
-Eyebrow:
+                        <a class="text-link" href="#finance-advisory">
+                            Finance Support
+                            <span aria-hidden="true">→</span>
+                        </a>
 
-ACCA-LED ACCOUNTING & FINANCE
+                    </article>
 
-H1:
+                </div>
 
-Clarity. Control. Confidence.
+            </div>
+        </section>
 
-Supporting text:
 
-Accounting, tax and finance support for GP locums, professionals and growing businesses.
+        <!-- =====================================================
+             FINANCE & ADVISORY
+        ====================================================== -->
+        <section
+            class="section finance-section"
+            id="finance-advisory"
+        >
+            <div class="container finance-grid">
 
-Secondary line:
+                <div class="finance-heading reveal">
 
-Peterborough-based. Supporting clients across the UK.
+                    <p class="eyebrow">FINANCE &amp; ADVISORY</p>
 
-Primary button:
+                    <h2>
+                        Your accountant should understand the numbers behind
+                        the business.
+                    </h2>
 
-Book a consultation
+                </div>
 
-Secondary button:
+                <div class="finance-content reveal">
 
-Explore our services
+                    <p>
+                        Good financial information is more than a compliance
+                        exercise. Chariot can help you understand performance,
+                        cash flow and the financial decisions that sit behind
+                        your business.
+                    </p>
 
-Trust line:
+                    <ul class="finance-services">
+                        <li>Management Accounts</li>
+                        <li>Cash Flow Forecasting</li>
+                        <li>Budgeting &amp; Forecasting</li>
+                        <li>Commercial Finance</li>
+                        <li>Fractional Finance Manager</li>
+                        <li>Virtual CFO</li>
+                    </ul>
 
-ACCA-led • Cloud accounting • UK-wide support
+                    <a
+                        class="button button-primary"
+                        href="#contact"
+                    >
+                        Explore Finance Support
+                    </a>
 
-Do not create unsupported claims beyond this wording.
+                </div>
 
-The hero should have a sophisticated visual area.
+            </div>
+        </section>
 
-Do not use generic stock photographs of accountants sitting at computers.
 
-If the existing repository already contains a suitable Chariot visual asset, use it.
+        <!-- =====================================================
+             WHY CHARIOT
+        ====================================================== -->
+        <section class="section principles-section">
+            <div class="container">
 
-Otherwise create a CSS-based visual composition rather than inventing an external image.
+                <div class="section-intro reveal">
 
-==================================================
-3. SERVICE STRIP
-==================================================
+                    <p class="eyebrow">WHY CHARIOT</p>
 
-Create a simple horizontal service strip:
+                    <h2>
+                        An accounting practice built around clarity.
+                    </h2>
 
-ACCOUNTING
-TAX
-VAT
-PAYROLL
-MANAGEMENT ACCOUNTS
-COMMERCIAL FINANCE
+                </div>
 
-This should visually reinforce the breadth of the practice.
+                <div class="principles-list">
 
-==================================================
-4. CORE SERVICES
-==================================================
+                    <article class="principle-item reveal">
 
-Heading:
+                        <span class="principle-number">01</span>
 
-Accounting, tax and finance — connected.
+                        <div>
+                            <h3>ACCA-led</h3>
+                            <p>
+                                Professional accounting expertise with a
+                                focus on clear, practical support.
+                            </p>
+                        </div>
 
-Supporting copy:
+                    </article>
 
-From keeping your accounts and tax affairs organised to giving you clearer financial information for decision-making, Chariot supports the numbers behind your work and business.
 
-Create three large editorial service blocks:
+                    <article class="principle-item reveal">
 
-ACCOUNTING
+                        <span class="principle-number">02</span>
 
-Heading:
-Accurate. Organised. Under control.
+                        <div>
+                            <h3>Commercial perspective</h3>
+                            <p>
+                                Financial information presented with business
+                                decisions in mind.
+                            </p>
+                        </div>
 
-Copy:
-Bookkeeping and accounting support designed to keep your financial records organised, reliable and ready for what comes next.
+                    </article>
 
-CTA:
-Accounting & Bookkeeping
 
-TAX
+                    <article class="principle-item reveal">
 
-Heading:
-Plan ahead. Stay compliant.
+                        <span class="principle-number">03</span>
 
-Copy:
-Practical support across personal and business tax, with a focus on understanding your obligations and planning ahead.
+                        <div>
+                            <h3>Cloud-first</h3>
+                            <p>
+                                Modern accounting workflows designed around
+                                accessible financial information.
+                            </p>
+                        </div>
 
-CTA:
-Tax Services
+                    </article>
 
-FINANCE
 
-Heading:
-Understand the numbers behind the business.
+                    <article class="principle-item reveal">
 
-Copy:
-Management information, cash-flow insight and commercial finance support for businesses that want greater visibility over their numbers.
+                        <span class="principle-number">04</span>
 
-CTA:
-Finance Support
+                        <div>
+                            <h3>Personal service</h3>
+                            <p>
+                                Direct, practical communication rather than
+                                unnecessary complexity.
+                            </p>
+                        </div>
 
-==================================================
-5. GP LOCUM SPECIALIST SECTION
-==================================================
+                    </article>
 
-This should be one of the strongest sections on the page.
 
-Eyebrow:
+                    <article class="principle-item reveal">
 
-SPECIALIST SUPPORT
+                        <span class="principle-number">05</span>
 
-Heading:
+                        <div>
+                            <h3>UK-wide</h3>
+                            <p>
+                                Peterborough-based support for clients across
+                                the UK.
+                            </p>
+                        </div>
 
-Accounting for GP locums.
+                    </article>
 
-Supporting statement:
+                </div>
 
-Your work is complex enough. Your finances shouldn't be.
+            </div>
+        </section>
 
-Copy:
 
-Chariot provides accounting and tax support designed around the financial needs of GP locums, including Self Assessment, NHS Pension-related accounting and administrative support, expenses, VAT considerations and decisions around business structure.
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
+        <section class="section about-section" id="about">
+            <div class="container about-grid">
 
-Create a clean list/grid:
+                <div class="about-label reveal">
+                    <p class="eyebrow">ABOUT CHARIOT</p>
+                </div>
 
-Self Assessment
-NHS Pension support
-Tax planning
-Sole trader vs limited company
-VAT considerations
-Locum expenses
+                <div class="about-content reveal">
 
-CTA:
+                    <h2>
+                        Clear advice. Useful numbers.
+                        Practical support.
+                    </h2>
 
-Explore GP Locum Services
+                    <p>
+                        Chariot Financial Services Ltd is an ACCA-led
+                        accounting and finance practice based in Peterborough,
+                        supporting clients across the UK.
+                    </p>
 
-Do not make claims about NHS Pension advice that exceed the firm's actual scope.
+                    <p>
+                        We work with GP locums, professionals, contractors
+                        and owner-managed businesses across accounting, tax
+                        and finance.
+                    </p>
 
-==================================================
-6. WHO WE HELP
-==================================================
+                    <p>
+                        Our approach is straightforward: keep the fundamentals
+                        under control, make the numbers easier to understand
+                        and provide practical support when financial decisions
+                        become more complex.
+                    </p>
 
-Heading:
+                    <a
+                        class="text-link"
+                        href="#contact"
+                    >
+                        About Chariot
+                        <span aria-hidden="true">→</span>
+                    </a>
 
-Built around the people behind the numbers.
+                </div>
 
-Four client categories:
+            </div>
+        </section>
 
-GP Locums & Healthcare Professionals
 
-Accounting and tax support for doctors and healthcare professionals.
+        <!-- =====================================================
+             INSIGHTS
+        ====================================================== -->
+        <section
+            class="section insights-section"
+            id="insights"
+            aria-labelledby="insights-heading"
+        >
+            <div class="container">
 
-Owner-Managed Businesses
+                <div class="section-intro reveal">
 
-Practical accounting, tax and financial information for business owners.
+                    <p class="eyebrow">INSIGHTS</p>
 
-Professionals & Contractors
+                    <h2 id="insights-heading">
+                        Practical financial insight.
+                    </h2>
 
-Support for consultants, contractors and other professionals managing their own finances.
+                    <p>
+                        Useful guidance on accounting, tax and finance for
+                        professionals, healthcare workers and business owners.
+                    </p>
 
-Growing Businesses
+                </div>
 
-Finance support that can develop as your business becomes more complex.
+                <div class="insights-placeholder reveal">
+                    <p>
+                        New insights and practical guidance will appear here.
+                    </p>
+                </div>
 
-Use cards or editorial blocks rather than generic rounded SaaS cards.
+            </div>
+        </section>
 
-==================================================
-7. FINANCE & ADVISORY
-==================================================
 
-Heading:
+        <!-- =====================================================
+             FINAL CTA
+        ====================================================== -->
+        <section class="section final-cta-section">
+            <div class="container final-cta reveal">
 
-Your accountant should understand the numbers behind the business.
+                <p class="eyebrow">START A CONVERSATION</p>
 
-Copy:
+                <h2>
+                    Let's make your finances clearer.
+                </h2>
 
-Good financial information is more than a compliance exercise. Chariot can help you understand performance, cash flow and the financial decisions that sit behind your business.
+                <p>
+                    Whether you need help with your accounts, tax, financial
+                    reporting or ongoing finance support, start with a
+                    conversation about what you need.
+                </p>
 
-Services:
+                <div class="final-cta-actions">
 
-Management Accounts
-Cash Flow Forecasting
-Budgeting & Forecasting
-Commercial Finance
-Fractional Finance Manager
-Virtual CFO
+                    <a
+                        class="button button-light"
+                        href="#contact"
+                    >
+                        Book a consultation
+                    </a>
 
-CTA:
+                    <a
+                        class="button button-outline-light"
+                        href="tel:+447497528077"
+                    >
+                        Call 07497 528077
+                    </a>
 
-Explore Finance Support
+                    <a
+                        class="button button-outline-light"
+                        href="mailto:info@chariotfinancialservices.com"
+                    >
+                        Email us
+                    </a>
 
-==================================================
-8. WHY CHARIOT
-==================================================
+                </div>
 
-Heading:
+            </div>
+        </section>
 
-An accounting practice built around clarity.
 
-Create five concise principles:
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+        <section class="section contact-section" id="contact">
+            <div class="container contact-grid">
 
-ACCA-led
-Professional accounting expertise with a focus on clear, practical support.
+                <div class="contact-intro reveal">
 
-Commercial perspective
-Financial information presented with business decisions in mind.
+                    <p class="eyebrow">CONTACT</p>
 
-Cloud-first
-Modern accounting workflows designed around accessible financial information.
+                    <h2>
+                        Let's talk about what you need.
+                    </h2>
 
-Personal service
-Direct, practical communication rather than unnecessary complexity.
+                    <p>
+                        Chariot Financial Services Ltd provides
+                        Peterborough-based accounting and finance support
+                        for clients across the UK.
+                    </p>
 
-UK-wide
-Peterborough-based support for clients across the UK.
+                    <div class="contact-details">
 
-Do not invent client numbers or service guarantees.
+                        <div class="contact-detail">
+                            <span class="contact-detail-label">Telephone</span>
+                            <a href="tel:+447497528077">
+                                07497 528077
+                            </a>
+                        </div>
 
-==================================================
-9. ABOUT
-==================================================
+                        <div class="contact-detail">
+                            <span class="contact-detail-label">Email</span>
+                            <a href="mailto:info@chariotfinancialservices.com">
+                                info@chariotfinancialservices.com
+                            </a>
+                        </div>
 
-Heading:
+                        <div class="contact-detail">
+                            <span class="contact-detail-label">Location</span>
+                            <span>
+                                Peterborough-based<br>
+                                Supporting clients across the UK
+                            </span>
+                        </div>
 
-Clear advice. Useful numbers. Practical support.
+                    </div>
 
-Copy:
+                </div>
 
-Chariot Financial Services Ltd is an ACCA-led accounting and finance practice based in Peterborough, supporting clients across the UK.
 
-We work with GP locums, professionals, contractors and owner-managed businesses across accounting, tax and finance.
+                <div class="contact-action reveal">
 
-Our approach is straightforward: keep the fundamentals under control, make the numbers easier to understand and provide practical support when financial decisions become more complex.
+                    <div class="contact-action-inner">
 
-CTA:
+                        <p class="contact-action-label">
+                            READY TO TALK?
+                        </p>
 
-About Chariot
+                        <h3>
+                            Book a consultation.
+                        </h3>
 
-==================================================
-10. FINAL CTA
-==================================================
+                        <p>
+                            Get in touch to discuss your accounting, tax or
+                            finance requirements.
+                        </p>
 
-Large, spacious CTA section.
+                        <div class="contact-action-buttons">
 
-Heading:
+                            <a
+                                class="button button-primary"
+                                href="tel:+447497528077"
+                            >
+                                Call 07497 528077
+                            </a>
 
-Let's make your finances clearer.
+                            <a
+                                class="button button-secondary"
+                                href="mailto:info@chariotfinancialservices.com"
+                            >
+                                Email info@chariotfinancialservices.com
+                            </a>
 
-Copy:
+                        </div>
 
-Whether you need help with your accounts, tax, financial reporting or ongoing finance support, start with a conversation about what you need.
+                    </div>
 
-Buttons:
+                </div>
 
-Book a consultation
+            </div>
+        </section>
 
-Call 07497 528077
+    </main>
 
-Email info@chariotfinancialservices.com
 
-Telephone should use:
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+    <footer class="site-footer">
+        <div class="container">
 
-tel:+447497528077
+            <div class="footer-main">
 
-Email should use:
+                <div class="footer-brand">
 
-mailto:info@chariotfinancialservices.com
+                    <a
+                        class="footer-logo"
+                        href="/"
+                        aria-label="Chariot Financial Services home"
+                    >
+                        <img
+                            src="CFSL_Logo.svg"
+                            alt="Chariot Financial Services Ltd"
+                        >
+                    </a>
 
-Do not create fake booking functionality.
+                    <p>
+                        Clarity. Control. Confidence.
+                    </p>
 
-==================================================
-11. CONTACT
-==================================================
+                    <p>
+                        Peterborough-based. Supporting clients across the UK.
+                    </p>
 
-Create a clean contact section with:
+                </div>
 
-Chariot Financial Services Ltd
 
-Peterborough-based
-Supporting clients across the UK
+                <div class="footer-column">
 
-07497 528077
+                    <h3>Services</h3>
 
-info@chariotfinancialservices.com
+                    <ul>
+                        <li><a href="#accounting">Accounting &amp; Bookkeeping</a></li>
+                        <li><a href="#tax">Tax</a></li>
+                        <li><a href="#vat">VAT</a></li>
+                        <li><a href="#payroll">Payroll</a></li>
+                        <li><a href="#finance">Management Accounts</a></li>
+                        <li><a href="#finance-advisory">Finance Support</a></li>
+                    </ul>
 
-If a contact form is included, make it simple:
+                </div>
 
-Name
-Email
-Phone
-Message
 
-Do not invent a backend or form endpoint.
+                <div class="footer-column">
 
-If no backend is configured, ensure the HTML does not falsely imply that a form submission has been received.
+                    <h3>Who We Help</h3>
 
-==================================================
-12. FOOTER
-==================================================
+                    <ul>
+                        <li><a href="#gp-locums">GP Locums</a></li>
+                        <li><a href="#who-we-help">Healthcare Professionals</a></li>
+                        <li><a href="#who-we-help">Professionals &amp; Contractors</a></li>
+                        <li><a href="#who-we-help">Owner-Managed Businesses</a></li>
+                    </ul>
 
-Footer columns:
+                </div>
 
-CHARRIOT FINANCIAL SERVICES
 
-Services:
-Accounting & Bookkeeping
-Tax
-VAT
-Payroll
-Management Accounts
-Finance Support
+                <div class="footer-column">
 
-Who We Help:
-GP Locums
-Healthcare Professionals
-Professionals & Contractors
-Owner-Managed Businesses
+                    <h3>Company</h3>
 
-Company:
-About
-Insights
-Contact
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#insights">Insights</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
 
-Legal:
-Privacy Policy
-Cookie Policy
-Terms
+                </div>
 
-Include:
 
-© [dynamic year] Chariot Financial Services Ltd
+                <div class="footer-column">
 
-Use a span such as:
+                    <h3>Legal</h3>
 
-<span class="current-year"></span>
+                    <ul>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="/terms.html">Terms</a></li>
+                    </ul>
 
-so script.js can populate the year.
+                </div>
 
-==================================================
-DESIGN REQUIREMENTS
-==================================================
+            </div>
 
-The HTML should support a premium editorial layout.
 
-Avoid:
-- excessive cards
-- excessive rounded corners
-- gradients
-- generic SaaS design
-- emoji
-- fake reviews
-- stock-accountant imagery
-- huge numbers/statistics
-- unnecessary badges
+            <div class="footer-bottom">
 
-Use:
-- generous whitespace
-- strong typography
-- large headings
-- thin borders
-- restrained navigation
-- editorial sections
-- asymmetric layouts where appropriate
-- clear CTA hierarchy
+                <p>
+                    &copy;
+                    <span class="current-year"></span>
+                    Chariot Financial Services Ltd
+                </p>
 
-==================================================
-ACCESSIBILITY
-==================================================
+                <a href="mailto:info@chariotfinancialservices.com">
+                    info@chariotfinancialservices.com
+                </a>
 
-Use:
+            </div>
 
-<header>
-<nav>
-<main>
-<section>
-<article>
-<footer>
+        </div>
+    </footer>
 
-Use one H1 only.
 
-Maintain logical H2/H3 hierarchy.
+    <!-- Back to top -->
+    <button
+        class="back-to-top"
+        type="button"
+        aria-label="Back to top"
+    >
+        <span aria-hidden="true">↑</span>
+    </button>
 
-Images must have meaningful alt text.
 
-Decorative images should use empty alt attributes.
+    <!-- Main JavaScript -->
+    <script src="script.js" defer></script>
 
-Buttons and links must be keyboard accessible.
-
-Mobile navigation should have:
-
-aria-expanded
-aria-controls
-
-Dropdown navigation should have appropriate ARIA states.
-
-==================================================
-SEO
-==================================================
-
-Title:
-
-Chariot Financial Services | ACCA Accountants in Peterborough
-
-Meta description:
-
-ACCA-led accounting, tax and finance support for GP locums, professionals and growing businesses. Peterborough-based, supporting clients across the UK.
-
-Use natural keywords such as:
-
-accountants Peterborough
-ACCA accountant Peterborough
-GP locum accountant
-GP locum tax
-accounting services Peterborough
-business accountants Peterborough
-management accounts
-fractional finance manager
-
-Do not keyword-stuff.
-
-Add appropriate Open Graph metadata.
-
-Add canonical URL:
-
-https://chariotfinancialservices.com/
-
-==================================================
-TECHNICAL REQUIREMENTS
-==================================================
-
-Use:
-
-HTML5
-Semantic markup
-Accessible markup
-Clean class names
-No inline JavaScript
-No inline CSS
-No external JavaScript frameworks
-
-Reference:
-
-style.css
-
-and:
-
-script.js
-
-Example:
-
-<link rel="stylesheet" href="style.css">
-
-<script src="script.js" defer></script>
-
-Use relative paths for local assets.
-
-IMPORTANT:
-
-Before finalising, make sure every class/ID required by script.js is present and logically named.
-
-Suggested JavaScript hooks include:
-
-.menu-toggle
-.site-nav
-.has-dropdown
-.dropdown-toggle
-.dropdown-menu
-.reveal
-.site-header
-.back-to-top
-.current-year
-.contact-form
-.nav-link
-
-Only include hooks that are actually useful.
-
-==================================================
-OUTPUT
-==================================================
-
-Return the complete `index.html`.
-
-Do not return CSS or JavaScript.
-
-After the HTML, provide a concise section:
-
-"JavaScript hooks used"
-
-List the important IDs/classes that script.js should target.
+</body>
+</html>
