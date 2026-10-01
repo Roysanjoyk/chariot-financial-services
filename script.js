@@ -1,635 +1,592 @@
+"use strict";
+
 /* =========================================================
    CHARIOT FINANCIAL SERVICES
-   Main JavaScript
-   ========================================================= */
+   script.js
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-    "use strict";
 
-    /* =====================================================
-       ELEMENTS
-    ====================================================== */
+  /* =======================================================
+     01. ELEMENTS
+  ======================================================= */
 
-    const body = document.body;
-    const siteHeader = document.querySelector(".site-header");
-    const menuToggle = document.querySelector(".menu-toggle");
-    const siteNav = document.querySelector(".site-nav");
-    const dropdownItems = document.querySelectorAll(".has-dropdown");
-    const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-    const navLinks = document.querySelectorAll(".nav-link");
-    const revealElements = document.querySelectorAll(".reveal");
-    const backToTop = document.querySelector(".back-to-top");
-    const currentYearElements = document.querySelectorAll(".current-year");
+  const body = document.body;
+  const header = document.querySelector(".site-header");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const siteNav = document.querySelector(".site-nav");
+  const dropdownItems = document.querySelectorAll(".has-dropdown");
+  const navLinks = document.querySelectorAll(".site-nav a");
+  const revealElements = document.querySelectorAll(".reveal");
+  const backToTop = document.querySelector(".back-to-top");
+  const contactForm = document.querySelector(".contact-form");
+  const formStatus = document.querySelector(".form-status");
+  const currentYear = document.getElementById("current-year");
 
 
-    /* =====================================================
-       CURRENT YEAR
-    ====================================================== */
+  /* =======================================================
+     02. CURRENT YEAR
+  ======================================================= */
 
-    const currentYear = new Date().getFullYear();
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+  }
 
-    currentYearElements.forEach((element) => {
-        element.textContent = currentYear;
-    });
 
+  /* =======================================================
+     03. STICKY HEADER
+  ======================================================= */
 
-    /* =====================================================
-       STICKY HEADER
-    ====================================================== */
+  const updateHeader = () => {
+    if (!header) return;
 
-    const updateHeader = () => {
-        if (!siteHeader) {
-            return;
-        }
-
-        if (window.scrollY > 20) {
-            siteHeader.classList.add("scrolled");
-        } else {
-            siteHeader.classList.remove("scrolled");
-        }
-    };
-
-    updateHeader();
-
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        {
-            passive: true
-        }
-    );
-
-
-    /* =====================================================
-       MOBILE NAVIGATION
-    ====================================================== */
-
-    const closeMobileMenu = () => {
-        if (!menuToggle || !siteNav) {
-            return;
-        }
-
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation");
-        siteNav.classList.remove("is-open");
-        body.classList.remove("menu-open");
-
-        closeAllDropdowns();
-    };
-
-
-    const openMobileMenu = () => {
-        if (!menuToggle || !siteNav) {
-            return;
-        }
-
-        menuToggle.setAttribute("aria-expanded", "true");
-        menuToggle.setAttribute("aria-label", "Close navigation");
-        siteNav.classList.add("is-open");
-        body.classList.add("menu-open");
-    };
-
-
-    if (menuToggle && siteNav) {
-        menuToggle.addEventListener("click", () => {
-
-            const isOpen =
-                menuToggle.getAttribute("aria-expanded") === "true";
-
-            if (isOpen) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-
-        });
-    }
-
-
-    /* =====================================================
-       DROPDOWN NAVIGATION
-    ====================================================== */
-
-    const closeDropdown = (dropdownItem) => {
-        const toggle = dropdownItem.querySelector(".dropdown-toggle");
-        const menu = dropdownItem.querySelector(".dropdown-menu");
-
-        if (!toggle || !menu) {
-            return;
-        }
-
-        dropdownItem.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-        menu.hidden = true;
-    };
-
-
-    const openDropdown = (dropdownItem) => {
-        const toggle = dropdownItem.querySelector(".dropdown-toggle");
-        const menu = dropdownItem.querySelector(".dropdown-menu");
-
-        if (!toggle || !menu) {
-            return;
-        }
-
-        dropdownItems.forEach((item) => {
-            if (item !== dropdownItem) {
-                closeDropdown(item);
-            }
-        });
-
-        dropdownItem.classList.add("is-open");
-        toggle.setAttribute("aria-expanded", "true");
-        menu.hidden = false;
-    };
-
-
-    const closeAllDropdowns = () => {
-        dropdownItems.forEach((item) => {
-            closeDropdown(item);
-        });
-    };
-
-
-    dropdownToggles.forEach((toggle) => {
-
-        toggle.addEventListener("click", (event) => {
-            event.preventDefault();
-
-            const dropdownItem = toggle.closest(".has-dropdown");
-
-            if (!dropdownItem) {
-                return;
-            }
-
-            const isOpen =
-                toggle.getAttribute("aria-expanded") === "true";
-
-            if (isOpen) {
-                closeDropdown(dropdownItem);
-            } else {
-                openDropdown(dropdownItem);
-            }
-        });
-
-    });
-
-
-    /* =====================================================
-       CLOSE DROPDOWNS WHEN CLICKING OUTSIDE
-    ====================================================== */
-
-    document.addEventListener("click", (event) => {
-
-        const clickedInsideDropdown =
-            event.target.closest(".has-dropdown");
-
-        if (!clickedInsideDropdown) {
-            closeAllDropdowns();
-        }
-
-    });
-
-
-    /* =====================================================
-       NAVIGATION LINKS
-    ====================================================== */
-
-    navLinks.forEach((link) => {
-
-        link.addEventListener("click", () => {
-
-            closeAllDropdowns();
-
-            if (
-                window.innerWidth <= 900 &&
-                siteNav &&
-                siteNav.classList.contains("is-open")
-            ) {
-                closeMobileMenu();
-            }
-
-        });
-
-    });
-
-
-    /* =====================================================
-       DROPDOWN LINKS
-    ====================================================== */
-
-    const dropdownLinks = document.querySelectorAll(
-        ".dropdown-menu a"
-    );
-
-    dropdownLinks.forEach((link) => {
-
-        link.addEventListener("click", () => {
-
-            closeAllDropdowns();
-
-            if (
-                window.innerWidth <= 900 &&
-                siteNav &&
-                siteNav.classList.contains("is-open")
-            ) {
-                closeMobileMenu();
-            }
-
-        });
-
-    });
-
-
-    /* =====================================================
-       CLOSE MOBILE MENU WHEN RESIZING TO DESKTOP
-    ====================================================== */
-
-    window.addEventListener("resize", () => {
-
-        if (window.innerWidth > 900) {
-
-            if (siteNav) {
-                siteNav.classList.remove("is-open");
-            }
-
-            if (menuToggle) {
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Open navigation"
-                );
-            }
-
-            body.classList.remove("menu-open");
-
-            closeAllDropdowns();
-        }
-
-    });
-
-
-    /* =====================================================
-       ESCAPE KEY
-    ====================================================== */
-
-    document.addEventListener("keydown", (event) => {
-
-        if (event.key !== "Escape") {
-            return;
-        }
-
-        closeAllDropdowns();
-
-        if (
-            menuToggle &&
-            menuToggle.getAttribute("aria-expanded") === "true"
-        ) {
-            closeMobileMenu();
-            menuToggle.focus();
-        }
-
-    });
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ====================================================== */
-
-    if ("IntersectionObserver" in window) {
-
-        const revealObserver = new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach((entry) => {
-
-                    if (!entry.isIntersecting) {
-                        return;
-                    }
-
-                    entry.target.classList.add("is-visible");
-
-                    observer.unobserve(entry.target);
-                });
-
-            },
-            {
-                threshold: 0.12,
-                rootMargin: "0px 0px -50px 0px"
-            }
-        );
-
-
-        revealElements.forEach((element) => {
-            revealObserver.observe(element);
-        });
-
+    if (window.scrollY > 20) {
+      header.classList.add("scrolled");
     } else {
-
-        revealElements.forEach((element) => {
-            element.classList.add("is-visible");
-        });
-
+      header.classList.remove("scrolled");
     }
+  };
+
+  updateHeader();
+
+  window.addEventListener("scroll", updateHeader, {
+    passive: true
+  });
 
 
-    /* =====================================================
-       BACK TO TOP
-    ====================================================== */
+  /* =======================================================
+     04. MOBILE NAVIGATION
+  ======================================================= */
 
-    const updateBackToTop = () => {
+  const closeMobileMenu = () => {
+    if (!menuToggle || !siteNav) return;
 
-        if (!backToTop) {
-            return;
-        }
+    body.classList.remove("menu-open");
 
-        if (window.scrollY > 700) {
-            backToTop.classList.add("is-visible");
-        } else {
-            backToTop.classList.remove("is-visible");
-        }
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+  };
 
-    };
+  const openMobileMenu = () => {
+    if (!menuToggle || !siteNav) return;
 
-    updateBackToTop();
+    body.classList.add("menu-open");
 
-    window.addEventListener(
-        "scroll",
-        updateBackToTop,
-        {
-            passive: true
-        }
-    );
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Close navigation");
+  };
 
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
 
-    if (backToTop) {
+      const isOpen =
+        menuToggle.getAttribute("aria-expanded") === "true";
 
-        backToTop.addEventListener("click", () => {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        });
-
-    }
-
-
-    /* =====================================================
-       SMOOTH INTERNAL NAVIGATION
-    ====================================================== */
-
-    const internalLinks = document.querySelectorAll(
-        'a[href^="#"]'
-    );
-
-    internalLinks.forEach((link) => {
-
-        link.addEventListener("click", (event) => {
-
-            const targetId = link.getAttribute("href");
-
-            if (
-                !targetId ||
-                targetId === "#" ||
-                targetId.length < 2
-            ) {
-                return;
-            }
-
-            const target = document.querySelector(targetId);
-
-            if (!target) {
-                return;
-            }
-
-            event.preventDefault();
-
-            const headerOffset =
-                siteHeader
-                    ? siteHeader.offsetHeight + 15
-                    : 15;
-
-            const targetPosition =
-                target.getBoundingClientRect().top +
-                window.scrollY -
-                headerOffset;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth"
-            });
-
-            if (
-                window.innerWidth <= 900 &&
-                siteNav &&
-                siteNav.classList.contains("is-open")
-            ) {
-                closeMobileMenu();
-            }
-
-        });
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
 
     });
+  }
 
 
-    /* =====================================================
-       ACTIVE NAVIGATION LINK
-    ====================================================== */
+  /* =======================================================
+     05. DROPDOWN NAVIGATION
+  ======================================================= */
 
-    const sections = document.querySelectorAll(
-        "main section[id]"
-    );
+  const closeDropdown = (item) => {
+    if (!item) return;
 
-    const sectionNavLinks = document.querySelectorAll(
-        '.site-nav a[href^="#"]'
-    );
+    const button = item.querySelector(".dropdown-toggle");
+    const menu = item.querySelector(".dropdown-menu");
 
+    item.classList.remove("is-open");
 
-    if (
-        "IntersectionObserver" in window &&
-        sections.length > 0 &&
-        sectionNavLinks.length > 0
-    ) {
-
-        const activeSections = new Map();
-
-        const activeSectionObserver =
-            new IntersectionObserver(
-                (entries) => {
-
-                    entries.forEach((entry) => {
-
-                        activeSections.set(
-                            entry.target.id,
-                            entry.isIntersecting
-                        );
-
-                    });
-
-                    let activeId = null;
-
-                    sections.forEach((section) => {
-
-                        if (
-                            activeSections.get(section.id)
-                        ) {
-                            activeId = section.id;
-                        }
-
-                    });
-
-                    sectionNavLinks.forEach((link) => {
-
-                        const href =
-                            link.getAttribute("href");
-
-                        if (
-                            activeId &&
-                            href === `#${activeId}`
-                        ) {
-                            link.classList.add("is-active");
-                        } else {
-                            link.classList.remove("is-active");
-                        }
-
-                    });
-
-                },
-                {
-                    rootMargin:
-                        "-25% 0px -60% 0px",
-                    threshold: 0
-                }
-            );
-
-
-        sections.forEach((section) => {
-            activeSectionObserver.observe(section);
-        });
-
+    if (button) {
+      button.setAttribute("aria-expanded", "false");
     }
 
+    if (menu) {
+      menu.hidden = true;
+    }
+  };
 
-    /* =====================================================
-       CONTACT LINKS
-       ===================================================== */
+  const openDropdown = (item) => {
+    if (!item) return;
 
-    const telephoneLinks =
-        document.querySelectorAll(
-            'a[href^="tel:"]'
-        );
+    const button = item.querySelector(".dropdown-toggle");
+    const menu = item.querySelector(".dropdown-menu");
 
-    const emailLinks =
-        document.querySelectorAll(
-            'a[href^="mailto:"]'
-        );
+    item.classList.add("is-open");
 
-
-    telephoneLinks.forEach((link) => {
-
-        link.addEventListener("click", () => {
-
-            if (typeof window.gtag === "function") {
-
-                window.gtag(
-                    "event",
-                    "phone_click",
-                    {
-                        event_category: "contact",
-                        event_label: "Telephone"
-                    }
-                );
-
-            }
-
-        });
-
-    });
-
-
-    emailLinks.forEach((link) => {
-
-        link.addEventListener("click", () => {
-
-            if (typeof window.gtag === "function") {
-
-                window.gtag(
-                    "event",
-                    "email_click",
-                    {
-                        event_category: "contact",
-                        event_label: "Email"
-                    }
-                );
-
-            }
-
-        });
-
-    });
-
-
-    /* =====================================================
-       CONTACT FORM SAFETY
-       
-       There is currently no contact form in index.html.
-       This guard prevents accidental false submission
-       behaviour if a form is added later without a backend.
-    ====================================================== */
-
-    const contactForm =
-        document.querySelector(".contact-form");
-
-    if (contactForm) {
-
-        contactForm.addEventListener("submit", (event) => {
-
-            const action =
-                contactForm.getAttribute("action");
-
-            if (
-                !action ||
-                action === "#" ||
-                action.trim() === ""
-            ) {
-                event.preventDefault();
-
-                const existingMessage =
-                    contactForm.querySelector(
-                        ".form-message"
-                    );
-
-                if (existingMessage) {
-                    existingMessage.textContent =
-                        "Please contact Chariot Financial Services directly by telephone or email.";
-                }
-
-            }
-
-        });
-
+    if (button) {
+      button.setAttribute("aria-expanded", "true");
     }
 
+    if (menu) {
+      menu.hidden = false;
+    }
+  };
 
-    /* =====================================================
-       INITIALISE DROPDOWNS
-    ====================================================== */
+  dropdownItems.forEach((item) => {
+
+    const button = item.querySelector(".dropdown-toggle");
+
+    if (!button) return;
+
+    button.addEventListener("click", (event) => {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const isOpen = item.classList.contains("is-open");
+
+      dropdownItems.forEach((otherItem) => {
+        if (otherItem !== item) {
+          closeDropdown(otherItem);
+        }
+      });
+
+      if (isOpen) {
+        closeDropdown(item);
+      } else {
+        openDropdown(item);
+      }
+
+    });
+  });
+
+
+  /* =======================================================
+     06. CLOSE DROPDOWNS WHEN CLICKING OUTSIDE
+  ======================================================= */
+
+  document.addEventListener("click", (event) => {
 
     dropdownItems.forEach((item) => {
+
+      if (!item.contains(event.target)) {
         closeDropdown(item);
+      }
+
+    });
+
+  });
+
+
+  /* =======================================================
+     07. NAVIGATION LINKS
+  ======================================================= */
+
+  navLinks.forEach((link) => {
+
+    link.addEventListener("click", () => {
+
+      dropdownItems.forEach(closeDropdown);
+
+      if (window.innerWidth <= 900) {
+        closeMobileMenu();
+      }
+
+    });
+
+  });
+
+
+  /* =======================================================
+     08. ESCAPE KEY
+  ======================================================= */
+
+  document.addEventListener("keydown", (event) => {
+
+    if (event.key !== "Escape") return;
+
+    dropdownItems.forEach(closeDropdown);
+
+    closeMobileMenu();
+
+  });
+
+
+  /* =======================================================
+     09. CLOSE MOBILE NAV ON RESIZE
+  ======================================================= */
+
+  window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 900) {
+      closeMobileMenu();
+    }
+
+  });
+
+
+  /* =======================================================
+     10. SCROLL REVEAL
+  ======================================================= */
+
+  if ("IntersectionObserver" in window) {
+
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+
+        entries.forEach((entry) => {
+
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+
+          observer.unobserve(entry.target);
+
+        });
+
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+  } else {
+
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+
+  }
+
+
+  /* =======================================================
+     11. BACK TO TOP
+  ======================================================= */
+
+  const updateBackToTop = () => {
+
+    if (!backToTop) return;
+
+    if (window.scrollY > 800) {
+      backToTop.hidden = false;
+    } else {
+      backToTop.hidden = true;
+    }
+
+  };
+
+  updateBackToTop();
+
+  window.addEventListener("scroll", updateBackToTop, {
+    passive: true
+  });
+
+  if (backToTop) {
+
+    backToTop.addEventListener("click", () => {
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    });
+
+  }
+
+
+  /* =======================================================
+     12. SMOOTH INTERNAL NAVIGATION
+  ======================================================= */
+
+  const internalLinks = document.querySelectorAll(
+    'a[href^="#"]'
+  );
+
+  internalLinks.forEach((link) => {
+
+    link.addEventListener("click", (event) => {
+
+      const href = link.getAttribute("href");
+
+      if (!href || href === "#") {
+        return;
+      }
+
+      const target = document.querySelector(href);
+
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const headerHeight = header
+        ? header.offsetHeight
+        : 0;
+
+      const targetPosition =
+        target.getBoundingClientRect().top +
+        window.scrollY -
+        headerHeight -
+        20;
+
+      window.scrollTo({
+        top: Math.max(targetPosition, 0),
+        behavior: "smooth"
+      });
+
+      if (window.innerWidth <= 900) {
+        closeMobileMenu();
+      }
+
+    });
+
+  });
+
+
+  /* =======================================================
+     13. ACTIVE SECTION NAVIGATION
+  ======================================================= */
+
+  const sectionLinks = Array.from(
+    document.querySelectorAll(
+      '.site-nav a[href^="#"]'
+    )
+  );
+
+  const sections = sectionLinks
+    .map((link) => {
+      const id = link.getAttribute("href");
+
+      if (!id || id === "#") {
+        return null;
+      }
+
+      return document.querySelector(id);
+    })
+    .filter(Boolean);
+
+  if ("IntersectionObserver" in window && sections.length) {
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (!entry.isIntersecting) return;
+
+          sectionLinks.forEach((link) => {
+            link.classList.remove("is-active");
+          });
+
+          const activeLink = sectionLinks.find(
+            (link) =>
+              link.getAttribute("href") ===
+              `#${entry.target.id}`
+          );
+
+          if (activeLink) {
+            activeLink.classList.add("is-active");
+          }
+
+        });
+
+      },
+      {
+        rootMargin: "-35% 0px -55% 0px",
+        threshold: 0
+      }
+    );
+
+    sections.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+
+  }
+
+
+  /* =======================================================
+     14. CONTACT FORM
+  ======================================================= */
+
+  if (contactForm) {
+
+    contactForm.addEventListener("submit", (event) => {
+
+      /*
+       * The form currently has no connected backend.
+       * Prevent a false submission and provide a clear
+       * next step instead.
+       */
+
+      event.preventDefault();
+
+      if (!formStatus) return;
+
+      formStatus.textContent =
+        "The contact form is not connected yet. Please call 07497 528077 or email info@chariotfinancialservices.com.";
+
+      formStatus.classList.add("is-visible");
+
+    });
+
+  }
+
+
+  /* =======================================================
+     15. TELEPHONE / EMAIL TRACKING
+  ======================================================= */
+
+  const trackContactClick = (event) => {
+
+    const link = event.currentTarget;
+
+    if (typeof window.gtag !== "function") {
+      return;
+    }
+
+    const href = link.getAttribute("href") || "";
+
+    if (href.startsWith("tel:")) {
+
+      window.gtag("event", "phone_click", {
+        event_category: "contact",
+        event_label: "Phone"
+      });
+
+    }
+
+    if (href.startsWith("mailto:")) {
+
+      window.gtag("event", "email_click", {
+        event_category: "contact",
+        event_label: "Email"
+      });
+
+    }
+
+  };
+
+  document
+    .querySelectorAll('a[href^="tel:"], a[href^="mailto:"]')
+    .forEach((link) => {
+      link.addEventListener("click", trackContactClick);
     });
 
 
-    /* =====================================================
-       PAGE LOAD STATE
-    ====================================================== */
+  /* =======================================================
+     16. JOURNAL / CTA TRACKING
+  ======================================================= */
 
-    document.documentElement.classList.add("js-enabled");
+  const trackJournalClick = (event) => {
+
+    if (typeof window.gtag !== "function") {
+      return;
+    }
+
+    const link = event.currentTarget;
+
+    window.gtag("event", "journal_click", {
+      event_category: "engagement",
+      event_label: link.textContent.trim()
+    });
+
+  };
+
+  document
+    .querySelectorAll('a[href^="/insights/"]')
+    .forEach((link) => {
+      link.addEventListener("click", trackJournalClick);
+    });
+
+
+  /* =======================================================
+     17. FORM FIELD UX
+  ======================================================= */
+
+  const formInputs = document.querySelectorAll(
+    ".contact-form input, .contact-form select, .contact-form textarea"
+  );
+
+  formInputs.forEach((field) => {
+
+    field.addEventListener("input", () => {
+
+      if (formStatus) {
+        formStatus.classList.remove("is-visible");
+      }
+
+    });
+
+  });
+
+
+  /* =======================================================
+     18. PREVENT STICKY ELEMENTS FROM HIDING ANCHORS
+  ======================================================= */
+
+  const adjustAnchorPosition = () => {
+
+    const hash = window.location.hash;
+
+    if (!hash || hash === "#") return;
+
+    const target = document.querySelector(hash);
+
+    if (!target) return;
+
+    window.setTimeout(() => {
+
+      const headerHeight = header
+        ? header.offsetHeight
+        : 0;
+
+      const targetPosition =
+        target.getBoundingClientRect().top +
+        window.scrollY -
+        headerHeight -
+        20;
+
+      window.scrollTo({
+        top: Math.max(targetPosition, 0),
+        behavior: "auto"
+      });
+
+    }, 50);
+
+  };
+
+  adjustAnchorPosition();
+
+
+  /* =======================================================
+     19. IMAGE ERROR HANDLING
+  ======================================================= */
+
+  document.querySelectorAll("img").forEach((image) => {
+
+    image.addEventListener("error", () => {
+
+      image.classList.add("image-error");
+
+      /*
+       * Keep layout stable if an optional image fails.
+       * The logo itself should still be fixed at source level.
+       */
+
+    });
+
+  });
+
+
+  /* =======================================================
+     20. PAGE READY
+  ======================================================= */
+
+  document.documentElement.classList.add("js-ready");
 
 });
