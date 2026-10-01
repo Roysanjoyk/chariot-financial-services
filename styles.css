@@ -1,1285 +1,662 @@
-/* ============================================================
-   CHARIOT FINANCIAL SERVICES — style.css
-   Premium professional-services website
-   ============================================================ */
+You are a senior front-end developer and digital art director specialising in premium professional-services websites.
 
-/* ---------- RESET & BASE ---------- */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+Create the complete `style.css` for the Chariot Financial Services Ltd website.
+
+The corresponding `index.html` already exists and uses semantic HTML and the class names described below.
+
+The visual direction should be inspired by the simplicity and premium professional-services feel of Pantelly, but MUST be distinctly Chariot.
+
+Do not copy Pantelly's:
+- CSS
+- exact layout
+- branding
+- colours
+- typography
+- proprietary design
+- animations
+
+==================================================
+BRAND
+==================================================
+
+Business:
+Chariot Financial Services Ltd
+
+Tagline:
+Clarity. Control. Confidence.
+
+Positioning:
+ACCA-led accounting, tax and finance support for GP locums, professionals and growing businesses.
+
+Location:
+Peterborough-based. Supporting clients across the UK.
+
+==================================================
+VISUAL OBJECTIVE
+==================================================
+
+Create a website that feels:
+
+Premium
+Editorial
+Professional
+Calm
+Modern
+Trustworthy
+Financial
+Established
+Human
+
+The design should feel closer to a sophisticated professional-services firm than a typical local accountant website.
+
+Avoid:
+- generic accounting website templates
+- excessive cards
+- excessive rounded corners
+- bright colours
+- gradients
+- glassmorphism
+- huge shadows
+- excessive animations
+- cartoon illustrations
+- emoji
+- generic SaaS styling
+
+Prioritise:
+- whitespace
+- typography
+- alignment
+- hierarchy
+- subtle borders
+- strong composition
+- restrained interactions
+
+==================================================
+COLOUR SYSTEM
+==================================================
+
+Use these colours consistently:
+
+Primary navy:
+#10243A
+
+Deep navy:
+#0B1828
+
+Warm white:
+#F8F6F1
+
+Stone:
+#E9E4DA
+
+Muted gold:
+#B69A63
+
+White:
+#FFFFFF
+
+Dark text:
+#17202A
+
+Muted text:
+#5F6872
+
+Create CSS custom properties:
 
 :root {
-    --navy: #10243A;
-    --deep-navy: #0B1828;
-    --warm-white: #F8F6F1;
-    --stone: #E9E4DA;
-    --gold: #B69A63;
-    --white: #FFFFFF;
-    --text-dark: #1A1A1A;
-    --text-mid: #4A4A4A;
-    --text-light: #F8F6F1;
-    
-    --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    
-    --max-width: 1280px;
-    --header-height: 80px;
+  --navy: #10243A;
+  --deep-navy: #0B1828;
+  --warm-white: #F8F6F1;
+  --stone: #E9E4DA;
+  --gold: #B69A63;
+  --white: #FFFFFF;
+  --text: #17202A;
+  --muted: #5F6872;
 }
+
+Use the variables throughout the stylesheet.
+
+==================================================
+TYPOGRAPHY
+==================================================
+
+Use an elegant serif for major headings and a clean sans-serif for body text.
+
+Preferred heading font:
+
+Playfair Display
+
+Preferred body font:
+
+DM Sans
+
+If external Google Fonts are loaded in the HTML, use them.
+
+If they are not loaded, provide sensible fallbacks.
+
+Heading:
+
+font-family: "Playfair Display", Georgia, serif;
+
+Body:
+
+font-family: "DM Sans", Arial, sans-serif;
+
+Typography should have:
+
+- large editorial H1
+- generous line-height
+- restrained letter spacing
+- strong H2 hierarchy
+- readable body text
+- uppercase small eyebrow text
+
+Do not make every element oversized.
+
+==================================================
+GLOBAL LAYOUT
+==================================================
+
+Use:
+
+box-sizing: border-box
+
+Remove default body margin.
+
+Use:
 
 html {
-    scroll-behavior: smooth;
-    font-size: 16px;
+  scroll-behavior: smooth;
 }
 
-body {
-    font-family: var(--font-body);
-    color: var(--text-dark);
-    background-color: var(--warm-white);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-}
+However, respect reduced-motion preferences.
 
-img, svg {
-    display: block;
-    max-width: 100%;
-}
+Create a reusable content container:
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+max-width around 1200–1280px
 
-ul {
-    list-style: none;
-}
+Use responsive horizontal padding.
 
-/* ---------- ACCESSIBILITY ---------- */
-:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
-}
+Example concept:
 
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
+padding-inline: clamp(1.25rem, 4vw, 4rem);
 
-/* ---------- TYPOGRAPHY ---------- */
-h1, h2, h3, h4 {
-    font-family: var(--font-heading);
-    font-weight: 500;
-    line-height: 1.15;
-    color: var(--navy);
-}
+Do not force an unnecessarily narrow page.
 
-.eyebrow {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.25rem;
-}
+==================================================
+HEADER
+==================================================
 
-.eyebrow--light {
-    color: var(--gold);
-}
+Create a sophisticated sticky header.
 
-/* ---------- LAYOUT ---------- */
-.container {
-    width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 2rem;
-}
+The header should:
 
-.section {
-    padding: 7rem 0;
-}
+- sit above content
+- have generous horizontal spacing
+- use a white/warm-white background
+- have a subtle bottom border
+- transition subtly when `.scrolled` is added
 
-.section--warm {
-    background-color: var(--warm-white);
-}
+Logo should remain visually prominent but not oversized.
 
-.section--stone {
-    background-color: var(--stone);
-}
+Navigation:
 
-.section--navy {
-    background-color: var(--navy);
-}
+Services
+Who We Help
+About
+Insights
 
-.section--navy h2,
-.section--navy h3,
-.section--navy h4 {
-    color: var(--white);
-}
+Primary contact:
+Call 07497 528077
 
-.section__header {
-    max-width: 780px;
-    margin-bottom: 4rem;
-}
+CTA:
+Book a consultation
 
-.section__title {
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
-}
+Use restrained hover effects.
 
-.section__title--light {
-    color: var(--white);
-}
+Do not create pill-shaped navigation.
 
-.section__lead {
-    font-size: 1.125rem;
-    color: var(--text-mid);
-    max-width: 640px;
-    line-height: 1.7;
-}
+==================================================
+MOBILE NAVIGATION
+==================================================
 
-.section__lead--light {
-    color: rgba(248, 246, 241, 0.8);
-}
+The JavaScript will add/remove:
 
-.section__statement {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    color: var(--navy);
-    margin-bottom: 1rem;
-    font-style: italic;
-}
+.nav-open
 
-/* ---------- BUTTONS ---------- */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 1rem 2rem;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-}
+and may manipulate:
 
-.btn--primary {
-    background-color: var(--navy);
-    color: var(--white);
-    border-color: var(--navy);
-}
+aria-expanded
 
-.btn--primary:hover {
-    background-color: var(--deep-navy);
-    border-color: var(--deep-navy);
-    transform: translateY(-1px);
-}
+The CSS must support the mobile navigation.
 
-.btn--gold {
-    background-color: var(--gold);
-    color: var(--white);
-    border-color: var(--gold);
-}
+Desktop:
+- horizontal navigation
+- dropdowns positioned correctly
 
-.btn--gold:hover {
-    background-color: #a08852;
-    border-color: #a08852;
-    transform: translateY(-1px);
-}
+Mobile:
+- navigation becomes a full-width or full-screen menu
+- stacked links
+- accessible spacing
+- dropdowns become accordions
 
-.btn--text {
-    background: transparent;
-    color: var(--navy);
-    padding: 1rem 0;
-    border: none;
-    border-bottom: 1px solid transparent;
-}
+The mobile experience must feel premium rather than like a default hamburger menu.
 
-.btn--text:hover {
-    border-bottom-color: var(--gold);
-    color: var(--gold);
-}
+==================================================
+HERO
+==================================================
 
-.btn--sm {
-    padding: 0.65rem 1.5rem;
-    font-size: 0.85rem;
-}
+Create a large editorial hero.
 
-.btn--full {
-    width: 100%;
-}
+Desktop:
+Two-column composition.
 
-/* ---------- HEADER ---------- */
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: rgba(248, 246, 241, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(16, 36, 58, 0.06);
-    transition: box-shadow 0.3s ease;
-}
+Left:
+- eyebrow
+- large H1
+- supporting copy
+- CTA buttons
+- trust line
 
-.header--scrolled {
-    box-shadow: 0 2px 20px rgba(16, 36, 58, 0.06);
-}
+Right:
+A sophisticated visual composition.
 
-.header__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: var(--header-height);
-    gap: 2rem;
-}
+Do not use generic stock photography.
 
-.header__logo {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-    flex-shrink: 0;
-}
+If the HTML contains an image, style it elegantly.
 
-.logo__chariot {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    font-weight: 600;
-    color: var(--navy);
-    letter-spacing: 0.08em;
-}
+If the visual is CSS-generated, make it subtle.
 
-.logo__sub {
-    font-family: var(--font-body);
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    text-transform: uppercase;
-}
+Hero should have substantial vertical spacing.
 
-.header__nav {
-    display: flex;
-    align-items: center;
-}
+H1 should be approximately:
 
-.nav__list {
-    display: flex;
-    gap: 2.5rem;
-}
+clamp(3rem, 7vw, 6.5rem)
 
-.nav__link {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--navy);
-    letter-spacing: 0.01em;
-    transition: color 0.2s ease;
-    position: relative;
-}
+but adjust to prevent awkward line wrapping.
 
-.nav__link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--gold);
-    transition: width 0.3s ease;
-}
+The phrase:
 
-.nav__link:hover {
-    color: var(--gold);
-}
+Clarity. Control. Confidence.
 
-.nav__link:hover::after {
-    width: 100%;
-}
+should feel like the defining brand statement.
 
-.header__actions {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex-shrink: 0;
-}
+==================================================
+BUTTONS
+==================================================
 
-.header__phone {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--navy);
-    transition: color 0.2s ease;
-}
+Primary button:
+- navy background
+- white text
+- subtle hover transition
 
-.header__phone:hover {
-    color: var(--gold);
-}
+Secondary button:
+- transparent
+- dark/navy border
+- dark text
 
-.header__hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1100;
-}
+Do not use excessive rounded pills.
 
-.hamburger__line {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background-color: var(--navy);
-    transition: all 0.3s ease;
-    transform-origin: center;
-}
+Use a small radius, approximately:
 
-.header__hamburger.active .hamburger__line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
+2px–6px
 
-.header__hamburger.active .hamburger__line:nth-child(2) {
-    opacity: 0;
-}
+Buttons should have comfortable touch targets.
 
-.header__hamburger.active .hamburger__line:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
+Hover:
+- subtle movement
+- subtle colour transition
 
-/* ---------- HERO ---------- */
-.hero {
-    padding: 6rem 0 5rem;
-    background-color: var(--warm-white);
-    overflow: hidden;
-}
+Focus:
+- visible keyboard focus
 
-.hero__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-}
+==================================================
+SERVICE STRIP
+==================================================
 
-.hero__content {
-    max-width: 600px;
-}
+Create a sophisticated horizontal strip.
 
-.hero__title {
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
-    font-weight: 500;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--navy);
-    margin-bottom: 2rem;
-}
+Items:
 
-.hero__subtitle {
-    font-size: 1.2rem;
-    color: var(--text-mid);
-    line-height: 1.6;
-    margin-bottom: 0.5rem;
-    max-width: 480px;
-}
+ACCOUNTING
+TAX
+VAT
+PAYROLL
+MANAGEMENT ACCOUNTS
+COMMERCIAL FINANCE
 
-.hero__location {
-    font-size: 0.95rem;
-    color: var(--text-mid);
-    margin-bottom: 2.5rem;
-}
+Use:
+- uppercase typography
+- small font size
+- letter spacing
+- thin borders
 
-.hero__actions {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-}
+On mobile, allow wrapping rather than forcing horizontal overflow unless the HTML specifically requires a scrolling strip.
 
-.hero__trust {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gold);
-}
+==================================================
+CORE SERVICES
+==================================================
 
-/* Hero Visual */
-.hero__visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+Use an editorial three-column layout on desktop.
 
-.visual__composition {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-    height: 420px;
-    background-color: var(--white);
-    border: 1px solid rgba(16, 36, 58, 0.06);
-    box-shadow: 0 20px 60px rgba(16, 36, 58, 0.06);
-    padding: 2.5rem;
-    overflow: hidden;
-}
+Accounting
+Tax
+Finance
 
-.visual__grid-lines {
-    position: absolute;
-    inset: 0;
-    background-image: 
-        linear-gradient(rgba(16, 36, 58, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 36, 58, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-}
+Avoid making them look like generic SaaS cards.
 
-.visual__chart {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    right: 2rem;
-    height: 55%;
-}
+Use:
+- large typography
+- thin top borders
+- generous spacing
+- understated CTA links
 
-.chart-svg {
-    width: 100%;
-    height: 100%;
-}
+On mobile, stack vertically.
 
-.visual__bar-container {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 2.5rem;
-    right: 2.5rem;
-    height: 120px;
-    display: flex;
-    align-items: flex-end;
-    gap: 12px;
-}
+==================================================
+GP LOCUM SECTION
+==================================================
 
-.visual__bar {
-    flex: 1;
-    background: linear-gradient(to top, var(--navy), rgba(16, 36, 58, 0.15));
-    border-radius: 1px;
-    transition: height 1s ease;
-    min-height: 8px;
-}
+Make this section visually distinctive.
 
-.visual__bar:nth-child(1) { opacity: 0.25; }
-.visual__bar:nth-child(2) { opacity: 0.45; }
-.visual__bar:nth-child(3) { opacity: 0.35; }
-.visual__bar:nth-child(4) { opacity: 0.65; }
-.visual__bar:nth-child(5) { opacity: 0.4; }
-
-.visual__floating-badge {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    background-color: var(--navy);
-    color: var(--white);
-    padding: 0.75rem 1.25rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-    box-shadow: 0 8px 24px rgba(16, 36, 58, 0.15);
-}
+Use a deep navy background.
 
-.badge-number {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: var(--gold);
-}
+Text should be white/warm white.
 
-.badge-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    opacity: 0.8;
-}
+Gold may be used sparingly as an accent.
 
-/* ---------- SERVICE STRIP ---------- */
-.service-strip {
-    background-color: var(--navy);
-    padding: 1.25rem 0;
-    overflow: hidden;
-}
+Layout:
+- editorial heading on one side
+- service list on the other
 
-.strip-text {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(248, 246, 241, 0.7);
-    text-align: center;
-    white-space: nowrap;
-}
+Items:
 
-/* ---------- SERVICES GRID ---------- */
-.services__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-}
+Self Assessment
+NHS Pension support
+Tax planning
+Sole trader vs limited company
+VAT considerations
+Locum expenses
 
-.service-card {
-    padding: 3rem 2.5rem;
-    background-color: var(--white);
-    border: 1px solid rgba(16, 36, 58, 0.06);
-    border-right: none;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.35s ease;
-    position: relative;
-}
+Avoid excessive icons.
 
-.service-card:last-child {
-    border-right: 1px solid rgba(16, 36, 58, 0.06);
-}
+The section should communicate specialist expertise without making unsupported claims.
 
-.service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(16, 36, 58, 0.08);
-    z-index: 2;
-}
+==================================================
+WHO WE HELP
+==================================================
 
-.service-card--navy {
-    background-color: var(--navy);
-    border-color: var(--navy);
-}
+Create four editorial blocks:
 
-.service-card--navy:hover {
-    box-shadow: 0 12px 40px rgba(16, 36, 58, 0.25);
-}
+GP Locums & Healthcare Professionals
+Owner-Managed Businesses
+Professionals & Contractors
+Growing Businesses
 
-.service-card__number {
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-    display: block;
-}
+Use borders and typography rather than heavy cards.
 
-.service-card__title {
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
-    margin-bottom: 0.5rem;
-}
+Subtle hover interaction is acceptable.
 
-.service-card__tagline {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-style: italic;
-    color: var(--gold);
-    margin-bottom: 1.25rem;
-    line-height: 1.4;
-}
+==================================================
+FINANCE & ADVISORY
+==================================================
 
-.service-card__desc {
-    font-size: 0.95rem;
-    color: var(--text-mid);
-    line-height: 1.7;
-    flex-grow: 1;
-    margin-bottom: 2rem;
-}
+Create a large editorial section.
 
-.service-card__cta {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--navy);
-    border-bottom: 1px solid transparent;
-    padding-bottom: 2px;
-    align-self: flex-start;
-    transition: all 0.2s ease;
-}
+Heading:
 
-.service-card__cta:hover {
-    border-bottom-color: var(--gold);
-    color: var(--gold);
-}
+Your accountant should understand the numbers behind the business.
 
-.service-card--navy .service-card__title {
-    color: var(--white);
-}
+Use a spacious layout.
 
-.service-card--navy .service-card__desc {
-    color: rgba(248, 246, 241, 0.75);
-}
+Services can be displayed in a clean list/grid:
 
-.service-card--navy .service-card__cta {
-    color: var(--gold);
-}
+Management Accounts
+Cash Flow Forecasting
+Budgeting & Forecasting
+Commercial Finance
+Fractional Finance Manager
+Virtual CFO
 
-.service-card--navy .service-card__cta:hover {
-    color: var(--white);
-    border-bottom-color: var(--white);
-}
+Use typography and spacing to create hierarchy.
 
-/* ---------- SPECIALISMS ---------- */
-.specialisms__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3.5rem;
-}
+==================================================
+WHY CHARIOT
+==================================================
 
-.specialism__item {
-    padding: 2rem;
-    background-color: rgba(248, 246, 241, 0.6);
-    border: 1px solid rgba(16, 36, 58, 0.06);
-    transition: all 0.3s ease;
-}
+Use a calm warm-white or stone background.
 
-.specialism__item:hover {
-    background-color: var(--white);
-    box-shadow: 0 6px 24px rgba(16, 36, 58, 0.06);
-}
+Create five principles:
 
-.specialism__number {
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 0.75rem;
-}
+ACCA-led
+Commercial perspective
+Cloud-first
+Personal service
+UK-wide
 
-.specialism__title {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--navy);
-}
+Use restrained borders.
 
-.specialism__cta {
-    text-align: center;
-}
+Do not create badges or fake statistics.
 
-/* ---------- WHO WE HELP ---------- */
-.who-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
-}
+==================================================
+ABOUT
+==================================================
 
-.who-block {
-    padding: 2.5rem;
-    border-left: 2px solid var(--gold);
-    background-color: var(--white);
-    transition: all 0.3s ease;
-}
+Use a split editorial layout.
 
-.who-block:hover {
-    box-shadow: 0 8px 32px rgba(16, 36, 58, 0.06);
-    transform: translateX(4px);
-}
+Heading:
+An accounting practice built around clarity.
 
-.who-block__title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-}
+Keep the section spacious.
 
-.who-block__desc {
-    font-size: 0.95rem;
-    color: var(--text-mid);
-    line-height: 1.7;
-}
+Avoid generic founder photography unless an actual image exists.
 
-/* ---------- FINANCE ---------- */
-.finance-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3.5rem;
-}
+==================================================
+FINAL CTA
+==================================================
 
-.finance-item {
-    padding: 2rem;
-    border: 1px solid rgba(248, 246, 241, 0.12);
-    transition: all 0.3s ease;
-}
+Deep navy background.
 
-.finance-item:hover {
-    border-color: var(--gold);
-    background-color: rgba(182, 154, 99, 0.05);
-}
+Large serif heading:
 
-.finance-item__number {
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 0.75rem;
-}
+Let's make your finances clearer.
 
-.finance-item__title {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--white);
-}
+Supporting copy.
 
-.finance__cta {
-    text-align: center;
-}
+Buttons:
 
-/* ---------- WHY CHARIOT ---------- */
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2rem;
-}
+Book a consultation
+Call 07497 528077
+Email info@chariotfinancialservices.com
 
-.why-block {
-    padding: 2rem;
-    border-top: 2px solid var(--gold);
-    background-color: var(--white);
-    transition: all 0.3s ease;
-}
+Make this section visually strong but restrained.
 
-.why-block:hover {
-    box-shadow: 0 8px 32px rgba(16, 36, 58, 0.06);
-    transform: translateY(-4px);
-}
+==================================================
+FOOTER
+==================================================
 
-.why-block__title {
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
-}
+Deep navy footer.
 
-.why-block__desc {
-    font-size: 0.9rem;
-    color: var(--text-mid);
-    line-height: 1.6;
-}
+Use:
+- white/warm-white typography
+- muted text
+- subtle borders
+- gold only as a restrained accent
 
-/* ---------- ABOUT ---------- */
-.about__content {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-}
+Include columns for:
 
-.about__text {
-    font-size: 1.1rem;
-    color: var(--text-mid);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-}
+Services
+Who We Help
+Company
+Legal
 
-.about__content .btn {
-    margin-top: 1.5rem;
-}
+Ensure good contrast.
 
-/* ---------- CONTACT ---------- */
-.contact__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-}
+==================================================
+REVEAL ANIMATIONS
+==================================================
 
-.contact__info {
-    max-width: 520px;
-}
+The JavaScript adds:
 
-.contact__details {
-    margin-top: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
+.reveal
 
-.contact__phone {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--gold);
-    transition: color 0.2s ease;
-}
+and then:
 
-.contact__phone:hover {
-    color: var(--white);
-}
+.is-visible
 
-.contact__email {
-    font-size: 1.1rem;
-    color: rgba(248, 246, 241, 0.9);
-    transition: color 0.2s ease;
-}
+Create subtle CSS transitions.
 
-.contact__email:hover {
-    color: var(--gold);
-}
+Example concept:
 
-.contact__location {
-    font-size: 0.9rem;
-    color: rgba(248, 246, 241, 0.6);
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
 }
 
-/* Form */
-.contact__form {
-    background-color: rgba(248, 246, 241, 0.05);
-    border: 1px solid rgba(248, 246, 241, 0.1);
-    padding: 2.5rem;
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
-}
+Use approximately 500–800ms transitions.
 
-.form-group label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: rgba(248, 246, 241, 0.8);
-    margin-bottom: 0.5rem;
-}
+Do NOT animate everything.
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.85rem 1rem;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    color: var(--white);
-    background-color: rgba(248, 246, 241, 0.06);
-    border: 1px solid rgba(248, 246, 241, 0.15);
-    transition: all 0.2s ease;
-    -webkit-appearance: none;
-    appearance: none;
-}
+Respect:
 
-.form-group select {
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23B69A63' stroke-width='1.5'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
-}
+@media (prefers-reduced-motion: reduce)
 
-.form-group select option {
-    background-color: var(--navy);
-    color: var(--white);
-}
+In reduced-motion mode:
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--gold);
-    background-color: rgba(248, 246, 241, 0.1);
-}
+- remove transforms
+- remove transition delays
+- make content immediately visible
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(248, 246, 241, 0.35);
-}
+==================================================
+RESPONSIVE DESIGN
+==================================================
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
+Breakpoints should cover:
 
-/* ---------- FOOTER ---------- */
-.footer {
-    background-color: var(--deep-navy);
-    padding: 5rem 0 2rem;
-    color: rgba(248, 246, 241, 0.7);
-}
+large desktop
+desktop
+tablet
+mobile
 
-.footer__grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 3rem;
-    margin-bottom: 4rem;
-}
+Do not design only for 1440px.
 
-.footer__brand {
-    max-width: 280px;
-}
+Test mentally at:
 
-.footer__logo {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    font-weight: 600;
-    color: var(--white);
-    letter-spacing: 0.08em;
-    margin-bottom: 0.15rem;
-}
+1440px
+1200px
+1024px
+768px
+480px
+375px
 
-.footer__sub {
-    font-size: 0.6rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-}
+At mobile:
+- typography scales appropriately
+- navigation works
+- buttons do not overflow
+- columns stack
+- padding reduces
+- tables/lists do not overflow
+- headings remain readable
 
-.footer__tagline {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-style: italic;
-    color: rgba(248, 246, 241, 0.5);
-}
+==================================================
+ACCESSIBILITY
+==================================================
 
-.footer__heading {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 1.5rem;
-}
+Ensure:
 
-.footer__list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
+- sufficient colour contrast
+- visible focus states
+- readable body text
+- no text smaller than necessary
+- touch targets are sufficiently large
+- animations respect reduced motion
 
-.footer__list a {
-    font-size: 0.9rem;
-    color: rgba(248, 246, 241, 0.6);
-    transition: color 0.2s ease;
-}
+Do not remove browser focus outlines without replacing them.
 
-.footer__list a:hover {
-    color: var(--gold);
-}
+==================================================
+TECHNICAL REQUIREMENTS
+==================================================
 
-.footer__list--contact li {
-    font-size: 0.9rem;
-}
+Use plain CSS.
 
-.footer__bottom {
-    border-top: 1px solid rgba(248, 246, 241, 0.08);
-    padding-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    color: rgba(248, 246, 241, 0.4);
-}
+No:
+- Bootstrap
+- Tailwind
+- Sass
+- Less
+- CSS frameworks
+- external component libraries
 
-.footer__legal {
-    display: flex;
-    gap: 2rem;
-}
+Use:
+- CSS variables
+- Flexbox
+- CSS Grid
+- clamp()
+- min()
+- max()
+- calc()
+- media queries
 
-.footer__legal a {
-    transition: color 0.2s ease;
-}
+Keep CSS organised into sections:
 
-.footer__legal a:hover {
-    color: var(--gold);
-}
+1. Variables
+2. Reset
+3. Base
+4. Typography
+5. Layout
+6. Header
+7. Navigation
+8. Buttons
+9. Hero
+10. Services
+11. GP Locum
+12. Who We Help
+13. Finance
+14. Why Chariot
+15. About
+16. CTA
+17. Footer
+18. Animations
+19. Responsive
+20. Accessibility
 
-/* ---------- MOBILE BAR ---------- */
-.mobile-bar {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 900;
-    background-color: var(--navy);
-    border-top: 1px solid rgba(248, 246, 241, 0.1);
-}
+Do not use excessive comments.
 
-.mobile-bar__call,
-.mobile-bar__book {
-    flex: 1;
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.85rem;
-    font-weight: 500;
-}
+==================================================
+IMPORTANT
+==================================================
 
-.mobile-bar__call {
-    color: var(--white);
-    border-right: 1px solid rgba(248, 246, 241, 0.1);
-}
+The CSS must match the existing HTML classes.
 
-.mobile-bar__book {
-    background-color: var(--gold);
-    color: var(--white);
-}
+The JavaScript will use hooks including:
 
-/* ---------- ANIMATIONS ---------- */
-.fade-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
+.menu-toggle
+.site-nav
+.has-dropdown
+.dropdown-toggle
+.dropdown-menu
+.site-header
+.reveal
+.back-to-top
+.current-year
+.contact-form
+.nav-link
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+If a class is not actually used by the HTML, do not create unnecessary CSS for it.
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 1024px) {
-    .hero__grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .hero__content {
-        max-width: 100%;
-    }
-    
-    .hero__visual {
-        max-width: 100%;
-    }
-    
-    .visual__composition {
-        max-width: 100%;
-        height: 320px;
-    }
-    
-    .services__grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .service-card {
-        border-right: 1px solid rgba(16, 36, 58, 0.06);
-        border-bottom: none;
-    }
-    
-    .service-card:last-child {
-        border-bottom: 1px solid rgba(16, 36, 58, 0.06);
-    }
-    
-    .specialisms__grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .finance-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .why-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .contact__grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .footer__grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
-    }
-}
+==================================================
+OUTPUT
+==================================================
 
-@media (max-width: 768px) {
-    :root {
-        --header-height: 68px;
-    }
-    
-    .container {
-        padding: 0 1.5rem;
-    }
-    
-    .section {
-        padding: 4.5rem 0;
-    }
-    
-    /* Header mobile */
-    .header__nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 360px;
-        height: 100vh;
-        background-color: var(--warm-white);
-        padding: 6rem 2rem 2rem;
-        transition: right 0.4s ease;
-        box-shadow: -10px 0 40px rgba(16, 36, 58, 0.1);
-        z-index: 1050;
-    }
-    
-    .header__nav.open {
-        right: 0;
-    }
-    
-    .nav__list {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .nav__link {
-        font-size: 1.1rem;
-    }
-    
-    .header__actions {
-        display: none;
-    }
-    
-    .header__hamburger {
-        display: flex;
-    }
-    
-    /* Hero */
-    .hero {
-        padding: 3rem 0 3rem;
-    }
-    
-    .hero__title {
-        font-size: clamp(2.8rem, 10vw, 3.5rem);
-    }
-    
-    .hero__actions {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-    
-    .visual__composition {
-        height: 260px;
-        padding: 1.5rem;
-    }
-    
-    .visual__floating-badge {
-        top: 1.5rem;
-        right: 1.5rem;
-        padding: 0.5rem 1rem;
-    }
-    
-    /* Service strip */
-    .strip-text {
-        font-size: 0.6rem;
-        letter-spacing: 0.12em;
-        white-space: normal;
-        padding: 0 1rem;
-        line-height: 1.8;
-    }
-    
-    /* Services */
-    .service-card {
-        padding: 2rem 1.5rem;
-    }
-    
-    /* Specialisms */
-    .specialisms__grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .specialism__item {
-        padding: 1.5rem;
-    }
-    
-    /* Who we help */
-    .who-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .who-block {
-        padding: 1.75rem;
-    }
-    
-    /* Finance */
-    .finance-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .finance-item {
-        padding: 1.5rem;
-    }
-    
-    /* Why */
-    .why-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .why-block {
-        padding: 1.75rem;
-    }
-    
-    /* Contact */
-    .contact__form {
-        padding: 1.75rem;
-    }
-    
-    .contact__phone {
-        font-size: 1.5rem;
-    }
-    
-    /* Footer */
-    .footer {
-        padding: 3.5rem 0 5rem;
-    }
-    
-    .footer__grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .footer__bottom {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-    
-    /* Mobile bar */
-    .mobile-bar {
-        display: flex;
-    }
-    
-    body {
-        padding-bottom: 56px;
-    }
-}
+Return ONLY the complete contents of:
 
-@media (max-width: 480px) {
-    .hero__title {
-        font-size: 2.4rem;
-    }
-    
-    .section__title {
-        font-size: 1.8rem;
-    }
-    
-    .btn {
-        padding: 0.85rem 1.5rem;
-        font-size: 0.85rem;
-    }
-    
-    .visual__composition {
-        height: 220px;
-    }
-    
-    .visual__bar-container {
-        height: 80px;
-        bottom: 1.5rem;
-        left: 1.5rem;
-        right: 1.5rem;
-    }
-    
-    .visual__chart {
-        top: 1.5rem;
-        left: 1.5rem;
-        right: 1.5rem;
-    }
-}
+style.css
+
+inside one CSS code block.
+
+Do not return HTML or JavaScript.
