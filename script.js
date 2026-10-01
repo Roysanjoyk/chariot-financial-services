@@ -1,504 +1,635 @@
-You are a senior front-end developer specialising in premium professional-services websites.
+/* =========================================================
+   CHARIOT FINANCIAL SERVICES
+   Main JavaScript
+   ========================================================= */
 
-Create the complete production-ready `script.js` for the Chariot Financial Services Ltd website.
+document.addEventListener("DOMContentLoaded", () => {
+    "use strict";
 
-The existing files are:
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
 
-index.html
-style.css
+    const body = document.body;
+    const siteHeader = document.querySelector(".site-header");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const siteNav = document.querySelector(".site-nav");
+    const dropdownItems = document.querySelectorAll(".has-dropdown");
+    const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const revealElements = document.querySelectorAll(".reveal");
+    const backToTop = document.querySelector(".back-to-top");
+    const currentYearElements = document.querySelectorAll(".current-year");
 
-This JavaScript must work with those files.
 
-==================================================
-BUSINESS
-==================================================
+    /* =====================================================
+       CURRENT YEAR
+    ====================================================== */
 
-Chariot Financial Services Ltd
+    const currentYear = new Date().getFullYear();
 
-Tagline:
-Clarity. Control. Confidence.
+    currentYearElements.forEach((element) => {
+        element.textContent = currentYear;
+    });
 
-Positioning:
-ACCA-led accounting, tax and finance support for GP locums, professionals and growing businesses.
 
-Location:
-Peterborough-based. Supporting clients across the UK.
+    /* =====================================================
+       STICKY HEADER
+    ====================================================== */
 
-Telephone:
-07497 528077
+    const updateHeader = () => {
+        if (!siteHeader) {
+            return;
+        }
 
-Email:
-info@chariotfinancialservices.com
+        if (window.scrollY > 20) {
+            siteHeader.classList.add("scrolled");
+        } else {
+            siteHeader.classList.remove("scrolled");
+        }
+    };
 
-Website:
-https://chariotfinancialservices.com/
+    updateHeader();
 
-==================================================
-TECHNOLOGY
-==================================================
+    window.addEventListener(
+        "scroll",
+        updateHeader,
+        {
+            passive: true
+        }
+    );
 
-Use ONLY:
 
-Vanilla JavaScript
+    /* =====================================================
+       MOBILE NAVIGATION
+    ====================================================== */
 
-No:
-- React
-- Vue
-- Angular
-- jQuery
-- Bootstrap
-- external JS libraries
-- npm packages
-- build tools
+    const closeMobileMenu = () => {
+        if (!menuToggle || !siteNav) {
+            return;
+        }
 
-The website is hosted on GitHub Pages.
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
+        siteNav.classList.remove("is-open");
+        body.classList.remove("menu-open");
 
-The script must work as a normal static JavaScript file.
+        closeAllDropdowns();
+    };
 
-==================================================
-CORE PRINCIPLE
-==================================================
 
-JavaScript should enhance the website, not control the website.
+    const openMobileMenu = () => {
+        if (!menuToggle || !siteNav) {
+            return;
+        }
 
-The website must remain usable if JavaScript is unavailable.
+        menuToggle.setAttribute("aria-expanded", "true");
+        menuToggle.setAttribute("aria-label", "Close navigation");
+        siteNav.classList.add("is-open");
+        body.classList.add("menu-open");
+    };
 
-Do not hide essential content using JavaScript.
 
-Do not create fake functionality.
+    if (menuToggle && siteNav) {
+        menuToggle.addEventListener("click", () => {
 
-Do not create:
-- fake booking systems
-- fake form submissions
-- fake notifications
-- fake testimonials
-- popups
-- countdowns
-- unnecessary carousels
+            const isOpen =
+                menuToggle.getAttribute("aria-expanded") === "true";
 
-==================================================
-1. INITIALISATION
-==================================================
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
 
-Use:
+        });
+    }
 
-document.addEventListener("DOMContentLoaded", ...)
 
-Create a main initialisation function:
+    /* =====================================================
+       DROPDOWN NAVIGATION
+    ====================================================== */
 
-init()
+    const closeDropdown = (dropdownItem) => {
+        const toggle = dropdownItem.querySelector(".dropdown-toggle");
+        const menu = dropdownItem.querySelector(".dropdown-menu");
 
-Call separate functions such as:
+        if (!toggle || !menu) {
+            return;
+        }
 
-initMobileNavigation()
-initDropdowns()
-initSmoothScrolling()
-initHeaderScroll()
-initRevealAnimations()
-initContactForm()
-initActiveNavigation()
-initBackToTop()
-initCurrentYear()
+        dropdownItem.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        menu.hidden = true;
+    };
 
-Each function must safely handle missing elements.
 
-There must be no console errors if optional elements are absent.
+    const openDropdown = (dropdownItem) => {
+        const toggle = dropdownItem.querySelector(".dropdown-toggle");
+        const menu = dropdownItem.querySelector(".dropdown-menu");
 
-==================================================
-2. MOBILE NAVIGATION
-==================================================
+        if (!toggle || !menu) {
+            return;
+        }
 
-Expected hooks:
+        dropdownItems.forEach((item) => {
+            if (item !== dropdownItem) {
+                closeDropdown(item);
+            }
+        });
 
-.menu-toggle
-.site-nav
-.site-header
-.nav-link
+        dropdownItem.classList.add("is-open");
+        toggle.setAttribute("aria-expanded", "true");
+        menu.hidden = false;
+    };
 
-The menu button must:
 
-- open the mobile navigation
-- close the mobile navigation
-- update `aria-expanded`
-- support Escape
-- close when a navigation link is clicked
-- close when clicking outside the menu
-- prevent background scrolling while open where appropriate
+    const closeAllDropdowns = () => {
+        dropdownItems.forEach((item) => {
+            closeDropdown(item);
+        });
+    };
 
-Use a class:
 
-.nav-open
+    dropdownToggles.forEach((toggle) => {
 
-on the body or another suitable parent.
+        toggle.addEventListener("click", (event) => {
+            event.preventDefault();
 
-Do not assume the exact HTML beyond the hooks listed above.
+            const dropdownItem = toggle.closest(".has-dropdown");
 
-==================================================
-3. DROPDOWN NAVIGATION
-==================================================
+            if (!dropdownItem) {
+                return;
+            }
 
-Expected hooks:
+            const isOpen =
+                toggle.getAttribute("aria-expanded") === "true";
 
-.has-dropdown
-.dropdown-toggle
-.dropdown-menu
+            if (isOpen) {
+                closeDropdown(dropdownItem);
+            } else {
+                openDropdown(dropdownItem);
+            }
+        });
 
-Likely dropdowns:
+    });
 
-Services
-Who We Help
 
-Requirements:
+    /* =====================================================
+       CLOSE DROPDOWNS WHEN CLICKING OUTSIDE
+    ====================================================== */
 
-Desktop:
-- clicking the dropdown toggle opens/closes the dropdown
-- keyboard accessible
-- Escape closes it
-- clicking elsewhere closes it
+    document.addEventListener("click", (event) => {
 
-Mobile:
-- dropdown behaves as an accordion
+        const clickedInsideDropdown =
+            event.target.closest(".has-dropdown");
 
-Only one dropdown should normally be open at a time.
+        if (!clickedInsideDropdown) {
+            closeAllDropdowns();
+        }
 
-Update:
+    });
 
-aria-expanded
 
-correctly.
+    /* =====================================================
+       NAVIGATION LINKS
+    ====================================================== */
 
-Do not rely exclusively on hover.
+    navLinks.forEach((link) => {
 
-==================================================
-4. SMOOTH SCROLLING
-==================================================
+        link.addEventListener("click", () => {
 
-For internal links such as:
+            closeAllDropdowns();
 
-#services
-#who-we-help
-#about
-#contact
+            if (
+                window.innerWidth <= 900 &&
+                siteNav &&
+                siteNav.classList.contains("is-open")
+            ) {
+                closeMobileMenu();
+            }
 
-implement smooth scrolling.
+        });
 
-Account for a sticky header.
+    });
 
-Do not interfere with:
-- external URLs
-- mailto:
-- tel:
-- normal links
-- links without hash targets
 
-Respect:
+    /* =====================================================
+       DROPDOWN LINKS
+    ====================================================== */
 
-prefers-reduced-motion: reduce
+    const dropdownLinks = document.querySelectorAll(
+        ".dropdown-menu a"
+    );
 
-==================================================
-5. HEADER SCROLL STATE
-==================================================
+    dropdownLinks.forEach((link) => {
 
-Expected hook:
+        link.addEventListener("click", () => {
 
-.site-header
+            closeAllDropdowns();
 
-When the user scrolls slightly down, add:
+            if (
+                window.innerWidth <= 900 &&
+                siteNav &&
+                siteNav.classList.contains("is-open")
+            ) {
+                closeMobileMenu();
+            }
 
-.scrolled
+        });
 
-When returning to the top, remove it.
+    });
 
-Use an efficient scroll implementation.
 
-Prefer:
+    /* =====================================================
+       CLOSE MOBILE MENU WHEN RESIZING TO DESKTOP
+    ====================================================== */
 
-requestAnimationFrame
+    window.addEventListener("resize", () => {
 
-Do not run expensive calculations on every scroll event.
+        if (window.innerWidth > 900) {
 
-Do not create unnecessary header-hide/show behaviour unless it materially improves the existing design.
+            if (siteNav) {
+                siteNav.classList.remove("is-open");
+            }
 
-==================================================
-6. REVEAL ANIMATIONS
-==================================================
+            if (menuToggle) {
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
-Expected hook:
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation"
+                );
+            }
 
-.reveal
+            body.classList.remove("menu-open");
 
-JavaScript should add:
+            closeAllDropdowns();
+        }
 
-.is-visible
+    });
 
-using IntersectionObserver.
 
-Requirements:
-- subtle
-- once only
-- no repeated animation
-- graceful fallback if IntersectionObserver is unavailable
-- respect reduced motion
+    /* =====================================================
+       ESCAPE KEY
+    ====================================================== */
 
-If reduced motion is enabled, immediately reveal all `.reveal` elements.
+    document.addEventListener("keydown", (event) => {
 
-==================================================
-7. ACTIVE NAVIGATION
-==================================================
+        if (event.key !== "Escape") {
+            return;
+        }
 
-Expected hook:
+        closeAllDropdowns();
 
-.nav-link
+        if (
+            menuToggle &&
+            menuToggle.getAttribute("aria-expanded") === "true"
+        ) {
+            closeMobileMenu();
+            menuToggle.focus();
+        }
 
-Use IntersectionObserver where practical to identify which major page section is visible.
+    });
 
-Potential sections:
 
-#services
-#who-we-help
-#about
-#contact
+    /* =====================================================
+       SCROLL REVEAL
+    ====================================================== */
 
-Only add an active state if the relevant navigation element actually exists.
+    if ("IntersectionObserver" in window) {
 
-Use:
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
 
-.active
+                entries.forEach((entry) => {
 
-Do not interfere with external links.
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
 
-==================================================
-8. CONTACT FORM
-==================================================
+                    entry.target.classList.add("is-visible");
 
-Expected hook:
+                    observer.unobserve(entry.target);
+                });
 
-.contact-form
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -50px 0px"
+            }
+        );
 
-If a contact form exists, provide lightweight client-side validation.
 
-Potential fields:
+        revealElements.forEach((element) => {
+            revealObserver.observe(element);
+        });
 
-name
-email
-phone
-message
+    } else {
 
-Requirements:
-- validate required fields
-- validate email reasonably
-- set aria-invalid when invalid
-- provide accessible error messaging
-- focus the first invalid field
-- do NOT submit personal data anywhere through JavaScript
-- do NOT create a fake successful submission message
-- allow native form submission if a real form action exists
+        revealElements.forEach((element) => {
+            element.classList.add("is-visible");
+        });
 
-If there is no form, do nothing.
+    }
 
-==================================================
-9. BACK TO TOP
-==================================================
 
-Expected hook:
+    /* =====================================================
+       BACK TO TOP
+    ====================================================== */
 
-.back-to-top
+    const updateBackToTop = () => {
 
-If present:
+        if (!backToTop) {
+            return;
+        }
 
-- hide near the top
-- show after scrolling
-- smooth scroll to top
-- respect reduced motion
+        if (window.scrollY > 700) {
+            backToTop.classList.add("is-visible");
+        } else {
+            backToTop.classList.remove("is-visible");
+        }
 
-If the element doesn't exist, do nothing.
+    };
 
-==================================================
-10. CURRENT YEAR
-==================================================
+    updateBackToTop();
 
-Expected hook:
+    window.addEventListener(
+        "scroll",
+        updateBackToTop,
+        {
+            passive: true
+        }
+    );
 
-.current-year
 
-Populate it with:
+    if (backToTop) {
 
-new Date().getFullYear()
+        backToTop.addEventListener("click", () => {
 
-This supports:
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
-© [year] Chariot Financial Services Ltd
+        });
 
-==================================================
-11. PHONE AND EMAIL
-==================================================
+    }
 
-Do not dynamically rewrite the telephone or email.
 
-The HTML should contain:
+    /* =====================================================
+       SMOOTH INTERNAL NAVIGATION
+    ====================================================== */
 
-tel:+447497528077
+    const internalLinks = document.querySelectorAll(
+        'a[href^="#"]'
+    );
 
-and:
+    internalLinks.forEach((link) => {
 
-mailto:info@chariotfinancialservices.com
+        link.addEventListener("click", (event) => {
 
-JavaScript should not intercept these links.
+            const targetId = link.getAttribute("href");
 
-==================================================
-12. ACCESSIBILITY
-==================================================
+            if (
+                !targetId ||
+                targetId === "#" ||
+                targetId.length < 2
+            ) {
+                return;
+            }
 
-Support:
+            const target = document.querySelector(targetId);
 
-- keyboard navigation
-- Escape
-- Enter/Space where needed
-- aria-expanded
-- aria-controls
-- aria-invalid
-- visible focus
-- reduced motion
+            if (!target) {
+                return;
+            }
 
-Do not create keyboard traps.
+            event.preventDefault();
 
-When a mobile navigation closes, restore focus to the menu button where appropriate.
+            const headerOffset =
+                siteHeader
+                    ? siteHeader.offsetHeight + 15
+                    : 15;
 
-When a dropdown closes, maintain sensible focus behaviour.
+            const targetPosition =
+                target.getBoundingClientRect().top +
+                window.scrollY -
+                headerOffset;
 
-==================================================
-13. PERFORMANCE
-==================================================
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth"
+            });
 
-Keep the JavaScript extremely lightweight.
+            if (
+                window.innerWidth <= 900 &&
+                siteNav &&
+                siteNav.classList.contains("is-open")
+            ) {
+                closeMobileMenu();
+            }
 
-Use:
-- event delegation where appropriate
-- IntersectionObserver
-- requestAnimationFrame where needed
-- cached DOM references
+        });
 
-Avoid:
-- polling
-- setInterval
-- unnecessary DOM manipulation
-- large loops on scroll
-- repeated layout calculations
+    });
 
-==================================================
-14. CODE QUALITY
-==================================================
 
-Use:
+    /* =====================================================
+       ACTIVE NAVIGATION LINK
+    ====================================================== */
 
-"use strict";
+    const sections = document.querySelectorAll(
+        "main section[id]"
+    );
 
-Use modern JavaScript.
+    const sectionNavLinks = document.querySelectorAll(
+        '.site-nav a[href^="#"]'
+    );
 
-Prefer:
 
-const
-let
-arrow functions
-querySelector
-querySelectorAll
-classList
-addEventListener
+    if (
+        "IntersectionObserver" in window &&
+        sections.length > 0 &&
+        sectionNavLinks.length > 0
+    ) {
 
-Do not expose unnecessary globals.
+        const activeSections = new Map();
 
-Do not use:
+        const activeSectionObserver =
+            new IntersectionObserver(
+                (entries) => {
 
-eval()
-document.write()
-inline event handlers
+                    entries.forEach((entry) => {
 
-==================================================
-15. ERROR RESILIENCE
-==================================================
+                        activeSections.set(
+                            entry.target.id,
+                            entry.isIntersecting
+                        );
 
-Every optional component must fail gracefully.
+                    });
 
-For example:
+                    let activeId = null;
 
-If there is no contact form:
-navigation must still work.
+                    sections.forEach((section) => {
 
-If there is no dropdown:
-scroll animations must still work.
+                        if (
+                            activeSections.get(section.id)
+                        ) {
+                            activeId = section.id;
+                        }
 
-If IntersectionObserver is unavailable:
-content must remain visible.
+                    });
 
-There must be no:
+                    sectionNavLinks.forEach((link) => {
 
-Cannot read properties of null
+                        const href =
+                            link.getAttribute("href");
 
-errors.
+                        if (
+                            activeId &&
+                            href === `#${activeId}`
+                        ) {
+                            link.classList.add("is-active");
+                        } else {
+                            link.classList.remove("is-active");
+                        }
 
-==================================================
-16. CHARIOT INTERACTION STYLE
-==================================================
+                    });
 
-The website is intended to feel:
+                },
+                {
+                    rootMargin:
+                        "-25% 0px -60% 0px",
+                    threshold: 0
+                }
+            );
 
-Premium
-Calm
-Professional
-Editorial
-Restrained
-Trustworthy
 
-Therefore avoid:
+        sections.forEach((section) => {
+            activeSectionObserver.observe(section);
+        });
 
-- bouncing animations
-- aggressive transitions
-- excessive parallax
-- spinning elements
-- flashy effects
-- popups
-- auto-playing content
+    }
 
-Interactions should support:
 
-Clarity.
-Control.
-Confidence.
+    /* =====================================================
+       CONTACT LINKS
+       ===================================================== */
 
-==================================================
-EXPECTED HTML HOOKS
-==================================================
+    const telephoneLinks =
+        document.querySelectorAll(
+            'a[href^="tel:"]'
+        );
 
-The HTML may contain:
+    const emailLinks =
+        document.querySelectorAll(
+            'a[href^="mailto:"]'
+        );
 
-.menu-toggle
-.site-nav
-.site-header
-.nav-link
-.has-dropdown
-.dropdown-toggle
-.dropdown-menu
-.reveal
-.back-to-top
-.current-year
-.contact-form
 
-Use feature detection.
+    telephoneLinks.forEach((link) => {
 
-Do not assume every hook exists.
+        link.addEventListener("click", () => {
 
-==================================================
-OUTPUT
-==================================================
+            if (typeof window.gtag === "function") {
 
-Return ONLY the complete contents of:
+                window.gtag(
+                    "event",
+                    "phone_click",
+                    {
+                        event_category: "contact",
+                        event_label: "Telephone"
+                    }
+                );
 
-script.js
+            }
 
-inside one JavaScript code block.
+        });
 
-After the code block, provide a very short section called:
+    });
 
-Expected HTML hooks
 
-List only the hooks actually required by the JavaScript.
+    emailLinks.forEach((link) => {
+
+        link.addEventListener("click", () => {
+
+            if (typeof window.gtag === "function") {
+
+                window.gtag(
+                    "event",
+                    "email_click",
+                    {
+                        event_category: "contact",
+                        event_label: "Email"
+                    }
+                );
+
+            }
+
+        });
+
+    });
+
+
+    /* =====================================================
+       CONTACT FORM SAFETY
+       
+       There is currently no contact form in index.html.
+       This guard prevents accidental false submission
+       behaviour if a form is added later without a backend.
+    ====================================================== */
+
+    const contactForm =
+        document.querySelector(".contact-form");
+
+    if (contactForm) {
+
+        contactForm.addEventListener("submit", (event) => {
+
+            const action =
+                contactForm.getAttribute("action");
+
+            if (
+                !action ||
+                action === "#" ||
+                action.trim() === ""
+            ) {
+                event.preventDefault();
+
+                const existingMessage =
+                    contactForm.querySelector(
+                        ".form-message"
+                    );
+
+                if (existingMessage) {
+                    existingMessage.textContent =
+                        "Please contact Chariot Financial Services directly by telephone or email.";
+                }
+
+            }
+
+        });
+
+    }
+
+
+    /* =====================================================
+       INITIALISE DROPDOWNS
+    ====================================================== */
+
+    dropdownItems.forEach((item) => {
+        closeDropdown(item);
+    });
+
+
+    /* =====================================================
+       PAGE LOAD STATE
+    ====================================================== */
+
+    document.documentElement.classList.add("js-enabled");
+
+});
