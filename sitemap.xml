@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://chariotfinancialservices.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
+<url><loc>https://chariotfinancialservices.com/</loc></url>
+<url><loc>https://chariotfinancialservices.com/accounting/</loc></url>
+<url><loc>https://chariotfinancialservices.com/tax/</loc></url>
+<url><loc>https://chariotfinancialservices.com/vat/</loc></url>
+<url><loc>https://chariotfinancialservices.com/payroll/</loc></url>
+<url><loc>https://chariotfinancialservices.com/management-accounts/</loc></url>
+<url><loc>https://chariotfinancialservices.com/fractional-finance-manager/</loc></url>
+<url><loc>https://chariotfinancialservices.com/commercial-finance/</loc></url>
+<url><loc>https://chariotfinancialservices.com/virtual-cfo/</loc></url>
+<url><loc>https://chariotfinancialservices.com/startup-accounting/</loc></url>
+<url><loc>https://chariotfinancialservices.com/gp-locum-accountants/</loc></url>
+<url><loc>https://chariotfinancialservices.com/about/</loc></url>
+<url><loc>https://chariotfinancialservices.com/insights/</loc></url>
+<url><loc>https://chariotfinancialservices.com/insights/gp-locum-sole-trader-vs-limited-company/</loc></url>
+<url><loc>https://chariotfinancialservices.com/insights/income-over-100000/</loc></url>
+<url><loc>https://chariotfinancialservices.com/insights/gp-locum-expenses/</loc></url>
 </urlset>
