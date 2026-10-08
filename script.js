@@ -1,592 +1,693 @@
-"use strict";
 
 /* =========================================================
    CHARIOT FINANCIAL SERVICES
-   script.js
-========================================================= */
+   Shared site JavaScript
+   Mobile navigation, dropdowns, cookie consent and analytics
+   ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
+  "use strict";
 
-  /* =======================================================
-     01. ELEMENTS
-  ======================================================= */
+  /* -------------------------------------------------------
+     1. Configuration
+     ------------------------------------------------------- */
 
-  const body = document.body;
-  const header = document.querySelector(".site-header");
-  const menuToggle = document.querySelector(".menu-toggle");
-  const siteNav = document.querySelector(".site-nav");
-  const dropdownItems = document.querySelectorAll(".has-dropdown");
-  const navLinks = document.querySelectorAll(".site-nav a");
-  const revealElements = document.querySelectorAll(".reveal");
-  const backToTop = document.querySelector(".back-to-top");
-  const contactForm = document.querySelector(".contact-form");
-  const formStatus = document.querySelector(".form-status");
-  const currentYear = document.getElementById("current-year");
+  const CONFIG = {
+    // Replace with the real Google Analytics measurement ID.
+    // Leave as a placeholder until verified.
+    analyticsId: "G-REPLACE-BEFORE-DEPLOYMENT",
 
+    consentKey: "chariot_consent",
+    consentVersion: 1,
 
-  /* =======================================================
-     02. CURRENT YEAR
-  ======================================================= */
+    // 183 days, approximately six months.
+    consentExpiryDays: 183,
 
-  if (currentYear) {
-    currentYear.textContent = new Date().getFullYear();
-  }
+    analyticsScriptTimeout: 10000
+  };
 
+  const PLACEHOLDER_ID = "G-REPLACE-BEFORE-DEPLOYMENT";
 
-  /* =======================================================
-     03. STICKY HEADER
-  ======================================================= */
+  const isValidAnalyticsId = (id) =>
+    /^G-[A-Z0-9]+$/i.test(id) &&
+    id !== PLACEHOLDER_ID;
 
-  const updateHeader = () => {
-    if (!header) return;
+  /* -------------------------------------------------------
+     2. Small utilities
+     ------------------------------------------------------- */
 
-    if (window.scrollY > 20) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
+  const $ = (selector, root = document) =>
+    root.querySelector(selector);
+
+  const $$ = (selector, root = document) =>
+    Array.from(root.querySelectorAll(selector));
+
+  const safeStorage = {
+    get(key) {
+      try {
+        return window.localStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    },
+
+    set(key, value) {
+      try {
+        window.localStorage.setItem(key, value);
+        return true;
+      } catch {
+        return false;
+      }
+    },
+
+    remove(key) {
+      try {
+        window.localStorage.removeItem(key);
+      } catch {
+        // The site must remain usable if storage is unavailable.
+      }
     }
   };
 
-  updateHeader();
+  const setHidden = (element, hidden) => {
+    if (!element) return;
 
-  window.addEventListener("scroll", updateHeader, {
-    passive: true
-  });
+    element.hidden = hidden;
 
-
-  /* =======================================================
-     04. MOBILE NAVIGATION
-  ======================================================= */
-
-  const closeMobileMenu = () => {
-    if (!menuToggle || !siteNav) return;
-
-    body.classList.remove("menu-open");
-
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation");
+    if (hidden) {
+      element.setAttribute("aria-hidden", "true");
+    } else {
+      element.removeAttribute("aria-hidden");
+    }
   };
 
-  const openMobileMenu = () => {
-    if (!menuToggle || !siteNav) return;
+  /* -------------------------------------------------------
+     3. Mobile navigation
+     ------------------------------------------------------- */
 
-    body.classList.add("menu-open");
+  function initNavigation() {
+    const header = $(
+      ".site-header, header.site-header, .header"
+    );
 
-    menuToggle.setAttribute("aria-expanded", "true");
-    menuToggle.setAttribute("aria-label", "Close navigation");
-  };
+    const menuToggle = $(
+      ".menu-toggle, .mobile-menu-toggle, .nav-toggle, " +
+      "[data-menu-toggle]"
+    );
 
-  if (menuToggle) {
-    menuToggle.addEventListener("click", () => {
+    const nav = $(
+      ".site-nav, .main-navigation, nav.main-nav, " +
+      "[data-site-navigation]"
+    );
 
-      const isOpen =
-        menuToggle.getAttribute("aria-expanded") === "true";
+    if (!header || !menuToggle || !nav) return;
 
-      if (isOpen) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
+    const isOpen = () =>
+      header.classList.contains("menu-open") ||
+      menuToggle.getAttribute("aria-expanded") === "true";
+
+    const openMenu = () => {
+      header.classList.add("menu-open");
+      menuToggle.setAttribute("aria-expanded", "true");
+      nav.removeAttribute("hidden");
+    };
+
+    const closeMenu = () => {
+      header.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      // Do not hide the desktop navigation.
+      if (window.matchMedia("(max-width: 760px)").matches) {
+        nav.setAttribute("hidden", "");
       }
+    };
 
+    menuToggle.setAttribute(
+      "aria-expanded",
+      isOpen() ? "true" : "false"
+    );
+
+    if (!menuToggle.hasAttribute("aria-controls")) {
+      if (!nav.id) nav.id = "primary-navigation";
+      menuToggle.setAttribute("aria-controls", nav.id);
+    }
+
+    if (
+      window.matchMedia("(max-width: 760px)").matches &&
+      !isOpen()
+    ) {
+      nav.setAttribute("hidden", "");
+    }
+
+    menuToggle.addEventListener("click", () => {
+      if (isOpen()) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Close after a visitor selects an ordinary navigation link.
+    nav.addEventListener("click", (event) => {
+      const link = event.target.closest("a");
+
+      if (!link) return;
+
+      const dropdownTrigger = link.matches(
+        "[aria-haspopup='true'], [data-dropdown-toggle]"
+      );
+
+      if (!dropdownTrigger &&
+          window.matchMedia("(max-width: 760px)").matches) {
+        closeMenu();
+      }
+    });
+
+    // Close when clicking outside the header.
+    document.addEventListener("click", (event) => {
+      if (isOpen() && !header.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    // Keyboard support.
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && isOpen()) {
+        closeMenu();
+        menuToggle.focus();
+      }
+    });
+
+    // Restore the correct state when moving between breakpoints.
+    let previousMobileState =
+      window.matchMedia("(max-width: 760px)").matches;
+
+    window.addEventListener("resize", () => {
+      const mobileState =
+        window.matchMedia("(max-width: 760px)").matches;
+
+      if (mobileState !== previousMobileState) {
+        previousMobileState = mobileState;
+
+        if (mobileState) {
+          closeMenu();
+        } else {
+          header.classList.remove("menu-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          nav.removeAttribute("hidden");
+        }
+      }
     });
   }
 
+  /* -------------------------------------------------------
+     4. Accessible dropdown navigation
+     ------------------------------------------------------- */
 
-  /* =======================================================
-     05. DROPDOWN NAVIGATION
-  ======================================================= */
+  function initDropdowns() {
+    const triggers = $$(
+      "[data-dropdown-toggle], " +
+      ".dropdown-toggle, " +
+      ".has-dropdown > button, " +
+      ".has-dropdown > a[aria-haspopup='true']"
+    );
 
-  const closeDropdown = (item) => {
-    if (!item) return;
+    triggers.forEach((trigger) => {
+      const parent = trigger.closest(
+        ".dropdown, .has-dropdown"
+      );
 
-    const button = item.querySelector(".dropdown-toggle");
-    const menu = item.querySelector(".dropdown-menu");
+      if (!parent) return;
 
-    item.classList.remove("is-open");
+      const submenu = $(
+        ".dropdown-menu, .submenu, [data-dropdown-menu]",
+        parent
+      );
 
-    if (button) {
-      button.setAttribute("aria-expanded", "false");
-    }
+      if (!submenu) return;
 
-    if (menu) {
-      menu.hidden = true;
-    }
-  };
+      if (!submenu.id) {
+        submenu.id =
+          "dropdown-" +
+          Math.random().toString(36).slice(2, 10);
+      }
 
-  const openDropdown = (item) => {
-    if (!item) return;
+      trigger.setAttribute("aria-controls", submenu.id);
+      trigger.setAttribute("aria-haspopup", "true");
 
-    const button = item.querySelector(".dropdown-toggle");
-    const menu = item.querySelector(".dropdown-menu");
+      const initiallyOpen =
+        parent.classList.contains("is-open") ||
+        trigger.getAttribute("aria-expanded") === "true";
 
-    item.classList.add("is-open");
+      trigger.setAttribute(
+        "aria-expanded",
+        initiallyOpen ? "true" : "false"
+      );
 
-    if (button) {
-      button.setAttribute("aria-expanded", "true");
-    }
+      const setOpen = (open) => {
+        parent.classList.toggle("is-open", open);
+        trigger.setAttribute(
+          "aria-expanded",
+          open ? "true" : "false"
+        );
 
-    if (menu) {
-      menu.hidden = false;
-    }
-  };
+        // Use hidden only for click-controlled dropdowns.
+        if (trigger.hasAttribute("data-dropdown-toggle")) {
+          submenu.hidden = !open;
+        }
+      };
 
-  dropdownItems.forEach((item) => {
+      if (trigger.tagName === "BUTTON" ||
+          trigger.hasAttribute("data-dropdown-toggle")) {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
 
-    const button = item.querySelector(".dropdown-toggle");
+          const open =
+            trigger.getAttribute("aria-expanded") !== "true";
 
-    if (!button) return;
+          setOpen(open);
+        });
+      }
 
-    button.addEventListener("click", (event) => {
-
-      event.preventDefault();
-      event.stopPropagation();
-
-      const isOpen = item.classList.contains("is-open");
-
-      dropdownItems.forEach((otherItem) => {
-        if (otherItem !== item) {
-          closeDropdown(otherItem);
+      parent.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          setOpen(false);
+          trigger.focus();
         }
       });
 
-      if (isOpen) {
-        closeDropdown(item);
-      } else {
-        openDropdown(item);
-      }
-
+      // Close click-controlled menus when focus leaves them.
+      parent.addEventListener("focusout", (event) => {
+        if (
+          trigger.hasAttribute("data-dropdown-toggle") &&
+          !parent.contains(event.relatedTarget)
+        ) {
+          setOpen(false);
+        }
+      });
     });
-  });
-
-
-  /* =======================================================
-     06. CLOSE DROPDOWNS WHEN CLICKING OUTSIDE
-  ======================================================= */
-
-  document.addEventListener("click", (event) => {
-
-    dropdownItems.forEach((item) => {
-
-      if (!item.contains(event.target)) {
-        closeDropdown(item);
-      }
-
-    });
-
-  });
-
-
-  /* =======================================================
-     07. NAVIGATION LINKS
-  ======================================================= */
-
-  navLinks.forEach((link) => {
-
-    link.addEventListener("click", () => {
-
-      dropdownItems.forEach(closeDropdown);
-
-      if (window.innerWidth <= 900) {
-        closeMobileMenu();
-      }
-
-    });
-
-  });
-
-
-  /* =======================================================
-     08. ESCAPE KEY
-  ======================================================= */
-
-  document.addEventListener("keydown", (event) => {
-
-    if (event.key !== "Escape") return;
-
-    dropdownItems.forEach(closeDropdown);
-
-    closeMobileMenu();
-
-  });
-
-
-  /* =======================================================
-     09. CLOSE MOBILE NAV ON RESIZE
-  ======================================================= */
-
-  window.addEventListener("resize", () => {
-
-    if (window.innerWidth > 900) {
-      closeMobileMenu();
-    }
-
-  });
-
-
-  /* =======================================================
-     10. SCROLL REVEAL
-  ======================================================= */
-
-  if ("IntersectionObserver" in window) {
-
-    const revealObserver = new IntersectionObserver(
-      (entries, observer) => {
-
-        entries.forEach((entry) => {
-
-          if (!entry.isIntersecting) return;
-
-          entry.target.classList.add("is-visible");
-
-          observer.unobserve(entry.target);
-
-        });
-
-      },
-      {
-        threshold: 0.12,
-        rootMargin: "0px 0px -40px 0px"
-      }
-    );
-
-    revealElements.forEach((element) => {
-      revealObserver.observe(element);
-    });
-
-  } else {
-
-    revealElements.forEach((element) => {
-      element.classList.add("is-visible");
-    });
-
   }
 
+  /* -------------------------------------------------------
+     5. Cookie consent storage
+     ------------------------------------------------------- */
 
-  /* =======================================================
-     11. BACK TO TOP
-  ======================================================= */
+  function readConsent() {
+    const raw = safeStorage.get(CONFIG.consentKey);
 
-  const updateBackToTop = () => {
+    if (!raw) return null;
 
-    if (!backToTop) return;
+    try {
+      const consent = JSON.parse(raw);
 
-    if (window.scrollY > 800) {
-      backToTop.hidden = false;
-    } else {
-      backToTop.hidden = true;
-    }
-
-  };
-
-  updateBackToTop();
-
-  window.addEventListener("scroll", updateBackToTop, {
-    passive: true
-  });
-
-  if (backToTop) {
-
-    backToTop.addEventListener("click", () => {
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    });
-
-  }
-
-
-  /* =======================================================
-     12. SMOOTH INTERNAL NAVIGATION
-  ======================================================= */
-
-  const internalLinks = document.querySelectorAll(
-    'a[href^="#"]'
-  );
-
-  internalLinks.forEach((link) => {
-
-    link.addEventListener("click", (event) => {
-
-      const href = link.getAttribute("href");
-
-      if (!href || href === "#") {
-        return;
-      }
-
-      const target = document.querySelector(href);
-
-      if (!target) {
-        return;
-      }
-
-      event.preventDefault();
-
-      const headerHeight = header
-        ? header.offsetHeight
-        : 0;
-
-      const targetPosition =
-        target.getBoundingClientRect().top +
-        window.scrollY -
-        headerHeight -
-        20;
-
-      window.scrollTo({
-        top: Math.max(targetPosition, 0),
-        behavior: "smooth"
-      });
-
-      if (window.innerWidth <= 900) {
-        closeMobileMenu();
-      }
-
-    });
-
-  });
-
-
-  /* =======================================================
-     13. ACTIVE SECTION NAVIGATION
-  ======================================================= */
-
-  const sectionLinks = Array.from(
-    document.querySelectorAll(
-      '.site-nav a[href^="#"]'
-    )
-  );
-
-  const sections = sectionLinks
-    .map((link) => {
-      const id = link.getAttribute("href");
-
-      if (!id || id === "#") {
+      if (
+        consent.version !== CONFIG.consentVersion ||
+        typeof consent.analytics !== "boolean" ||
+        typeof consent.updatedAt !== "number" ||
+        typeof consent.expiresAt !== "number" ||
+        Date.now() >= consent.expiresAt
+      ) {
+        safeStorage.remove(CONFIG.consentKey);
         return null;
       }
 
-      return document.querySelector(id);
-    })
-    .filter(Boolean);
+      return consent;
+    } catch {
+      safeStorage.remove(CONFIG.consentKey);
+      return null;
+    }
+  }
 
-  if ("IntersectionObserver" in window && sections.length) {
+  function saveConsent(analyticsAllowed) {
+    const now = Date.now();
 
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
+    const consent = {
+      version: CONFIG.consentVersion,
+      necessary: true,
+      analytics: Boolean(analyticsAllowed),
+      updatedAt: now,
+      expiresAt:
+        now +
+        CONFIG.consentExpiryDays * 24 * 60 * 60 * 1000
+    };
 
-        entries.forEach((entry) => {
-
-          if (!entry.isIntersecting) return;
-
-          sectionLinks.forEach((link) => {
-            link.classList.remove("is-active");
-          });
-
-          const activeLink = sectionLinks.find(
-            (link) =>
-              link.getAttribute("href") ===
-              `#${entry.target.id}`
-          );
-
-          if (activeLink) {
-            activeLink.classList.add("is-active");
-          }
-
-        });
-
-      },
-      {
-        rootMargin: "-35% 0px -55% 0px",
-        threshold: 0
-      }
+    const saved = safeStorage.set(
+      CONFIG.consentKey,
+      JSON.stringify(consent)
     );
 
-    sections.forEach((section) => {
-      sectionObserver.observe(section);
-    });
-
+    return saved ? consent : null;
   }
 
+  /* -------------------------------------------------------
+     6. Analytics management
+     ------------------------------------------------------- */
 
-  /* =======================================================
-     14. CONTACT FORM
-  ======================================================= */
+  let analyticsRequested = false;
+  let analyticsScriptAdded = false;
 
-  if (contactForm) {
+  function disableAnalytics() {
+    const id = CONFIG.analyticsId;
 
-    contactForm.addEventListener("submit", (event) => {
+    if (isValidAnalyticsId(id)) {
+      window["ga-disable-" + id] = true;
+    }
 
-      /*
-       * The form currently has no connected backend.
-       * Prevent a false submission and provide a clear
-       * next step instead.
-       */
+    // Remove Google Analytics cookies on common domain variants.
+    // This does not remove cookies set on unrelated domains.
+    const host = window.location.hostname;
+    const domainParts = host.split(".");
+    const domains = new Set([""]);
 
-      event.preventDefault();
+    for (let i = 0; i < domainParts.length - 1; i++) {
+      domains.add(
+        "." + domainParts.slice(i).join(".")
+      );
+    }
 
-      if (!formStatus) return;
+    const paths = new Set(["/"]);
 
-      formStatus.textContent =
-        "The contact form is not connected yet. Please call 07497 528077 or email info@chariotfinancialservices.com.";
+    const pathSegments = window.location.pathname
+      .split("/")
+      .filter(Boolean);
 
-      formStatus.classList.add("is-visible");
+    let currentPath = "";
 
+    for (const segment of pathSegments) {
+      currentPath += "/" + segment;
+      paths.add(currentPath);
+      paths.add(currentPath + "/");
+    }
+
+    const cookieNames = document.cookie
+      .split(";")
+      .map((item) => item.trim().split("=")[0])
+      .filter((name) =>
+        /^_ga($|_)/.test(name) ||
+        /^_gid$/.test(name) ||
+        /^_gat($|_)/.test(name)
+      );
+
+    cookieNames.forEach((name) => {
+      domains.forEach((domain) => {
+        paths.forEach((path) => {
+          let cookie =
+            name +
+            "=; Max-Age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT" +
+            "; path=" + path +
+            "; SameSite=Lax";
+
+          if (domain) {
+            cookie += "; domain=" + domain;
+          }
+
+          document.cookie = cookie;
+        });
+      });
     });
-
   }
 
+  function enableAnalytics() {
+    const id = CONFIG.analyticsId;
 
-  /* =======================================================
-     15. TELEPHONE / EMAIL TRACKING
-  ======================================================= */
-
-  const trackContactClick = (event) => {
-
-    const link = event.currentTarget;
-
-    if (typeof window.gtag !== "function") {
+    if (!isValidAnalyticsId(id)) {
+      console.warn(
+        "Chariot: Google Analytics has not been configured with a valid measurement ID."
+      );
       return;
     }
 
-    const href = link.getAttribute("href") || "";
+    if (analyticsRequested) return;
 
-    if (href.startsWith("tel:")) {
+    analyticsRequested = true;
 
-      window.gtag("event", "phone_click", {
-        event_category: "contact",
-        event_label: "Phone"
-      });
+    // Ensure the global opt-out flag is cleared only after consent.
+    window["ga-disable-" + id] = false;
 
-    }
-
-    if (href.startsWith("mailto:")) {
-
-      window.gtag("event", "email_click", {
-        event_category: "contact",
-        event_label: "Email"
-      });
-
-    }
-
-  };
-
-  document
-    .querySelectorAll('a[href^="tel:"], a[href^="mailto:"]')
-    .forEach((link) => {
-      link.addEventListener("click", trackContactClick);
-    });
-
-
-  /* =======================================================
-     16. JOURNAL / CTA TRACKING
-  ======================================================= */
-
-  const trackJournalClick = (event) => {
-
-    if (typeof window.gtag !== "function") {
+    // The consent check happens before any Google script is injected.
+    if (!readConsent()?.analytics) {
+      disableAnalytics();
       return;
     }
 
-    const link = event.currentTarget;
+    if (analyticsScriptAdded) return;
 
-    window.gtag("event", "journal_click", {
-      event_category: "engagement",
-      event_label: link.textContent.trim()
+    analyticsScriptAdded = true;
+
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+
+    window.gtag = window.gtag || gtag;
+
+    window.gtag("js", new Date());
+    window.gtag("config", id, {
+      anonymize_ip: true
     });
 
-  };
+    const script = document.createElement("script");
+    script.async = true;
+    script.src =
+      "https://www.googletagmanager.com/gtag/js?id=" +
+      encodeURIComponent(id);
 
-  document
-    .querySelectorAll('a[href^="/insights/"]')
-    .forEach((link) => {
-      link.addEventListener("click", trackJournalClick);
-    });
+    script.onerror = () => {
+      analyticsScriptAdded = false;
+      console.error(
+        "Chariot: Google Analytics could not be loaded."
+      );
+    };
 
+    document.head.appendChild(script);
+  }
 
-  /* =======================================================
-     17. FORM FIELD UX
-  ======================================================= */
+  /* -------------------------------------------------------
+     7. Cookie banner and preferences
+     ------------------------------------------------------- */
 
-  const formInputs = document.querySelectorAll(
-    ".contact-form input, .contact-form select, .contact-form textarea"
-  );
+  function initCookieConsent() {
+    const banner = $(
+      "#cookie-banner, #cookie-consent, " +
+      ".cookie-banner, .cookie-consent-banner"
+    );
 
-  formInputs.forEach((field) => {
+    const preferences = $(
+      "#cookie-preferences, #cookie-modal, " +
+      ".cookie-preferences, .cookie-modal"
+    );
 
-    field.addEventListener("input", () => {
+    const acceptButton = $(
+      "#accept-cookies, [data-cookie-accept]"
+    );
 
-      if (formStatus) {
-        formStatus.classList.remove("is-visible");
+    const rejectButton = $(
+      "#reject-cookies, [data-cookie-reject]"
+    );
+
+    const settingsButton = $(
+      "#cookie-settings, [data-cookie-settings]"
+    );
+
+    const saveButton = $(
+      "#save-cookie-preferences, [data-cookie-save]"
+    );
+
+    const analyticsCheckbox = $(
+      "#analytics-cookies, #analytics-consent, " +
+      "[name='analytics-consent']"
+    );
+
+    const closeButton = $(
+      "#close-cookie-preferences, [data-cookie-close]"
+    );
+
+    const currentConsent = readConsent();
+
+    const hideBanner = () => setHidden(banner, true);
+    const showBanner = () => setHidden(banner, false);
+
+    const closePreferences = () => {
+      setHidden(preferences, true);
+    };
+
+    const openPreferences = () => {
+      if (!preferences) {
+        showBanner();
+        return;
       }
 
-    });
+      const consent = readConsent();
 
-  });
+      if (analyticsCheckbox) {
+        analyticsCheckbox.checked =
+          Boolean(consent?.analytics);
+      }
 
+      setHidden(preferences, false);
 
-  /* =======================================================
-     18. PREVENT STICKY ELEMENTS FROM HIDING ANCHORS
-  ======================================================= */
+      const firstControl = $(
+        "input, button, select, textarea, a[href]",
+        preferences
+      );
 
-  const adjustAnchorPosition = () => {
+      if (firstControl) firstControl.focus();
+    };
 
-    const hash = window.location.hash;
+    const applyConsent = (analyticsAllowed) => {
+      const consent = saveConsent(analyticsAllowed);
 
-    if (!hash || hash === "#") return;
+      if (!consent) {
+        // If consent cannot be saved, fail closed:
+        // do not load analytics.
+        disableAnalytics();
+        hideBanner();
+        closePreferences();
+        console.warn(
+          "Chariot: consent could not be saved; analytics remains disabled."
+        );
+        return;
+      }
 
-    const target = document.querySelector(hash);
+      hideBanner();
+      closePreferences();
 
-    if (!target) return;
+      if (analyticsAllowed) {
+        enableAnalytics();
+      } else {
+        disableAnalytics();
+      }
+    };
 
-    window.setTimeout(() => {
+    if (!currentConsent) {
+      showBanner();
+      disableAnalytics();
+    } else {
+      hideBanner();
 
-      const headerHeight = header
-        ? header.offsetHeight
-        : 0;
+      if (currentConsent.analytics) {
+        enableAnalytics();
+      } else {
+        disableAnalytics();
+      }
+    }
 
-      const targetPosition =
-        target.getBoundingClientRect().top +
-        window.scrollY -
-        headerHeight -
-        20;
-
-      window.scrollTo({
-        top: Math.max(targetPosition, 0),
-        behavior: "auto"
+    if (acceptButton) {
+      acceptButton.addEventListener("click", () => {
+        applyConsent(true);
       });
+    }
 
-    }, 50);
+    if (rejectButton) {
+      rejectButton.addEventListener("click", () => {
+        applyConsent(false);
+      });
+    }
 
-  };
+    if (settingsButton) {
+      settingsButton.addEventListener("click", () => {
+        openPreferences();
+      });
+    }
 
-  adjustAnchorPosition();
+    if (saveButton) {
+      saveButton.addEventListener("click", () => {
+        applyConsent(
+          Boolean(analyticsCheckbox?.checked)
+        );
+      });
+    }
 
+    if (closeButton) {
+      closeButton.addEventListener("click", () => {
+        closePreferences();
+      });
+    }
 
-  /* =======================================================
-     19. IMAGE ERROR HANDLING
-  ======================================================= */
+    if (preferences) {
+      preferences.addEventListener("click", (event) => {
+        // Close only when the backdrop itself is clicked.
+        if (event.target === preferences) {
+          closePreferences();
+        }
+      });
+    }
 
-  document.querySelectorAll("img").forEach((image) => {
-
-    image.addEventListener("error", () => {
-
-      image.classList.add("image-error");
-
-      /*
-       * Keep layout stable if an optional image fails.
-       * The logo itself should still be fixed at source level.
-       */
-
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Escape" &&
+        preferences &&
+        !preferences.hidden
+      ) {
+        closePreferences();
+      }
     });
 
-  });
+    // Expose a small, controlled interface for a visible
+    // "Cookie settings" or "Change cookie preferences" link.
+    window.ChariotCookies = Object.freeze({
+      openSettings: openPreferences,
 
+      withdrawConsent() {
+        safeStorage.remove(CONFIG.consentKey);
+        disableAnalytics();
+        showBanner();
+        closePreferences();
+      },
 
-  /* =======================================================
-     20. PAGE READY
-  ======================================================= */
+      getConsent() {
+        return readConsent();
+      }
+    });
+  }
 
-  document.documentElement.classList.add("js-ready");
+  /* -------------------------------------------------------
+     8. Footer year
+     ------------------------------------------------------- */
 
-});
+  function initFooterYear() {
+    $$("[data-current-year], #current-year").forEach((element) => {
+      element.textContent = String(new Date().getFullYear());
+    });
+  }
+
+  /* -------------------------------------------------------
+     9. External links
+     ------------------------------------------------------- */
+
+  function initExternalLinks() {
+    $$('a[target="_blank"]').forEach((link) => {
+      const rel = new Set(
+        (link.getAttribute("rel") || "")
+          .split(/\s+/)
+          .filter(Boolean)
+      );
+
+      rel.add("noopener");
+      rel.add("noreferrer");
+
+      link.setAttribute("rel", [...rel].join(" "));
+    });
+  }
+
+  /* -------------------------------------------------------
+     10. Initialise
+     ------------------------------------------------------- */
+
+  function init() {
+    initNavigation();
+    initDropdowns();
+    initCookieConsent();
+    initFooterYear();
+    initExternalLinks();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, {
+      once: true
+    });
+  } else {
+    init();
+  }
+})();
