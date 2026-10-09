@@ -1,4 +1,3 @@
-
 /* =========================================================
    CHARIOT FINANCIAL SERVICES
    Shared site JavaScript
@@ -13,24 +12,21 @@
      ------------------------------------------------------- */
 
   const CONFIG = {
-    // Replace with the real Google Analytics measurement ID.
-    // Leave as a placeholder until verified.
+    // Google Analytics 4 measurement ID. Must match the ID used on the homepage.
     analyticsId: "G-6GVKWZF6YZ",
 
+    // These three values MUST stay identical to the homepage's inline script,
+    // so a visitor's choice is recognised on every page.
     consentKey: "chariot_consent",
     consentVersion: 1,
-
-    // 183 days, approximately six months.
-    consentExpiryDays: 183,
-
-    analyticsScriptTimeout: 10000
+    consentExpiryDays: 183 // approximately six months
   };
 
-  const PLACEHOLDER_ID = "G-6GVKWZF6YZ";
-
+  // A real GA4 ID looks like G-XXXXXXXXXX (letters/digits after "G-").
+  // Reject obvious placeholders such as G-XXXXXXXXXX, but never a real ID.
   const isValidAnalyticsId = (id) =>
-    /^G-[A-Z0-9]+$/i.test(id) &&
-    id !== PLACEHOLDER_ID;
+    /^G-[A-Z0-9]{8,12}$/i.test(id) &&
+    !/^G-X+$/i.test(id);
 
   /* -------------------------------------------------------
      2. Small utilities
@@ -290,6 +286,8 @@
 
   /* -------------------------------------------------------
      5. Cookie consent storage
+     Record format is shared with the homepage:
+     { version, analytics, savedAt (ISO string) }
      ------------------------------------------------------- */
 
   function readConsent() {
@@ -301,34 +299,32 @@
       const consent = JSON.parse(raw);
 
       if (
+        !consent ||
         consent.version !== CONFIG.consentVersion ||
-        typeof consent.analytics !== "boolean" ||
-        typeof consent.updatedAt !== "number" ||
-        typeof consent.expiresAt !== "number" ||
-        Date.now() >= consent.expiresAt
+        typeof consent.analytics !== "boolean"
       ) {
-        safeStorage.remove(CONFIG.consentKey);
+        return null;
+      }
+
+      const savedAt = Date.parse(consent.savedAt);
+      const maxAge =
+        CONFIG.consentExpiryDays * 24 * 60 * 60 * 1000;
+
+      if (isNaN(savedAt) || Date.now() - savedAt > maxAge) {
         return null;
       }
 
       return consent;
     } catch {
-      safeStorage.remove(CONFIG.consentKey);
       return null;
     }
   }
 
   function saveConsent(analyticsAllowed) {
-    const now = Date.now();
-
     const consent = {
       version: CONFIG.consentVersion,
-      necessary: true,
       analytics: Boolean(analyticsAllowed),
-      updatedAt: now,
-      expiresAt:
-        now +
-        CONFIG.consentExpiryDays * 24 * 60 * 60 * 1000
+      savedAt: new Date().toISOString()
     };
 
     const saved = safeStorage.set(
@@ -421,14 +417,14 @@
 
     analyticsRequested = true;
 
-    // Ensure the global opt-out flag is cleared only after consent.
-    window["ga-disable-" + id] = false;
-
     // The consent check happens before any Google script is injected.
     if (!readConsent()?.analytics) {
       disableAnalytics();
       return;
     }
+
+    // Clear the global opt-out flag only after consent is confirmed.
+    window["ga-disable-" + id] = false;
 
     if (analyticsScriptAdded) return;
 
@@ -455,6 +451,7 @@
 
     script.onerror = () => {
       analyticsScriptAdded = false;
+      analyticsRequested = false;
       console.error(
         "Chariot: Google Analytics could not be loaded."
       );
