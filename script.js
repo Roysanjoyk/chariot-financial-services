@@ -15,7 +15,7 @@
   const CONFIG = {
     // Replace with the real Google Analytics measurement ID.
     // Leave as a placeholder until verified.
-    analyticsId: "G-REPLACE-BEFORE-DEPLOYMENT",
+    analyticsId: "G-6GVKWZF6YZ",
 
     consentKey: "chariot_consent",
     consentVersion: 1,
@@ -26,7 +26,7 @@
     analyticsScriptTimeout: 10000
   };
 
-  const PLACEHOLDER_ID = "G-REPLACE-BEFORE-DEPLOYMENT";
+  const PLACEHOLDER_ID = "G-6GVKWZF6YZ";
 
   const isValidAnalyticsId = (id) =>
     /^G-[A-Z0-9]+$/i.test(id) &&
