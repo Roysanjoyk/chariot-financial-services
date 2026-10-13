@@ -483,7 +483,8 @@
       "#reject-cookies, [data-cookie-reject]"
     );
 
-    const settingsButton = $(
+    // Every "cookie settings" control on the page (banner button and footer link).
+    const settingsButtons = $$(
       "#cookie-settings, [data-cookie-settings]"
     );
 
@@ -505,8 +506,19 @@
     const hideBanner = () => setHidden(banner, true);
     const showBanner = () => setHidden(banner, false);
 
+    let lastFocused = null;
+
     const closePreferences = () => {
+      const wasOpen = Boolean(preferences && !preferences.hidden);
+
       setHidden(preferences, true);
+
+      // Return focus to whatever opened the panel.
+      if (wasOpen && lastFocused && typeof lastFocused.focus === "function") {
+        lastFocused.focus();
+      }
+
+      lastFocused = null;
     };
 
     const openPreferences = () => {
@@ -522,6 +534,7 @@
           Boolean(consent?.analytics);
       }
 
+      lastFocused = document.activeElement;
       setHidden(preferences, false);
 
       const firstControl = $(
@@ -582,11 +595,11 @@
       });
     }
 
-    if (settingsButton) {
-      settingsButton.addEventListener("click", () => {
+    settingsButtons.forEach((button) => {
+      button.addEventListener("click", () => {
         openPreferences();
       });
-    }
+    });
 
     if (saveButton) {
       saveButton.addEventListener("click", () => {
@@ -612,12 +625,32 @@
     }
 
     document.addEventListener("keydown", (event) => {
-      if (
-        event.key === "Escape" &&
-        preferences &&
-        !preferences.hidden
-      ) {
+      if (!preferences || preferences.hidden) return;
+
+      if (event.key === "Escape") {
         closePreferences();
+        return;
+      }
+
+      // Keep keyboard focus inside the open panel.
+      if (event.key === "Tab") {
+        const items = $$(
+          "button, [href], input, select, textarea",
+          preferences
+        ).filter((el) => !el.disabled);
+
+        if (!items.length) return;
+
+        const first = items[0];
+        const last = items[items.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     });
 
