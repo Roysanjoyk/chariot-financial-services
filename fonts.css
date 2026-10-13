@@ -1,0 +1,22 @@
+/* =========================================================
+   CHARIOT FINANCIAL SERVICES
+   fonts.css: self-hosted fonts (no Google Fonts request)
+
+   The two font files must exist at the paths below. Until they
+   do, the Georgia and system fallbacks are used.
+   ========================================================= */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: local("Cormorant Garamond"), url("/assets/fonts/CormorantGaramond-Variable.woff2") format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: local("Cormorant Garamond Italic"), url("/assets/fonts/CormorantGaramond-Italic-Variable.woff2") format("woff2");
+  font-weight: 400 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: local("DM Sans"), url("/assets/fonts/DMSans-Variable.woff2") format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}

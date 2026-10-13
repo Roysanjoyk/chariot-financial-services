@@ -1,0 +1,175 @@
+/* =========================================================
+   CHARIOT FINANCIAL SERVICES
+   header.css: the single shared site header (every page)
+
+   All selectors are namespaced "cf-" so they cannot clash with
+   styles.css, pages.css or any page-level CSS. Load this on the
+   homepage AND on every subpage.
+   ========================================================= */
+
+/* Skip link (first focusable element on the page) */
+.cf-skip {
+  position: absolute; left: 1rem; top: -4rem; z-index: 200;
+  padding: .75rem 1rem; border-radius: 2px;
+  background: #10243A; color: #F8F6F1; text-decoration: none;
+  font: 500 1rem/1.4 "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+.cf-skip:focus { top: 1rem; }
+
+/* Header shell */
+.cf-header {
+  --cf-navy: #10243A;
+  --cf-navy-dark: #0B1828;
+  --cf-paper: #F8F6F1;
+  --cf-gold: #B69A63;
+  --cf-gold-text: #7A5F2E;
+  --cf-line: rgba(16, 36, 58, .22);
+  --cf-hh: 4.5rem;
+  --cf-gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --cf-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --cf-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+
+  position: sticky; top: 0; z-index: 100;
+  background: var(--cf-paper); color: var(--cf-navy);
+  border-bottom: 1px solid var(--cf-line);
+  font-family: var(--cf-sans); font-size: 1.0625rem; line-height: 1.65;
+}
+.cf-header *, .cf-header *::before, .cf-header *::after { box-sizing: border-box; }
+.cf-header ul { margin: 0; padding: 0; list-style: none; }
+.cf-header :focus-visible { outline: 3px solid var(--cf-gold-text); outline-offset: 3px; }
+
+.cf-header__inner {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  width: 100%; max-width: 72rem; margin-inline: auto; padding-inline: var(--cf-gutter);
+  min-height: var(--cf-hh); gap: 1rem;
+}
+
+/* Brand: logo badge + text wordmark */
+.cf-header .cf-brand {
+  display: inline-flex; align-items: center; gap: .75rem;
+  min-width: 0; min-height: 2.75rem;
+  color: var(--cf-navy); text-decoration: none;
+}
+.cf-header .cf-brand__logo {
+  display: block; flex: none; width: auto; height: 2.75rem;
+  aspect-ratio: 1294 / 816; border-radius: 2px;
+}
+.cf-header .cf-brand__text {
+  min-width: 0;
+  font-family: var(--cf-serif); font-weight: 700;
+  font-size: clamp(1.1rem, .9rem + .5vw, 1.25rem); line-height: 1.1;
+}
+@media (max-width: 29.99rem) {
+  .cf-header .cf-brand { gap: .6rem; }
+  .cf-header .cf-brand__logo { height: 2.5rem; }
+  .cf-header .cf-brand__text { font-size: 1rem; }
+}
+
+/* Menu button (small screens, JavaScript only) */
+.cf-header .cf-menu-btn {
+  display: none; align-items: center; gap: .6rem;
+  min-height: 2.75rem; min-width: 2.75rem; padding: .25rem .9rem;
+  background: transparent; color: var(--cf-navy);
+  border: 1.5px solid var(--cf-navy); border-radius: 2px;
+  font: 600 1rem/1.2 var(--cf-sans); cursor: pointer;
+}
+.cf-js .cf-header .cf-menu-btn { display: inline-flex; }
+.cf-menu-btn__bars { position: relative; width: 1.1rem; height: .75rem; border-block: 2px solid currentColor; }
+.cf-menu-btn__bars::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%;
+  border-top: 2px solid currentColor; transform: translateY(-50%);
+}
+
+/* Navigation: small-screen layout first */
+.cf-nav { flex-basis: 100%; font-size: 1rem; }
+.cf-nav__list { display: flex; flex-direction: column; }
+.cf-nav__list > li { border-bottom: 1px solid var(--cf-line); }
+
+.cf-header .cf-nav__link,
+.cf-header .cf-sub-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; min-height: 3rem; padding: .5rem 0;
+  background: none; border: 0; cursor: pointer; text-align: left;
+  color: var(--cf-navy); text-decoration: none;
+  font: 500 1.0625rem/1.3 var(--cf-sans);
+}
+.cf-header .cf-nav__link[aria-current="page"] {
+  text-decoration: underline; text-decoration-color: var(--cf-gold);
+  text-decoration-thickness: 2px; text-underline-offset: .35em;
+}
+.cf-chev {
+  flex: none; width: .6rem; height: .6rem; margin-left: .6rem;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px); transition: transform .2s;
+}
+.cf-has-sub.cf-open > .cf-sub-btn .cf-chev { transform: rotate(-135deg); }
+
+.cf-subnav { padding: 0 0 1rem 1rem; }
+.cf-js .cf-subnav { display: none; }
+.cf-js .cf-has-sub.cf-open > .cf-subnav { display: block; }
+.cf-header .cf-subnav .cf-nav__link { min-height: 2.75rem; font-size: 1rem; font-weight: 400; }
+
+.cf-nav__cta { margin-top: 1.25rem; }
+.cf-header .cf-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3rem; padding: .5rem 1.5rem;
+  border: 1.5px solid var(--cf-navy); border-radius: 2px;
+  background: var(--cf-navy); color: var(--cf-paper);
+  font: 600 1rem/1.2 var(--cf-sans); text-decoration: none;
+  transition: background-color .2s;
+}
+.cf-header .cf-btn:hover { background: var(--cf-navy-dark); color: var(--cf-paper); }
+.cf-nav__cta .cf-btn { width: 100%; }
+
+.cf-nav__contact { display: grid; gap: .25rem; margin-top: 1.25rem; font-size: .9375rem; }
+.cf-header .cf-nav__contact a {
+  display: flex; align-items: center; min-height: 2.75rem;
+  color: var(--cf-navy); text-decoration: none;
+}
+
+/* Small screens with JavaScript: full-screen menu panel */
+@media (max-width: 74.99rem) {
+  .cf-js .cf-nav {
+    display: none; position: fixed; inset: var(--cf-hh) 0 0 0; z-index: 99;
+    padding: 1rem var(--cf-gutter) 2.5rem;
+    background: var(--cf-paper); overflow-y: auto; overscroll-behavior: contain;
+  }
+  .cf-js .cf-menu-open .cf-nav { display: block; }
+  body.cf-menu-open { overflow: hidden; }
+}
+
+/* Wide screens: one-row navigation with dropdowns */
+@media (min-width: 75rem) {
+  .cf-header .cf-menu-btn, .cf-js .cf-header .cf-menu-btn { display: none; }
+
+  .cf-nav { display: flex; align-items: center; flex: none; flex-basis: auto; gap: 1.25rem; }
+  .cf-nav__list { flex-direction: row; align-items: center; gap: .125rem; }
+  .cf-nav__list > li { position: relative; border: 0; }
+
+  .cf-header .cf-nav__link,
+  .cf-header .cf-sub-btn { width: auto; min-height: 2.75rem; padding: .5rem .65rem; font-size: .9375rem; }
+  .cf-header .cf-nav__link:hover,
+  .cf-header .cf-sub-btn:hover { color: var(--cf-gold-text); }
+  .cf-chev { margin-left: .5rem; }
+
+  .cf-subnav {
+    position: absolute; top: 100%; left: 0; z-index: 110; min-width: 19rem;
+    padding: 1rem 1.25rem 1.25rem; background: var(--cf-paper);
+    border: 1px solid var(--cf-line); border-top: 2px solid var(--cf-gold);
+    box-shadow: 0 14px 30px rgba(11, 24, 40, .12);
+  }
+  .cf-header .cf-subnav .cf-nav__link { padding-inline: 0; }
+
+  .cf-nav__cta { margin: 0; }
+  .cf-nav__cta .cf-btn { width: auto; min-height: 2.75rem; padding-inline: 1.25rem; font-size: .9375rem; }
+  .cf-nav__contact { display: none; }
+
+  /* Without JavaScript, dropdowns open on hover or keyboard focus */
+  html:not(.cf-js) .cf-subnav { display: none; }
+  html:not(.cf-js) .cf-has-sub:hover > .cf-subnav,
+  html:not(.cf-js) .cf-has-sub:focus-within > .cf-subnav { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-chev, .cf-header .cf-btn { transition: none; }
+}
