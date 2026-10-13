@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <script>document.documentElement.className = "js";</script>
 
   <title>Chariot Financial Services | Accountants in Peterborough, UK</title>
   <meta name="description" content="ACCA-led accounting, tax and finance support from Chariot Financial Services. Peterborough-based, supporting individuals, professionals and businesses across the UK.">
@@ -11,27 +10,28 @@
   <link rel="canonical" href="https://chariotfinancialservices.com/">
   <meta name="theme-color" content="#10243A">
 
-  <!-- Open Graph / Twitter.
-       og:image and twitter:image are deliberately omitted: /chariot-social-card.png is not in the
-       repository root listing. Add them only once an approved image file exists. -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
   <meta property="og:site_name" content="Chariot Financial Services">
   <meta property="og:title" content="Chariot Financial Services | Accountants in Peterborough, UK">
   <meta property="og:description" content="ACCA-led accounting, tax and finance support from Chariot Financial Services. Peterborough-based, supporting individuals, professionals and businesses across the UK.">
   <meta property="og:url" content="https://chariotfinancialservices.com/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://chariotfinancialservices.com/chariot-social-card.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="Chariot Financial Services. Accounting with clarity. Finance with perspective.">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Chariot Financial Services | Accountants in Peterborough, UK">
   <meta name="twitter:description" content="ACCA-led accounting, tax and finance support. Peterborough-based, supporting clients across the UK.">
+  <meta name="twitter:image" content="https://chariotfinancialservices.com/chariot-social-card.png">
 
   <!-- Favicon: reuses the existing logo file. Replace with a dedicated favicon when available. -->
   <link rel="icon" href="/CFSL_Logo.svg" type="image/svg+xml">
 
-  <!-- Fonts are self-hosted (no Google Fonts request). Owner to add the two files listed in the
-       @font-face rules below. Until then the Georgia / system fallbacks are used.
-       Optional once files exist:
-       <link rel="preload" href="/assets/fonts/CormorantGaramond-Variable.woff2" as="font" type="font/woff2" crossorigin>
-       <link rel="preload" href="/assets/fonts/DMSans-Variable.woff2" as="font" type="font/woff2" crossorigin> -->
+  <!-- Fonts are self-hosted (no Google Fonts request): see /fonts.css and /assets/fonts/. -->
+  <link rel="preload" href="/assets/fonts/DMSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/CormorantGaramond-Variable.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Structured data: only facts that are visible on this page. -->
   <script type="application/ld+json">
@@ -49,20 +49,11 @@
   }
   </script>
 
+  <link rel="stylesheet" href="/fonts.css">
+  <link rel="stylesheet" href="/header.css">
+
   <style>
-    /* =====================================================
-       1. FONTS (self-hosted; fallbacks keep the page usable)
-    ===================================================== */
-    @font-face {
-      font-family: "Cormorant Garamond";
-      src: local("Cormorant Garamond"), url("/assets/fonts/CormorantGaramond-Variable.woff2") format("woff2");
-      font-weight: 400 700; font-style: normal; font-display: swap;
-    }
-    @font-face {
-      font-family: "DM Sans";
-      src: local("DM Sans"), url("/assets/fonts/DMSans-Variable.woff2") format("woff2");
-      font-weight: 400 700; font-style: normal; font-display: swap;
-    }
+    /* 1. FONTS: declared in /fonts.css */
 
     /* =====================================================
        2. TOKENS
@@ -125,8 +116,6 @@
     .bg-navy .eyebrow, .bg-navy-dark .eyebrow { color: var(--gold); }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-    .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 200; background: var(--navy); color: var(--paper); padding: .75rem 1rem; border-radius: 2px; }
-    .skip-link:focus { top: 1rem; }
 
     /* Buttons and links */
     .btn {
@@ -150,69 +139,9 @@
     .link-button { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
 
     /* =====================================================
-       4. HEADER AND NAVIGATION
+       4. HEADER: styles live in /header.css (shared with every page)
     ===================================================== */
-    .site-header { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--line); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: var(--hh); gap: 1rem; }
-    .brand { display: inline-flex; align-items: center; min-height: 2.75rem; }
-    .brand-text { font-size: clamp(1.15rem, 1rem + .6vw, 1.45rem); line-height: 1.1; }
     .footer-logo { width: 11rem; height: auto; aspect-ratio: 1294 / 816; border-radius: 2px; margin-bottom: 1.25rem; }
-    .brand, .brand-text { text-decoration: none; }
-    .brand-text { font-family: var(--serif); font-weight: 700; }
-
-    .menu-toggle {
-      display: none; align-items: center; gap: .6rem; min-height: 2.75rem; min-width: 2.75rem; padding: .25rem .9rem;
-      background: transparent; color: var(--navy); border: 1.5px solid var(--navy); border-radius: 2px; font: 600 1rem var(--sans); cursor: pointer;
-    }
-    .js .menu-toggle { display: inline-flex; }
-    .menu-toggle .bars { width: 1.1rem; height: .75rem; border-block: 2px solid currentColor; position: relative; }
-    .menu-toggle .bars::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px solid currentColor; transform: translateY(-50%); }
-
-    .site-nav { font-size: 1rem; }
-    .nav-list { display: flex; flex-direction: column; }
-    .nav-list > li { border-bottom: 1px solid var(--line); }
-    .nav-list a, .sub-toggle {
-      display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 3rem;
-      padding: .5rem 0; color: var(--ink); text-decoration: none; font: 500 1.0625rem var(--sans);
-      background: none; border: 0; cursor: pointer; text-align: left;
-    }
-    .sub-toggle .chev { width: .6rem; height: .6rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .2s; flex: none; margin-left: .6rem; }
-    .has-sub.open > .sub-toggle .chev { transform: rotate(-135deg); }
-    .subnav { padding: 0 0 1rem 1rem; }
-    .js .subnav { display: none; }
-    .js .has-sub.open > .subnav { display: block; }
-    .subnav .group { font-size: .8125rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-text); margin: 1rem 0 .15rem; }
-    .subnav .group a { display: inline; font: inherit; letter-spacing: inherit; color: inherit; min-height: 0; padding: 0; text-decoration: underline; }
-    .subnav li a { min-height: 2.75rem; font-size: 1rem; font-weight: 400; }
-    .nav-cta { margin-top: 1.25rem; }
-    .nav-cta .btn { width: 100%; }
-    .nav-contact { margin-top: 1.25rem; display: grid; gap: .25rem; font-size: .9375rem; }
-    .nav-contact a { min-height: 2.75rem; }
-
-    @media (max-width: 59.99rem) {
-      .js .site-nav {
-        display: none; position: fixed; inset: var(--hh) 0 0 0; z-index: 99; background: var(--paper);
-        overflow-y: auto; overscroll-behavior: contain; padding: 1rem var(--gutter) 2.5rem;
-      }
-      .js .menu-open .site-nav { display: block; }
-      .menu-open { overflow: hidden; }
-    }
-    @media (min-width: 60rem) {
-      .menu-toggle, .js .menu-toggle { display: none; }
-      .site-nav { display: flex; align-items: center; gap: 1.5rem; }
-      .nav-list { flex-direction: row; align-items: center; gap: .25rem; }
-      .nav-list > li { border: 0; position: relative; }
-      .nav-list a, .sub-toggle { width: auto; min-height: 2.75rem; padding: .5rem .75rem; font-size: .9375rem; }
-      .sub-toggle .chev { margin-left: .5rem; }
-      .subnav { position: absolute; top: 100%; left: 0; min-width: 19rem; padding: 1rem 1.25rem 1.25rem; background: var(--paper); border: 1px solid var(--line); border-top: 2px solid var(--gold); box-shadow: 0 14px 30px rgba(11, 24, 40, .12); }
-      .nav-list > li:last-child .subnav { right: 0; left: auto; }
-      .nav-list a:hover, .sub-toggle:hover { color: var(--gold-text); }
-      .nav-cta { margin: 0; }
-      .nav-cta .btn { width: auto; min-height: 2.75rem; padding-inline: 1.25rem; font-size: .9375rem; }
-      .nav-contact { display: none; }
-      html:not(.js) .subnav { display: none; }
-      html:not(.js) .has-sub:hover > .subnav, html:not(.js) .has-sub:focus-within > .subnav { display: block; }
-    }
 
     /* =====================================================
        5. HERO
@@ -354,63 +283,61 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<script>document.documentElement.classList.add("cf-js");</script>
+<a class="cf-skip" href="#main">Skip to content</a>
 
-  <!-- ============================ HEADER ============================ -->
-  <header class="site-header" id="site-header">
-    <div class="wrap header-inner">
-      <!-- CFSL_Logo.svg is a navy badge with its own background and a small wordmark, so it is
-           shown at size in the footer; the light header uses a text wordmark. -->
-      <a class="brand" href="/" aria-label="Chariot Financial Services, home"><span class="brand-text">Chariot Financial Services</span></a>
+<header class="cf-header" id="site-header">
+  <div class="cf-header__inner">
+    <a class="cf-brand" href="/" aria-label="Chariot Financial Services, home">
+      <img class="cf-brand__logo" src="/CFSL_Logo.svg" alt="" width="1294" height="816" decoding="async">
+      <span class="cf-brand__text">Chariot Financial Services</span>
+    </a>
 
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="bars" aria-hidden="true"></span><span class="label">Menu</span>
-      </button>
+    <button class="cf-menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-cf-menu-toggle>
+      <span class="cf-menu-btn__bars" aria-hidden="true"></span><span class="cf-menu-btn__label">Menu</span>
+    </button>
 
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <ul class="nav-list">
-                    <li class="has-sub">
-            <button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-services">Services <span class="chev" aria-hidden="true"></span></button>
-            <div class="subnav" id="sub-services">
-              <ul>
-                <li><a href="/accounting/">Accounting &amp; Tax</a></li>
-                <!-- Finance Consultancy points at the Commercial Finance page (budgets, forecasts, cash flow, analysis). -->
-                <li><a href="/commercial-finance/">Commercial Finance</a></li>
-                <li><a href="/fractional-finance-manager/">Fractional Finance</a></li>
-                <li><a href="/startup-accounting/">Business Start-Up</a></li>
-              </ul>
-            </div>
-          </li>
+    <nav class="cf-nav" id="site-nav" aria-label="Primary" data-cf-nav>
+      <ul class="cf-nav__list">
+        <li class="cf-has-sub" data-cf-sub>
+          <button class="cf-sub-btn" type="button" aria-expanded="false" aria-controls="sub-services">Services <span class="cf-chev" aria-hidden="true"></span></button>
+          <div class="cf-subnav" id="sub-services">
+            <ul>
+              <li><a class="cf-nav__link" href="/accounting/">Accounting &amp; Tax</a></li>
+              <li><a class="cf-nav__link" href="/commercial-finance/">Commercial Finance</a></li>
+              <li><a class="cf-nav__link" href="/fractional-finance-manager/">Fractional Finance</a></li>
+              <li><a class="cf-nav__link" href="/startup-accounting/">Business Start-Up</a></li>
+            </ul>
+          </div>
+        </li>
 
-          <li class="has-sub">
-            <button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-help">Who We Help <span class="chev" aria-hidden="true"></span></button>
-            <div class="subnav" id="sub-help">
-              <!-- Only /gp-locum-accountants/ is a dedicated audience page today; the others link to the most
-                   relevant existing service page. Repoint when dedicated pages are published. -->
-              <ul>
-                <li><a href="/accounting/">Small Businesses</a></li>
-                <li><a href="/gp-locum-accountants/">Healthcare Professionals</a></li>
-                <li><a href="/tax/">Property Investors &amp; Landlords</a></li>
-                <li><a href="/tax/">Contractors &amp; Freelancers</a></li>
-                <li><a href="/tax/">Individuals</a></li>
-              </ul>
-            </div>
-          </li>
+        <li class="cf-has-sub" data-cf-sub>
+          <button class="cf-sub-btn" type="button" aria-expanded="false" aria-controls="sub-help">Who We Help <span class="cf-chev" aria-hidden="true"></span></button>
+          <div class="cf-subnav" id="sub-help">
+            <ul>
+              <li><a class="cf-nav__link" href="/accounting/">Small Businesses</a></li>
+              <li><a class="cf-nav__link" href="/gp-locum-accountants/">Healthcare Professionals</a></li>
+              <li><a class="cf-nav__link" href="/tax/">Property Investors &amp; Landlords</a></li>
+              <li><a class="cf-nav__link" href="/tax/">Contractors &amp; Freelancers</a></li>
+              <li><a class="cf-nav__link" href="/tax/">Individuals</a></li>
+            </ul>
+          </div>
+        </li>
 
-          <li><a href="/about/">About</a></li>
-          <li><a href="/insights/">Insights</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <li><a class="cf-nav__link" href="/about/">About</a></li>
+        <li><a class="cf-nav__link" href="/insights/">Insights</a></li>
+        <li><a class="cf-nav__link" href="/contact/">Contact</a></li>
+      </ul>
 
-        <!-- Arrange a conversation targets the in-page contact section until /contact/ exists. -->
-        <div class="nav-cta"><a class="btn" href="#contact">Arrange a conversation</a></div>
-        <div class="nav-contact">
-          <a href="tel:+447497528077">07497 528077</a>
-          <a href="mailto:info@chariotfinancialservices.com">info@chariotfinancialservices.com</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+      <!-- Contact and the call-to-action go to the enquiry page on every page. -->
+      <div class="cf-nav__cta"><a class="cf-btn" href="/contact/">Arrange a conversation</a></div>
+      <div class="cf-nav__contact">
+        <a href="tel:+447497528077">07497 528077</a>
+        <a href="mailto:info@chariotfinancialservices.com">info@chariotfinancialservices.com</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
   <main id="main">
 
@@ -423,7 +350,7 @@
           <p class="lede">ACCA-led accounting, tax and finance support for individuals, professionals and growing businesses across the UK.</p>
           <p class="hero-location">Peterborough, UK · Supporting clients across the UK</p>
           <div class="hero-actions">
-            <a class="btn btn-gold" href="#contact">Arrange a conversation</a>
+            <a class="btn btn-gold" href="/contact/">Arrange a conversation</a>
             <a class="btn btn-ghost" href="#services">Explore services</a>
           </div>
           <div class="hero-contact">
@@ -531,7 +458,8 @@
           <h2 id="final-title">Ready to talk?</h2>
           <p class="lede">Tell us what you need help with and we can discuss the appropriate next step.</p>
           <div class="final-actions">
-            <a class="btn btn-gold" href="tel:+447497528077">Call 07497 528077</a>
+            <a class="btn btn-gold" href="/contact/">Request a conversation</a>
+            <a class="btn btn-ghost" href="tel:+447497528077">Call 07497 528077</a>
             <a class="btn btn-ghost" href="mailto:info@chariotfinancialservices.com">Email us</a>
           </div>
         </div>
@@ -556,8 +484,6 @@
           <p><a href="tel:+447497528077">07497 528077</a><br><a href="mailto:info@chariotfinancialservices.com">info@chariotfinancialservices.com</a></p>
         </div>
 
-        <!-- PENDING PAGES: none of the legal pages below exist in the repository yet, so they are plain labels.
-             Publish each page, then convert its label to a link (see the comment beside each). -->
         <div class="footer-cols">
           <nav aria-labelledby="f-services">
             <h2 id="f-services">Services</h2>
@@ -583,19 +509,19 @@
             <ul>
               <li><a href="/about/">About</a></li>
               <li><a href="/insights/">Insights</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="/contact/">Contact</a></li>
             </ul>
           </nav>
           <nav aria-labelledby="f-legal">
             <h2 id="f-legal">Professional &amp; Legal</h2>
             <ul>
-              <li><span class="pending">Professional Standards</span> <!-- PENDING PAGE: convert to <a href="/professional-standards/"> once published --></li>
-              <li><span class="pending">Complaints</span> <!-- PENDING PAGE: convert to <a href="/complaints/"> once published --></li>
-              <li><span class="pending">Privacy Policy</span> <!-- PENDING PAGE: convert to <a href="/privacy-policy/"> once published --></li>
-              <li><span class="pending">Cookie Policy</span> <!-- PENDING PAGE: convert to <a href="/cookie-policy/"> once published --></li>
+              <li><a href="/professional-standards/">Professional Standards</a></li>
+              <li><a href="/complaints/">Complaints</a></li>
+              <li><a href="/privacy-policy/">Privacy Policy</a></li>
+              <li><a href="/cookie-policy/">Cookie Policy</a></li>
               <li><button class="link-button" type="button" id="open-cookie-settings">Cookie Settings</button></li>
-              <li><span class="pending">Website Terms</span> <!-- PENDING PAGE: convert to <a href="/terms/"> once published --></li>
-              <li><span class="pending">Accessibility</span> <!-- PENDING PAGE: convert to <a href="/accessibility/"> once published --></li>
+              <li><a href="/terms/">Website Terms</a></li>
+              <li><a href="/accessibility/">Accessibility</a></li>
             </ul>
           </nav>
         </div>
@@ -658,73 +584,12 @@
 
   <p class="toast" id="toast" role="status" hidden></p>
 
+  <script src="/header.js" defer></script>
   <script>
   "use strict";
   (function () {
 
-    /* =====================================================
-       NAVIGATION
-    ===================================================== */
     var body = document.body;
-    var toggle = document.getElementById("menu-toggle");
-    var nav = document.getElementById("site-nav");
-    var subs = Array.prototype.slice.call(nav.querySelectorAll(".has-sub"));
-    var desktop = window.matchMedia("(min-width: 60rem)");
-
-    function setSub(li, open) {
-      li.classList.toggle("open", open);
-      li.querySelector(".sub-toggle").setAttribute("aria-expanded", String(open));
-    }
-    function closeSubs(except) {
-      subs.forEach(function (li) { if (li !== except) setSub(li, false); });
-    }
-    function setMenu(open, returnFocus) {
-      body.classList.toggle("menu-open", open);
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.querySelector(".label").textContent = open ? "Close" : "Menu";
-      if (!open) { closeSubs(); if (returnFocus) toggle.focus(); }
-    }
-
-    toggle.addEventListener("click", function () {
-      setMenu(toggle.getAttribute("aria-expanded") !== "true", false);
-    });
-
-    subs.forEach(function (li) {
-      li.querySelector(".sub-toggle").addEventListener("click", function () {
-        var open = !li.classList.contains("open");
-        closeSubs(li);
-        setSub(li, open);
-      });
-    });
-
-    nav.addEventListener("click", function (e) {
-      if (e.target.closest("a")) { closeSubs(); if (!desktop.matches) setMenu(false, false); }
-    });
-
-    /* Moving focus to another top-level item closes an open dropdown (desktop). */
-    nav.addEventListener("focusin", function (e) {
-      if (desktop.matches) closeSubs(e.target.closest(".has-sub"));
-    });
-
-    document.addEventListener("click", function (e) {
-      if (nav.contains(e.target) || toggle.contains(e.target)) return;
-      closeSubs();
-      if (!desktop.matches && body.classList.contains("menu-open")) setMenu(false, false);
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key !== "Escape") return;
-      var openSub = subs.filter(function (li) { return li.classList.contains("open"); })[0];
-      if (desktop.matches) {
-        if (openSub) { setSub(openSub, false); openSub.querySelector(".sub-toggle").focus(); }
-      } else if (body.classList.contains("menu-open")) {
-        setMenu(false, true);
-      }
-    });
-
-    var onBreakpoint = function () { setMenu(false, false); };
-    if (desktop.addEventListener) desktop.addEventListener("change", onBreakpoint);
-    else desktop.addListener(onBreakpoint);
 
     var yr = document.getElementById("current-year");
     if (yr) yr.textContent = new Date().getFullYear();
@@ -732,16 +597,22 @@
     /* =====================================================
        CONSENT AND ANALYTICS
        - Nothing from Google is requested until analytics consent is given.
+       - The consent record format, key, version and expiry MUST match scripts.js
+         so a visitor's choice is recognised on every page.
        - Consent Mode v2 is out of scope; loadAnalytics() is the single place to extend later.
     ===================================================== */
 
-    // REPLACE-BEFORE-DEPLOYMENT: actual GA4 Measurement ID.
+    // GA4 measurement ID. Keep identical to analyticsId in scripts.js.
     var GA_ID = "G-6GVKWZF6YZ";
     var CONSENT_KEY = "chariot_consent";
     var CONSENT_VERSION = 1;               // increase when tracking configuration materially changes
     var CONSENT_MAX_AGE_MS = 183 * 24 * 60 * 60 * 1000;   // about 6 months
     var COOKIE_DOMAIN = "chariotfinancialservices.com";
     var analyticsLoaded = false;
+
+    function isValidGaId(id) {
+      return /^G-[A-Z0-9]{8,12}$/i.test(id) && !/^G-X+$/i.test(id);
+    }
 
     function readConsent() {
       try {
@@ -766,7 +637,7 @@
 
     function loadAnalytics() {
       if (analyticsLoaded) return;
-      if (GA_ID.indexOf("REPLACE-BEFORE-DEPLOYMENT") !== -1) return;   // placeholder can never send data
+      if (!isValidGaId(GA_ID)) return;   // a placeholder ID can never send data
       analyticsLoaded = true;
       window["ga-disable-" + GA_ID] = false;
       window.dataLayer = window.dataLayer || [];
